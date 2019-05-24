@@ -15,34 +15,34 @@ function Footer() {
               <Inner>
                 <Top>
                   <Col>
-                    <Heading>aa</Heading>
-                    <Text>aa</Text>
+                    <Heading>About</Heading>
+                    <Text>テキストテキスト。テキストテキスト。テキストテキスト。テキストテキスト。テキストテキス。テキストテキスト。テキストテキスト。テキストテキスト。テキストテキスト。テキストテキスト。テキストテキスト。テキストテキスト。</Text>
                   </Col>
                   <Col>
-                    <Heading>aa</Heading>
+                    <Heading>Category</Heading>
                     <Category>
-                      <CategoryItem><CategoryLink to="/">aaa</CategoryLink></CategoryItem>
-                      <CategoryItem><CategoryLink to="/">aaa</CategoryLink></CategoryItem>
-                      <CategoryItem><CategoryLink to="/">aaa</CategoryLink></CategoryItem>
+                      <CategoryItem><CategoryLink to="/">カテゴリ</CategoryLink></CategoryItem>
+                      <CategoryItem><CategoryLink to="/">カテゴリ</CategoryLink></CategoryItem>
+                      <CategoryItem><CategoryLink to="/">カテゴリ</CategoryLink></CategoryItem>
                     </Category>
                   </Col>
                   <Col>
-                    <Heading>aa</Heading>
+                    <Heading>Tag</Heading>
                     <Tag>
-                      <TagItem><TagLink to="/">aaa</TagLink></TagItem>
-                      <TagItem><TagLink to="/">aaa</TagLink></TagItem>
-                      <TagItem><TagLink to="/">aaa</TagLink></TagItem>
-                      <TagItem><TagLink to="/">aaa</TagLink></TagItem>
-                      <TagItem><TagLink to="/">aaa</TagLink></TagItem>
-                      <TagItem><TagLink to="/">aaa</TagLink></TagItem>
-                      <TagItem><TagLink to="/">aaa</TagLink></TagItem>
-                      <TagItem><TagLink to="/">aaa</TagLink></TagItem>
-                      <TagItem><TagLink to="/">aaa</TagLink></TagItem>
+                      <TagItem><TagLink to="/">タグ</TagLink></TagItem>
+                      <TagItem><TagLink to="/">タグ</TagLink></TagItem>
+                      <TagItem><TagLink to="/">タグ</TagLink></TagItem>
+                      <TagItem><TagLink to="/">タグ</TagLink></TagItem>
+                      <TagItem><TagLink to="/">タグ</TagLink></TagItem>
+                      <TagItem><TagLink to="/">タグ</TagLink></TagItem>
+                      <TagItem><TagLink to="/">タグ</TagLink></TagItem>
+                      <TagItem><TagLink to="/">タグ</TagLink></TagItem>
+                      <TagItem><TagLink to="/">タグ</TagLink></TagItem>
                     </Tag>
                   </Col>
                 </Top>
                 <Bottom>
-                  <Copyright>aaaa</Copyright>
+                  <Copyright>Copyright © Members Co.,Ltd. All rights reserved</Copyright>
                 </Bottom>
               </Inner>
             </Wrapper>
@@ -66,6 +66,8 @@ export const Inner = styled.div`
   padding: 25px 4% 20px;
   @media screen and (min-width: 768px) {
     max-width: 1120px;
+    padding: 43px 0 20px;
+    margin: 0 auto;
   }
 `;
 
@@ -74,12 +76,19 @@ export const Top = styled.div`
   @media screen and (min-width: 768px) {
     display: flex;
     justify-content: space-between;
+    padding-bottom: 40px;
   }
 `;
 
 export const Col = styled.div`
   &:not(:last-child) {
     margin-bottom: 25px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 31%;
+    &:not(:last-child) {
+      margin-bottom: 0;
+    }
   }
 `;
 
@@ -88,38 +97,49 @@ export const Heading = styled.p`
   line-height: 1.4;
   margin: 0 0 8px 0;
   font-weight: 700;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 11px;
+  }
 `;
 
 export const Text = styled.p`
   font-size: 1.4rem;
+  line-height: 1.7;
+  margin: 0;
 `;
 
 export const Category = styled.ul`
   margin: 0;
   padding: 0;
   list-style: none;
+  line-height: 1.7;
 `;
 
 export const CategoryItem = styled.li`
-  margin-bottom: 4px;
   padding-left: 1em;
+  text-indent: -1em;
+  &:not(:last-child) {
+    margin-bottom: 4px;
+  }
 `;
 
 export const CategoryLink = styled(Link)`
   color: #fff;
   text-decoration: none;
   box-shadow: none;
+  transition: all .2s linear;
   &::before {
     background: url(${linkIcon});
     content: "";
-    height: 5px;
-    width: 8.6px;
+    height: 8px;
+    width: 8px;
     background-position: center;
     background-repeat: no-repeat;
     display: inline-block;
     margin-right: 6px;
-    position: absolute;
-    /* transform: translateY(2px); */
+  }
+  &:hover {
+    opacity: .5;
   }
 `;
 

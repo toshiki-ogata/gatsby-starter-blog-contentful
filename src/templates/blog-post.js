@@ -1,16 +1,17 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { rhythm, scale } from "../utils/typography"
+// import Image from "../components/Image"
+import styled, { createGlobalStyle } from 'styled-components'
 
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
+    console.log(this.props.location.pathname);
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -18,34 +19,18 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
-        <h1>{post.frontmatter.title}</h1>
-        <p
-          style={{
-            ...scale(-1 / 5),
-            display: `block`,
-            marginBottom: rhythm(1),
-            marginTop: rhythm(-1),
-          }}
-        >
-          {post.frontmatter.date}
-        </p>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
-        />
-        <Bio />
+        <H1>{post.frontmatter.title}</H1>
+        <Date>
+          {post.frontmatter.date}更新
+        </Date>
+        {/* console.log({`../../content/blog${post.fields.slug + post.frontmatter.tmb}`});
+        <Image filename={`../../content/blog${post.fields.slug + post.frontmatter.tmb}`} /> */}
+        {/* <img src={this.props.location.pathname + post.frontmatter.tmb} alt=""/> */}
+        <GlobalStyle />
+        <div className="post" dangerouslySetInnerHTML={{ __html: post.html }} />
+        <hr/>
 
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
+        <ul>
           <li>
             {previous && (
               <Link to={previous.fields.slug} rel="prev">
@@ -66,6 +51,109 @@ class BlogPostTemplate extends React.Component {
   }
 }
 
+export const H1 = styled.h1`
+  margin: 0 0 22px 0;
+  line-height: 1.4;
+  font-weight: bold;
+  font-size: 2.8rem;
+`;
+
+export const Date = styled.time`
+  margin: 0 0 20px 0;
+  line-height: 1.4;
+  font-size: 1.4rem;
+  display: block;
+`;
+
+const GlobalStyle = createGlobalStyle`
+  .post {
+    h2 {
+      line-height: 1.4;
+      font-weight: bold;
+      margin: 32px 0 24px 0;
+      font-size: 2.2rem;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #333;
+      @media screen and (min-width: 768px) {
+        
+      }
+    }
+    h3 {
+      line-height: 1.4;
+      font-weight: bold;
+      margin: 32px 0 24px 0;
+      font-size: 1.8rem;
+      padding-left: 10px;
+      border-left: 4px solid #333;
+      @media screen and (min-width: 768px) {
+        
+      }
+    }
+    p {
+      line-height: 1.7;
+      margin: 0 0 24px 0;
+      font-size: 1.6rem;
+    }
+    a {
+      transition: all .2s linear;
+      color: #005BEA;
+      &:hover {
+        opacity: .5;
+      }
+    }
+    ul, ol {
+      font-size: 1.6rem;
+      line-height: 1.7;
+      list-style: none;
+      margin: 0 0 24px 0;
+      li {
+        position: relative;
+        &:not(:last-child) {
+          margin-bottom: 4px;
+        }
+      }
+    }
+    ul {
+      padding-left: 16px;
+      @media screen and (min-width: 768px) {
+        
+      }
+      li {
+        &::before {
+          border-radius: 50%;
+          content: "";
+          display: block;
+          height: 6px;
+          left: -16px;
+          position: absolute;
+          top: .7em;
+          width: 6px;
+          background: #333;
+        }
+        @media screen and (min-width: 768px) {
+          
+        }
+      }
+    }
+    ol {
+      counter-reset: my-counter;
+      padding-left: 1.1em;
+      @media screen and (min-width: 768px) {
+        
+      }
+      li {
+        &::before {
+          content: counter(my-counter) ".";
+          counter-increment: my-counter;
+          font-weight: 700;
+          left: -1.1em;
+          position: absolute;
+        }
+      }
+    }
+  }
+`
+
 export default BlogPostTemplate
 
 export const pageQuery = graphql`
@@ -82,8 +170,7 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
-        description
+        date(formatString: "YYYY年M月D日")
       }
     }
   }

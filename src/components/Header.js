@@ -14,7 +14,9 @@ function Header() {
             <Wrapper>
               <Inner>
                 <H1>
-                  <Logo src={logo} alt={title} />
+                  <Link to="/">
+                    <Logo src={logo} alt={title} />
+                  </Link>
                 </H1>
                 <nav>
                   <Nav>
@@ -65,6 +67,8 @@ export const H1 = styled.h1`
 export const Logo = styled.img`
   color: #fff;
   margin: 0;
+  width: 181px;
+  vertical-align: bottom;
 `;
 
 export const Nav = styled.ul`

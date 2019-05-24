@@ -3,7 +3,7 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import styles from '../styles'
 import GlobalStyle from '../styles/GlobalStyle'
-import { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 
 class Layout extends React.Component {
   render() {
@@ -13,12 +13,23 @@ class Layout extends React.Component {
         <div>
           <GlobalStyle />
           <Header />
-          <main>{children}</main>
+          <Wrapper>
+            <main>{children}</main>
+          </Wrapper>
           <Footer />
         </div>
       </ThemeProvider>
     )
   }
 }
+
+export const Wrapper = styled.div`
+  padding: 30px 4% 56px;
+  margin: 0 auto;
+  @media screen and (min-width: 768px) {
+    padding: 52px 32px 80px;
+    max-width: 1184px;
+  }
+`;
 
 export default Layout
