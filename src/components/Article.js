@@ -1,8 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import styled from 'styled-components';
-import Image from "../components/Image"
-// import Img from 'gatsby-image'
+import Img from 'gatsby-image'
 
 class Article extends React.Component {
   render() {
@@ -10,8 +9,8 @@ class Article extends React.Component {
     return (
       <StyledLink to={link}>
         <Item>
-          <Image filename={tmb} />
-          {/* <img src={tmb} /> */}
+          {/* <Image filename={tmb} /> */}
+          <Img fluid={tmb} />
           <Body>
             <Heading>{title}</Heading>
             <Date>{date}</Date>

@@ -36,11 +36,9 @@ class BlogIndex extends React.Component {
           <Heading main="NEW POSTS" sub="新着記事" />
           <ArticleWrapper>
             {posts.map(({ node }, index) => {
-              // console.log(`../../content/blog${node.fields.slug + node.frontmatter.tmb}`);
               if (index < 12) {
                 return (
-                  // <Article key={node.fields.slug} link={node.fields.slug} title={node.frontmatter.title} date={node.frontmatter.date} tmb={`../../content/blog${node.fields.slug + node.frontmatter.tmb}`} />
-                  <Article key={node.fields.slug} link={node.fields.slug} title={node.frontmatter.title} date={node.frontmatter.date} tmb={node.frontmatter.tmb} />
+                  <Article key={node.fields.slug} link={node.fields.slug} title={node.frontmatter.title} date={node.frontmatter.date} tmb={node.frontmatter.tmb.childImageSharp.fluid} />
                 )
               }
             })}
@@ -120,7 +118,13 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "YYYY.M.D")
             title
-            tmb
+            tmb {
+              childImageSharp {
+                fluid(maxWidth: 800) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }
