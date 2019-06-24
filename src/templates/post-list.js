@@ -23,9 +23,9 @@ class PostListTemplate extends React.Component {
           <Heading main="NEW POSTS" sub="新着記事" />
           <ArticleWrapper>
             {posts.map(({ node }, index) => {
-              if (index < 12) {
+              if (index < 3) {
                 return (
-                  <Article link={node.fields.slug} title={node.frontmatter.title} date={node.frontmatter.date} />
+                  <Article key={node.fields.slug} link={node.fields.slug} title={node.frontmatter.title} date={node.frontmatter.date} tmb={node.frontmatter.tmb.childImageSharp.fluid} />
                 )
               }
             })}
@@ -74,7 +74,13 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "YYYY.M.D ")
             title
-            description
+            tmb {
+              childImageSharp {
+                fluid(maxWidth: 800) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }

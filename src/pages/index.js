@@ -12,7 +12,6 @@ class BlogIndex extends React.Component {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
     const posts = data.allMarkdownRemark.edges
-    console.log(posts)
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -36,7 +35,7 @@ class BlogIndex extends React.Component {
           <Heading main="NEW POSTS" sub="新着記事" />
           <ArticleWrapper>
             {posts.map(({ node }, index) => {
-              if (index < 12) {
+              if (index < 3) {
                 return (
                   <Article key={node.fields.slug} link={node.fields.slug} title={node.frontmatter.title} date={node.frontmatter.date} tmb={node.frontmatter.tmb.childImageSharp.fluid} />
                 )

@@ -51,21 +51,18 @@ exports.createPages = ({ graphql, actions }) => {
     })
 
     // Create post-list.
-    // const postLists = result.data.allMarkdownRemark.edges
-    // const numPages = Math.ceil(postLists.length / 12);
-    // console.log(numPages);
-    // console.log('test');
+    const postLists = result.data.allMarkdownRemark.edges
+    const numPages = Math.ceil(postLists.length / 3);
 
-    // for (let i = 0; i < numPages, i++;) {
-    //   console.log(i + 1);
-    //   createPage({
-    //     path: `/pages/${i + 1}`,
-    //     component: postList,
-    //     context: {
-    //       id: i,
-    //     },
-    //   })
-    // }
+    for(let i = 0; i < numPages; i++) {
+      createPage({
+        path: `/pages/${i + 1}`,
+        component: postList,
+        context: {
+          id: i,
+        },
+      })
+    }
 
     return null
   })
