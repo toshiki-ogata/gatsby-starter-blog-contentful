@@ -43,9 +43,15 @@ class BlogIndex extends React.Component {
             })}
           </ArticleWrapper>
         </Section>
-        <MoreLinkWrapper>
-          <MoreLink to="/pages/1/">Read More</MoreLink>
-        </MoreLinkWrapper>
+        {(() => {
+          if(posts.length > 3) {
+            return (
+              <MoreLinkWrapper>
+                <MoreLink to="/pages/1/">Read More</MoreLink>
+              </MoreLinkWrapper>
+            )
+          }
+        })()}
       </Layout>
     )
   }
