@@ -24,7 +24,7 @@ class PostListTemplate extends React.Component {
           <Heading main="NEW POSTS" sub="新着記事" />
           <ArticleWrapper>
             {posts.map(({ node }, index) => {
-              if (index < 3) {
+              if (index < 3 * id && index > (3 * id) - (3 + 1)) {
                 return (
                   <Article key={node.fields.slug} link={node.fields.slug} title={node.frontmatter.title} date={node.frontmatter.date} tmb={node.frontmatter.tmb.childImageSharp.fluid} />
                 )
