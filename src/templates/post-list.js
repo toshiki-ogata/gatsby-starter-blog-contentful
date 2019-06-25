@@ -12,6 +12,7 @@ class PostListTemplate extends React.Component {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
     const posts = data.allMarkdownRemark.edges
+    const { id, previous, next } = this.props.pageContext
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -31,23 +32,24 @@ class PostListTemplate extends React.Component {
             })}
           </ArticleWrapper>
         </Section>
-        <Pager>
-          <PagerItem>
-            <ItemLink>0</ItemLink>
-          </PagerItem>
-          <PagerItem>
-            <ItemLink>0</ItemLink>
-          </PagerItem>
-          <PagerItem>
-            <ItemLink>0</ItemLink>
-          </PagerItem>
-          <PagerItem>
-            <ItemLink>0</ItemLink>
-          </PagerItem>
-          <PagerItem>
-            <ItemLink>0</ItemLink>
-          </PagerItem>
-        </Pager>
+        {(() => {
+          if(previous !== null || next !== null) {
+            return (
+              <Pager>
+                {previous && (
+                  <PagerItem>
+                    <ItemLink to={`/pages/${previous}`} rel="prev">前へ</ItemLink>
+                  </PagerItem>
+                )}
+                {next && (
+                  <PagerItem>
+                    <ItemLink to={`/pages/${next}`} rel="prev">次へ</ItemLink>
+                  </PagerItem>
+                )}
+              </Pager>
+            )
+          }
+        })()}
       </Layout>
     )
   }

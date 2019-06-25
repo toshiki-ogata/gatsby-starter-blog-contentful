@@ -55,11 +55,15 @@ exports.createPages = ({ graphql, actions }) => {
     const numPages = Math.ceil(postLists.length / 3);
 
     for(let i = 0; i < numPages; i++) {
+      const previous = i === 0 ? null : i
+      const next = i === numPages - 1 ? null : i + 2
       createPage({
         path: `/pages/${i + 1}`,
         component: postList,
         context: {
-          id: i,
+          id: `${i + 1}`,
+          previous,
+          next,
         },
       })
     }
