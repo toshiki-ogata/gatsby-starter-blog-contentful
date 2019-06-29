@@ -7,8 +7,8 @@ const variables = {
   sns: {
     facebook: '#3a579d',
     line: '#4ecd00',
-    twitter: '#1da1f2'
-  }
+    twitter: '#1da1f2',
+  },
 }
 
-export default variables;
+export default variables

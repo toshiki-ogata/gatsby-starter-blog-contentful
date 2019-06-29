@@ -1,6 +1,6 @@
-import React from "react"
-import { Link, StaticQuery, graphql } from "gatsby"
-import styled from 'styled-components';
+import React from 'react'
+import { Link, StaticQuery, graphql } from 'gatsby'
+import styled from 'styled-components'
 import logo from '../../content/assets/logo.svg'
 
 function Header() {
@@ -20,14 +20,20 @@ function Header() {
                 </H1>
                 <nav>
                   <Nav>
-                    <NavItem><StyledLink to="/">アーカイブ</StyledLink></NavItem>
-                    <NavItem><StyledLink to="/">カテゴリ</StyledLink></NavItem>
-                    <NavItem><StyledLink to="/">タグ</StyledLink></NavItem>
+                    <NavItem>
+                      <StyledLink to="/">アーカイブ</StyledLink>
+                    </NavItem>
+                    <NavItem>
+                      <StyledLink to="/">カテゴリ</StyledLink>
+                    </NavItem>
+                    <NavItem>
+                      <StyledLink to="/">タグ</StyledLink>
+                    </NavItem>
                   </Nav>
                   <Menu>
-                    <MenuItem></MenuItem>
-                    <MenuItem></MenuItem>
-                    <MenuItem></MenuItem>
+                    <MenuItem />
+                    <MenuItem />
+                    <MenuItem />
                   </Menu>
                 </nav>
               </Inner>
@@ -40,7 +46,7 @@ function Header() {
 }
 
 export const Wrapper = styled.div`
-  background: linear-gradient(90deg, #00A5FB, #0091F3 50%, #005BEA);
+  background: linear-gradient(90deg, #00a5fb, #0091f3 50%, #005bea);
   height: 56px;
   padding-right: 4%;
   padding-left: 4%;
@@ -49,7 +55,7 @@ export const Wrapper = styled.div`
     padding-right: 32px;
     padding-left: 32px;
   }
-`;
+`
 
 export const Inner = styled.div`
   max-width: 1120px;
@@ -58,18 +64,18 @@ export const Inner = styled.div`
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
-`;
+`
 
 export const H1 = styled.h1`
   margin: 0;
-`;
+`
 
 export const Logo = styled.img`
   color: #fff;
   margin: 0;
   width: 181px;
   vertical-align: bottom;
-`;
+`
 
 export const Nav = styled.ul`
   display: none;
@@ -78,7 +84,7 @@ export const Nav = styled.ul`
     font-size: 1.4rem;
     margin: 0;
   }
-`;
+`
 
 export const NavItem = styled.li`
   @media screen and (min-width: 768px) {
@@ -88,7 +94,7 @@ export const NavItem = styled.li`
       margin-right: 32px;
     }
   }
-`;
+`
 
 export const StyledLink = styled(Link)`
   color: #fff;
@@ -98,7 +104,7 @@ export const StyledLink = styled(Link)`
 
 export const Menu = styled.div`
   display: inline-block;
-  transition: all .4s;
+  transition: all 0.4s;
   position: relative;
   width: 19px;
   height: 16px;
@@ -109,7 +115,7 @@ export const Menu = styled.div`
 
 export const MenuItem = styled.span`
   display: inline-block;
-  transition: all .4s;
+  transition: all 0.4s;
   position: absolute;
   left: 0;
   width: 100%;

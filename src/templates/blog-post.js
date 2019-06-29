@@ -1,35 +1,37 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
+import React from 'react'
+import { graphql } from 'gatsby'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-// import Image from "../components/Image"
 import styled, { createGlobalStyle } from 'styled-components'
+import Layout from '../components/layout'
+import SEO from '../components/seo'
+// import Image from "../components/Image"
 
 class BlogPostTemplate extends React.Component {
   render() {
-    const post = this.props.data.markdownRemark
-    const siteTitle = this.props.data.site.siteMetadata.title
-    const { previous, next } = this.props.pageContext
+    const { data, location } = this.props
+    const post = data.markdownRemark
+    const siteTitle = data.site.siteMetadata.title
+    // const { previous, next } = pageContext
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <Layout location={location} title={siteTitle}>
         <SEO
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
         <H1>{post.frontmatter.title}</H1>
         <Date>
-          {post.frontmatter.date}更新
+          {post.frontmatter.date}
+          更新
         </Date>
         {/* console.log({`../../content/blog${post.fields.slug + post.frontmatter.tmb}`});
         <Image filename={`../../content/blog${post.fields.slug + post.frontmatter.tmb}`} /> */}
         {/* <img src={this.props.location.pathname + post.frontmatter.tmb} alt=""/> */}
         <GlobalStyle />
         <div className="post" dangerouslySetInnerHTML={{ __html: post.html }} />
-        <hr/>
+        {/* <hr /> */}
 
-        <ul>
+        {/* <ul>
           <li>
             {previous && (
               <Link to={previous.fields.slug} rel="prev">
@@ -44,7 +46,7 @@ class BlogPostTemplate extends React.Component {
               </Link>
             )}
           </li>
-        </ul>
+        </ul> */}
       </Layout>
     )
   }
@@ -55,14 +57,14 @@ export const H1 = styled.h1`
   line-height: 1.4;
   font-weight: bold;
   font-size: 2.8rem;
-`;
+`
 
 export const Date = styled.time`
   margin: 0 0 20px 0;
   line-height: 1.4;
   font-size: 1.4rem;
   display: block;
-`;
+`
 
 const GlobalStyle = createGlobalStyle`
   .post {
@@ -74,7 +76,7 @@ const GlobalStyle = createGlobalStyle`
       padding-bottom: 5px;
       border-bottom: 1px solid #333;
       @media screen and (min-width: 768px) {
-        
+
       }
     }
     h3 {
@@ -85,7 +87,7 @@ const GlobalStyle = createGlobalStyle`
       padding-left: 10px;
       border-left: 4px solid #333;
       @media screen and (min-width: 768px) {
-        
+
       }
     }
     p {
@@ -115,7 +117,7 @@ const GlobalStyle = createGlobalStyle`
     ul {
       padding-left: 16px;
       @media screen and (min-width: 768px) {
-        
+
       }
       li {
         &::before {
@@ -130,7 +132,7 @@ const GlobalStyle = createGlobalStyle`
           background: #333;
         }
         @media screen and (min-width: 768px) {
-          
+
         }
       }
     }
@@ -138,7 +140,7 @@ const GlobalStyle = createGlobalStyle`
       counter-reset: my-counter;
       padding-left: 1.1em;
       @media screen and (min-width: 768px) {
-        
+
       }
       li {
         &::before {

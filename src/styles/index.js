@@ -1,9 +1,9 @@
-import variables from './variables';
-import mixins from './mixins';
+import variables from './variables'
+import mixins from './mixins'
 
 const styles = {
   variables,
-  mixins
+  mixins,
 }
 
-export default styles;
+export default styles

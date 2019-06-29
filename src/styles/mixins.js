@@ -5,7 +5,7 @@ const mixins = {
     @media (min-width: 768px) {
       ${css(...args)};
     }
-  `
+  `,
 }
 
 export default mixins

@@ -1,6 +1,6 @@
-import React from "react"
+import React from 'react'
 // import { StaticQuery, graphql } from "gatsby"
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 class Heading extends React.Component {
   render() {
@@ -22,7 +22,7 @@ export const H2 = styled.h2`
   @media screen and (min-width: 768px) {
     margin-bottom: 38px;
   }
-`;
+`
 
 export const Main = styled.div`
   font-weight: bold;
@@ -30,7 +30,7 @@ export const Main = styled.div`
   @media screen and (min-width: 768px) {
     font-size: 3.2rem;
   }
-`;
+`
 
 export const Sub = styled.div`
   font-size: 1.4rem;
@@ -39,6 +39,6 @@ export const Sub = styled.div`
     padding-right: 32px;
     padding-left: 32px;
   }
-`;
+`
 
 export default Heading

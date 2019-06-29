@@ -1,20 +1,20 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
+import React from 'react'
+import { Link, graphql } from 'gatsby'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import Heading from "../components/Heading"
-import Article from "../components/Article"
-import styled from 'styled-components';
+import styled from 'styled-components'
+import Layout from '../components/layout'
+import SEO from '../components/seo'
+import Heading from '../components/Heading'
+import Article from '../components/Article'
 
 class BlogIndex extends React.Component {
   render() {
-    const { data } = this.props
+    const { data, location } = this.props
     const siteTitle = data.site.siteMetadata.title
     const posts = data.allMarkdownRemark.edges
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <Layout location={location} title={siteTitle}>
         <SEO
           title="All posts"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
@@ -37,14 +37,20 @@ class BlogIndex extends React.Component {
             {posts.map(({ node }, index) => {
               if (index < 3) {
                 return (
-                  <Article key={node.fields.slug} link={node.fields.slug} title={node.frontmatter.title} date={node.frontmatter.date} tmb={node.frontmatter.tmb.childImageSharp.fluid} />
+                  <Article
+                    key={node.fields.slug}
+                    link={node.fields.slug}
+                    title={node.frontmatter.title}
+                    date={node.frontmatter.date}
+                    tmb={node.frontmatter.tmb.childImageSharp.fluid}
+                  />
                 )
               }
             })}
           </ArticleWrapper>
         </Section>
         {(() => {
-          if(posts.length > 3) {
+          if (posts.length > 3) {
             return (
               <MoreLinkWrapper>
                 <MoreLink to="/pages/1/">Read More</MoreLink>
@@ -62,20 +68,19 @@ export const Section = styled.section`
   @media screen and (min-width: 768px) {
     margin-bottom: 52px;
   }
-`;
+`
 
 export const ArticleWrapper = styled.div`
   display: grid;
   grid-row-gap: 32px;
-  grid-template-columns: repeat(auto-fill, minmax(auto , 450px));
+  grid-template-columns: repeat(auto-fill, minmax(auto, 450px));
   justify-content: center;
   @media screen and (min-width: 768px) {
     grid-column-gap: 32px;
     grid-row-gap: 40px;
     grid-template-columns: repeat(auto-fill, 352px);
   }
-`;
-
+`
 
 export const MoreLinkWrapper = styled.div`
   text-align: center;
@@ -83,7 +88,7 @@ export const MoreLinkWrapper = styled.div`
   @media screen and (min-width: 768px) {
     margin-top: 80px;
   }
-`;
+`
 
 export const MoreLink = styled(Link)`
   margin-bottom: 29.5px;
@@ -92,17 +97,17 @@ export const MoreLink = styled(Link)`
   font-size: 1.6rem;
   font-weight: bold;
   text-align: center;
-  background: linear-gradient(90deg, #00A5FB, #0091F3 50%, #005BEA);
+  background: linear-gradient(90deg, #00a5fb, #0091f3 50%, #005bea);
   color: #fff;
   text-decoration: none;
   display: inline-block;
   padding: 14px 20px;
   border-radius: 6px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, .08);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
   @media screen and (min-width: 768px) {
     margin-bottom: 52px;
   }
-`;
+`
 
 export default BlogIndex
 

@@ -1,9 +1,9 @@
-import React from "react"
-import Header from "../components/Header"
-import Footer from "../components/Footer"
+import React from 'react'
+import styled, { ThemeProvider } from 'styled-components'
+import Header from './Header'
+import Footer from './Footer'
 import styles from '../styles'
 import GlobalStyle from '../styles/GlobalStyle'
-import styled, { ThemeProvider } from 'styled-components'
 
 class Layout extends React.Component {
   render() {
@@ -30,6 +30,6 @@ export const Wrapper = styled.div`
     padding: 52px 32px 80px;
     max-width: 1184px;
   }
-`;
+`
 
 export default Layout

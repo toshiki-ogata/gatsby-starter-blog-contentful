@@ -68,6 +68,20 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: 'gatsby-plugin-eslint',
+      options: {
+        test: /\.js$/,
+        exclude: /(node_modules|.cache|public)/,
+        loader: 'eslint-loader',
+        stages: ['develop'],
+        options: {
+          emitWarning: false,
+          failOnError: false,
+          fix: true
+        }
+      }
+    }
     // {
     //   resolve: `gatsby-plugin-typography`,
     //   options: {

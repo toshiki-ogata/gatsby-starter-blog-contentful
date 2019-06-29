@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import styles from './variables';
+import styles from './variables'
 
 const GlobalStyle = createGlobalStyle`
   @import url(//fonts.googleapis.com/earlyaccess/notosansjp.css);
