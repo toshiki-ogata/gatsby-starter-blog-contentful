@@ -78,10 +78,16 @@ module.exports = {
         options: {
           emitWarning: false,
           failOnError: false,
-          fix: true
-        }
-      }
-    }
+          fix: true,
+        },
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-stylelint',
+      options: {
+        files: ['src/**/*.js'],
+      },
+    },
     // {
     //   resolve: `gatsby-plugin-typography`,
     //   options: {

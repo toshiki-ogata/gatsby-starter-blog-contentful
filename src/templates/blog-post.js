@@ -75,9 +75,6 @@ const GlobalStyle = createGlobalStyle`
       font-size: 2.2rem;
       padding-bottom: 5px;
       border-bottom: 1px solid #333;
-      @media screen and (min-width: 768px) {
-
-      }
     }
     h3 {
       line-height: 1.4;
@@ -86,9 +83,6 @@ const GlobalStyle = createGlobalStyle`
       font-size: 1.8rem;
       padding-left: 10px;
       border-left: 4px solid #333;
-      @media screen and (min-width: 768px) {
-
-      }
     }
     p {
       line-height: 1.7;
@@ -96,13 +90,14 @@ const GlobalStyle = createGlobalStyle`
       font-size: 1.6rem;
     }
     a {
-      transition: all .2s linear;
-      color: #005BEA;
+      transition: all 0.2s linear;
+      color: #005bea;
       &:hover {
-        opacity: .5;
+        opacity: 0.5;
       }
     }
-    ul, ol {
+    ul,
+    ol {
       font-size: 1.6rem;
       line-height: 1.7;
       list-style: none;
@@ -116,9 +111,6 @@ const GlobalStyle = createGlobalStyle`
     }
     ul {
       padding-left: 16px;
-      @media screen and (min-width: 768px) {
-
-      }
       li {
         &::before {
           border-radius: 50%;
@@ -127,21 +119,15 @@ const GlobalStyle = createGlobalStyle`
           height: 6px;
           left: -16px;
           position: absolute;
-          top: .7em;
+          top: 0.7em;
           width: 6px;
           background: #333;
-        }
-        @media screen and (min-width: 768px) {
-
         }
       }
     }
     ol {
       counter-reset: my-counter;
       padding-left: 1.1em;
-      @media screen and (min-width: 768px) {
-
-      }
       li {
         &::before {
           content: counter(my-counter) ".";

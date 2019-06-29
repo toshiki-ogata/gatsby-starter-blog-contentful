@@ -82,7 +82,7 @@ function Footer() {
 }
 
 export const Wrapper = styled.div`
-  background: #333333;
+  background: #333;
   color: #fff;
   @media screen and (min-width: 768px) {
     padding-right: 32px;
@@ -201,7 +201,7 @@ export const TagLink = styled(Link)`
 `
 
 export const Bottom = styled.div`
-  border-top: 1px solid #666666;
+  border-top: 1px solid #666;
   padding-top: 19px;
 `
 
