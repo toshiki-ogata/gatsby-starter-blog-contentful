@@ -9,10 +9,10 @@ import Article from '../components/Article'
 
 class PostListTemplate extends React.Component {
   render() {
-    const { data, location } = this.props
+    const { data, location, pageContext } = this.props
     const siteTitle = data.site.siteMetadata.title
     const posts = data.allMarkdownRemark.edges
-    const { id, previous, next } = data.pageContext
+    const { id, previous, next } = pageContext
     // console.log(data)
     // console.log(data.location)
 
