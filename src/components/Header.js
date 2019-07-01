@@ -46,7 +46,7 @@ function Header() {
 }
 
 export const Wrapper = styled.div`
-  background: linear-gradient(90deg, #00a5fb, #0091f3 50%, #005bea);
+  background: #333;
   height: 56px;
   padding-right: 4%;
   padding-left: 4%;
