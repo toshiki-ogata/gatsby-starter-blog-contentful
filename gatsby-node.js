@@ -11,26 +11,8 @@ exports.createPages = ({ graphql, actions }) => {
   return graphql(
     `
       {
-        postLists: allMarkdownRemark(
+        allMarkdownRemark(
           sort: { fields: [frontmatter___date], order: DESC }
-          limit: 1000
-        ) {
-          edges {
-            node {
-              fields {
-                slug
-              }
-              frontmatter {
-                title
-              }
-            }
-          }
-        }
-        categoryList: allMarkdownRemark(
-          sort: {
-            fields: [frontmatter___categorySlug, frontmatter___date]
-            order: [ASC, DESC]
-          }
           limit: 1000
         ) {
           edges {
@@ -54,7 +36,7 @@ exports.createPages = ({ graphql, actions }) => {
     }
 
     // Create blog posts pages.
-    const posts = result.data.postLists.edges
+    const posts = result.data.allMarkdownRemark.edges
 
     posts.forEach((post, index) => {
       const previous = index === posts.length - 1 ? null : posts[index + 1].node
@@ -72,7 +54,7 @@ exports.createPages = ({ graphql, actions }) => {
     })
 
     // Create category-list.
-    const postLists = result.data.postLists.edges
+    const postLists = result.data.allMarkdownRemark.edges
     const numPages = Math.ceil(postLists.length / 3)
 
     for (let i = 0; i < numPages; i++) {
@@ -90,7 +72,7 @@ exports.createPages = ({ graphql, actions }) => {
     }
 
     // Create post-list.
-    const categoryLists = result.data.categoryList.edges
+    const categoryLists = result.data.allMarkdownRemark.edges
 
     const categoryCleanLists = categoryLists.filter(function(v1, i1, a1) {
       return (
@@ -102,7 +84,6 @@ exports.createPages = ({ graphql, actions }) => {
         }) === i1
       )
     })
-    console.log(categoryCleanLists)
 
     categoryCleanLists.forEach(post => {
       createPage({
