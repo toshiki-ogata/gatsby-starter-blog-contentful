@@ -21,7 +21,7 @@ class PostListTemplate extends React.Component {
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
         />
         <Section>
-          <Heading main={`${categoryName}`} sub="新着記事" />
+          <Heading main={`${categoryName}`} />
           <ArticleWrapper>
             {posts.map(({ node }) => {
               if (node.frontmatter.categorySlug === categorySlug) {

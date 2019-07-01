@@ -8,7 +8,11 @@ class Heading extends React.Component {
     return (
       <H2>
         <Main>{main}</Main>
-        <Sub>{sub}</Sub>
+        {(() => {
+          if (sub !== null) {
+            return <Sub>{sub}</Sub>
+          }
+        })()}
       </H2>
     )
   }
