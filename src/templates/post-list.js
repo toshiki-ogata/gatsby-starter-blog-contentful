@@ -10,14 +10,12 @@ import Article from '../components/Article'
 class PostListTemplate extends React.Component {
   render() {
     const { data, location, pageContext } = this.props
-    const siteTitle = data.site.siteMetadata.title
+    const { title, totalPosts } = data.site.siteMetadata
     const posts = data.allMarkdownRemark.edges
     const { id, previous, next } = pageContext
-    // console.log(data)
-    // console.log(data.location)
 
     return (
-      <Layout location={location} title={siteTitle}>
+      <Layout location={location} title={title}>
         <SEO
           title="All posts"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
@@ -26,7 +24,10 @@ class PostListTemplate extends React.Component {
           <Heading main="NEW POSTS" sub="新着記事" />
           <ArticleWrapper>
             {posts.map(({ node }, index) => {
-              if (index < 3 * id && index > 3 * id - (3 + 1)) {
+              if (
+                index < totalPosts * id &&
+                index > totalPosts * id - (totalPosts + 1)
+              ) {
                 return (
                   <Article
                     key={node.fields.slug}

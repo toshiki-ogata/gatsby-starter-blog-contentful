@@ -10,11 +10,11 @@ import Article from '../components/Article'
 class BlogIndex extends React.Component {
   render() {
     const { data, location } = this.props
-    const siteTitle = data.site.siteMetadata.title
+    const { title, totalPosts } = data.site.siteMetadata
     const posts = data.allMarkdownRemark.edges
 
     return (
-      <Layout location={location} title={siteTitle}>
+      <Layout location={location} title={title}>
         <SEO
           title="All posts"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
@@ -35,7 +35,7 @@ class BlogIndex extends React.Component {
           <Heading main="NEW POSTS" sub="新着記事" />
           <ArticleWrapper>
             {posts.map(({ node }, index) => {
-              if (index < 3) {
+              if (index < totalPosts) {
                 return (
                   <Article
                     key={node.fields.slug}
@@ -50,7 +50,7 @@ class BlogIndex extends React.Component {
           </ArticleWrapper>
         </Section>
         {(() => {
-          if (posts.length > 3) {
+          if (posts.length > totalPosts) {
             return (
               <MoreLinkWrapper>
                 <MoreLink to="/pages/1/">Read More</MoreLink>
@@ -116,6 +116,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        totalPosts
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
