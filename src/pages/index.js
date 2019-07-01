@@ -53,7 +53,7 @@ class BlogIndex extends React.Component {
           if (posts.length > totalPosts) {
             return (
               <MoreLinkWrapper>
-                <MoreLink to="/pages/1/">Read More</MoreLink>
+                <MoreLink to="/pages/1/">もっと見る</MoreLink>
               </MoreLinkWrapper>
             )
           }
@@ -97,13 +97,19 @@ export const MoreLink = styled(Link)`
   font-size: 1.6rem;
   font-weight: bold;
   text-align: center;
-  background: linear-gradient(90deg, #00a5fb, #0091f3 50%, #005bea);
-  color: #fff;
+  background: #fff;
+  color: #333;
+  border: 2px solid #333;
   text-decoration: none;
   display: inline-block;
   padding: 14px 20px;
   border-radius: 6px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s linear;
+  &:hover {
+    background: #333;
+    color: #fff;
+  }
   @media screen and (min-width: 768px) {
     margin-bottom: 52px;
   }
