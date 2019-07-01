@@ -3,6 +3,8 @@ title: test3
 description: "test"
 date: "2019-05-23T22:12:03.284Z"
 tmb: "tmb.png"
+categoryName: "テスト1"
+categorySlug: "test1"
 ---
 
 This is my first post on my new fake blog! How exciting!
