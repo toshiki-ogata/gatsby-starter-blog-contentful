@@ -88,15 +88,6 @@ export const Item = styled.article`
   }
 `
 
-// export const Image = styled.img`
-//   margin: 0;
-//   vertical-align: bottom;
-//   width: 100%;
-//   @media screen and (min-width: 768px) {
-
-//   }
-// `;
-
 export const Body = styled.div`
   padding: 12px 0 30px;
   @media screen and (min-width: 768px) {
