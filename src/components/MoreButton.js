@@ -2,10 +2,22 @@ import React from 'react'
 import styled from 'styled-components'
 
 class MoreButton extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      display: 'block',
+    }
+  }
+
+  hiddenItem() {
+    this.setState({ display: 'none' })
+  }
+
   render() {
     const { moreClick } = this.props
+    const { display } = this.state
     return (
-      <Wrapper>
+      <Wrapper displayflag={display}>
         <Button onClick={moreClick}>もっと見る</Button>
       </Wrapper>
     )
@@ -15,6 +27,7 @@ class MoreButton extends React.Component {
 export const Wrapper = styled.div`
   text-align: center;
   margin-top: 56px;
+  display: ${props => (props.displayflag === 'block' ? 'block' : 'none')};
   @media screen and (min-width: 768px) {
     margin-top: 80px;
   }

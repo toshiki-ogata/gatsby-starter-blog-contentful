@@ -12,10 +12,20 @@ class PostListTemplate extends React.Component {
   constructor(props) {
     super(props)
     this.Article = React.createRef()
+    this.MoreButton = React.createRef()
   }
 
   moreClick = () => {
-    this.Article.current.showItem()
+    const promise = Promise.resolve()
+    promise.then(this.Article.current.showItem()).then(this.articleDisplayCheck)
+  }
+
+  articleDisplayCheck = () => {
+    const linkState = this.Article.current.state.linkDisplay
+    const linkStateResult = linkState.every(item => item === 'block')
+    if (linkStateResult) {
+      this.MoreButton.current.hiddenItem()
+    }
   }
 
   render() {
@@ -41,7 +51,7 @@ class PostListTemplate extends React.Component {
             totalPosts={totalPosts}
           />
         </Section>
-        <MoreButton moreClick={this.moreClick} />
+        <MoreButton moreClick={this.moreClick} ref={this.MoreButton} />
       </Layout>
     )
   }
