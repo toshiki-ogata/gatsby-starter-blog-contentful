@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 
 import styled from 'styled-components'
 import Layout from '../components/layout'
@@ -46,42 +46,6 @@ class PostListTemplate extends React.Component {
     )
   }
 }
-
-export const Pager = styled.ul`
-  justify-content: center;
-  list-style: none;
-  margin: 0 0 24px 0;
-  display: flex;
-`
-
-export const PagerItem = styled.li`
-  height: 40px;
-  line-height: 38px;
-  width: 40px;
-  border: 1px solid #000;
-  color: #fff;
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-align: center;
-  transition: background-color 0.4s;
-  &:not(:last-child) {
-    margin-right: 10px;
-  }
-  &:hover {
-    background-color: #000;
-  }
-`
-
-export const ItemLink = styled(Link)`
-  display: block;
-  height: 100%;
-  text-decoration: none;
-  width: 100%;
-  color: initial;
-  &:hover {
-    color: #fff;
-  }
-`
 
 export const Section = styled.section`
   margin-bottom: 29.5px;
