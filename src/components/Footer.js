@@ -7,8 +7,30 @@ function Footer() {
   return (
     <StaticQuery
       query={footerQuery}
-      render={() => {
-        // const { title } = data.site.siteMetadata
+      render={data => {
+        const { author } = data.site.siteMetadata
+        const posts = data.allMarkdownRemark.edges
+        const deduplicatePosts = posts.filter(function(v1, i1, a1) {
+          return (
+            a1.findIndex(function(v2) {
+              return (
+                v1.node.frontmatter.categorySlug ===
+                v2.node.frontmatter.categorySlug
+              )
+            }) === i1
+          )
+        })
+        deduplicatePosts.sort((a, b) => {
+          const nameA = a.node.frontmatter.categorySlug
+          const nameB = b.node.frontmatter.categorySlug
+          if (nameA < nameB) {
+            return -1
+          }
+          if (nameA > nameB) {
+            return 1
+          }
+          return 0
+        })
         return (
           <footer>
             <Wrapper>
@@ -23,15 +45,17 @@ function Footer() {
                   <Col>
                     <Heading>Category</Heading>
                     <Category>
-                      <CategoryItem>
-                        <CategoryLink to="/">カテゴリ</CategoryLink>
-                      </CategoryItem>
-                      <CategoryItem>
-                        <CategoryLink to="/">カテゴリ</CategoryLink>
-                      </CategoryItem>
-                      <CategoryItem>
-                        <CategoryLink to="/">カテゴリ</CategoryLink>
-                      </CategoryItem>
+                      {deduplicatePosts.map(({ node }) => {
+                        return (
+                          <CategoryItem key={node.fields.slug}>
+                            <CategoryLink
+                              to={`/category/${node.frontmatter.categorySlug}/`}
+                            >
+                              {node.frontmatter.categoryName}
+                            </CategoryLink>
+                          </CategoryItem>
+                        )
+                      })}
                     </Category>
                   </Col>
                   <Col>
@@ -69,7 +93,7 @@ function Footer() {
                 </Top>
                 <Bottom>
                   <Copyright>
-                    Copyright © Members Co.,Ltd. All rights reserved
+                    {`Copyright © ${author} All rights reserved`}
                   </Copyright>
                 </Bottom>
               </Inner>
@@ -215,7 +239,21 @@ const footerQuery = graphql`
   query FooterQuery {
     site {
       siteMetadata {
-        title
+        author
+      }
+    }
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+      edges {
+        node {
+          excerpt
+          fields {
+            slug
+          }
+          frontmatter {
+            categoryName
+            categorySlug
+          }
+        }
       }
     }
   }
