@@ -5,7 +5,6 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   const blogPost = path.resolve(`./src/templates/blog-post.js`)
-  const postList = path.resolve(`./src/templates/post-list.js`)
   const categoryList = path.resolve(`./src/templates/category-list.js`)
 
   return graphql(
@@ -52,24 +51,6 @@ exports.createPages = ({ graphql, actions }) => {
         },
       })
     })
-
-    // Create category-list.
-    const postLists = result.data.allMarkdownRemark.edges
-    const numPages = Math.ceil(postLists.length / 3)
-
-    for (let i = 0; i < numPages; i++) {
-      const previous = i === 0 ? null : i
-      const next = i === numPages - 1 ? null : i + 2
-      createPage({
-        path: `/pages/${i + 1}`,
-        component: postList,
-        context: {
-          id: `${i + 1}`,
-          previous,
-          next,
-        },
-      })
-    }
 
     // Create post-list.
     const categoryLists = result.data.allMarkdownRemark.edges
