@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 
 import styled from 'styled-components'
 import Layout from '../components/layout'
@@ -8,6 +8,15 @@ import Heading from '../components/Heading'
 import Article from '../components/Article'
 
 class BlogIndex extends React.Component {
+  constructor(props) {
+    super(props)
+    this.Article = React.createRef()
+  }
+
+  moreClick = () => {
+    this.Article.current.showItem()
+  }
+
   render() {
     const { data, location } = this.props
     const { title, totalPosts } = data.site.siteMetadata
@@ -33,31 +42,11 @@ class BlogIndex extends React.Component {
         </Section> */}
         <Section>
           <Heading main="NEW POSTS" sub="新着記事" />
-          <ArticleWrapper>
-            {posts.map(({ node }, index) => {
-              if (index < totalPosts) {
-                return (
-                  <Article
-                    key={node.fields.slug}
-                    link={node.fields.slug}
-                    title={node.frontmatter.title}
-                    date={node.frontmatter.date}
-                    tmb={node.frontmatter.tmb.childImageSharp.fluid}
-                  />
-                )
-              }
-            })}
-          </ArticleWrapper>
+          <Article posts={posts} ref={this.Article} totalPosts={totalPosts} />
         </Section>
-        {(() => {
-          if (posts.length > totalPosts) {
-            return (
-              <MoreLinkWrapper>
-                <MoreLink to="/pages/1/">もっと見る</MoreLink>
-              </MoreLinkWrapper>
-            )
-          }
-        })()}
+        <MoreButtonWrapper>
+          <MoreButton onClick={this.moreClick}>もっと見る</MoreButton>
+        </MoreButtonWrapper>
       </Layout>
     )
   }
@@ -70,19 +59,7 @@ export const Section = styled.section`
   }
 `
 
-export const ArticleWrapper = styled.div`
-  display: grid;
-  grid-row-gap: 32px;
-  grid-template-columns: repeat(auto-fill, minmax(auto, 450px));
-  justify-content: center;
-  @media screen and (min-width: 768px) {
-    grid-column-gap: 32px;
-    grid-row-gap: 40px;
-    grid-template-columns: repeat(auto-fill, 352px);
-  }
-`
-
-export const MoreLinkWrapper = styled.div`
+export const MoreButtonWrapper = styled.div`
   text-align: center;
   margin-top: 56px;
   @media screen and (min-width: 768px) {
@@ -90,7 +67,7 @@ export const MoreLinkWrapper = styled.div`
   }
 `
 
-export const MoreLink = styled(Link)`
+export const MoreButton = styled.button`
   margin-bottom: 29.5px;
   min-width: 200px;
   line-height: 1.4;

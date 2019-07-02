@@ -4,27 +4,79 @@ import styled from 'styled-components'
 import Img from 'gatsby-image'
 
 class Article extends React.Component {
+  constructor(props) {
+    super(props)
+    const { posts, totalPosts } = this.props
+    let linkDisplayArray = []
+    for (let i = 0; i < posts.length; i++) {
+      if (i < totalPosts) {
+        linkDisplayArray.push('block')
+      } else {
+        linkDisplayArray.push('none')
+      }
+    }
+    this.state = {
+      linkDisplay: linkDisplayArray,
+    }
+    this.linkRef = React.createRef()
+  }
+  showItem() {
+    const { totalPosts } = this.props
+    const { linkDisplay } = this.state
+    const linkDisplay_copy = linkDisplay.slice()
+    let itemCount = 0
+    for (let i = 0; i < linkDisplay.length; i++) {
+      if (linkDisplay[i] === 'none' && itemCount < totalPosts) {
+        linkDisplay_copy[i] = 'block'
+        itemCount = itemCount + 1
+      }
+    }
+    this.setState({ linkDisplay: linkDisplay_copy })
+  }
   render() {
-    const { link, title, date, tmb } = this.props
+    const { posts } = this.props
+    const { linkDisplay } = this.state
     return (
-      <StyledLink to={link}>
-        <Item>
-          {/* <Image filename={tmb} /> */}
-          <Img fluid={tmb} />
-          <Body>
-            <Heading>{title}</Heading>
-            <Date>{date}</Date>
-          </Body>
-        </Item>
-      </StyledLink>
+      <Wrapper ref={this.linkRef}>
+        {posts.map(({ node }, index) => {
+          return (
+            <StyledLink
+              key={node.fields.slug}
+              to={node.fields.slug}
+              displayflag={linkDisplay[index]}
+            >
+              <Item>
+                <Img fluid={node.frontmatter.tmb.childImageSharp.fluid} />
+                <Body>
+                  <Heading>{node.frontmatter.title}</Heading>
+                  <Date>{node.frontmatter.date}</Date>
+                </Body>
+              </Item>
+            </StyledLink>
+          )
+        })}
+      </Wrapper>
     )
   }
 }
+
+export const Wrapper = styled.div`
+  display: grid;
+  grid-row-gap: 32px;
+  grid-template-columns: repeat(auto-fill, minmax(auto, 450px));
+  justify-content: center;
+  @media screen and (min-width: 768px) {
+    grid-column-gap: 32px;
+    grid-row-gap: 40px;
+    grid-template-columns: repeat(auto-fill, 352px);
+  }
+`
 
 export const StyledLink = styled(Link)`
   color: #333;
   text-decoration: none;
   box-shadow: none;
+  display: ${props => (props.displayflag === 'block' ? 'block' : 'none')};
 `
 
 export const Item = styled.article`
