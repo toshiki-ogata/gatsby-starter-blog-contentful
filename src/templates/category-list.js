@@ -10,33 +10,19 @@ import Article from '../components/Article'
 class PostListTemplate extends React.Component {
   render() {
     const { data, location, pageContext } = this.props
-    const siteTitle = data.site.siteMetadata.title
+    const { title, totalPosts } = data.site.siteMetadata
+    const { categoryName } = pageContext
     const posts = data.allMarkdownRemark.edges
-    const { categorySlug, categoryName } = pageContext
 
     return (
-      <Layout location={location} title={siteTitle}>
+      <Layout location={location} title={title}>
         <SEO
           title="All posts"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
         />
         <Section>
           <Heading main={`${categoryName}`} />
-          <ArticleWrapper>
-            {posts.map(({ node }) => {
-              if (node.frontmatter.categorySlug === categorySlug) {
-                return (
-                  <Article
-                    key={node.fields.slug}
-                    link={node.fields.slug}
-                    title={node.frontmatter.title}
-                    date={node.frontmatter.date}
-                    tmb={node.frontmatter.tmb.childImageSharp.fluid}
-                  />
-                )
-              }
-            })}
-          </ArticleWrapper>
+          <Article posts={posts} ref={this.Article} totalPosts={totalPosts} />
         </Section>
       </Layout>
     )
@@ -86,18 +72,6 @@ export const Section = styled.section`
   }
 `
 
-export const ArticleWrapper = styled.div`
-  display: grid;
-  grid-row-gap: 32px;
-  grid-template-columns: repeat(auto-fill, minmax(auto, 450px));
-  justify-content: center;
-  @media screen and (min-width: 768px) {
-    grid-column-gap: 32px;
-    grid-row-gap: 40px;
-    grid-template-columns: repeat(auto-fill, 352px);
-  }
-`
-
 export default PostListTemplate
 
 export const pageQuery = graphql`
@@ -105,6 +79,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        totalPosts
       }
     }
     allMarkdownRemark(
