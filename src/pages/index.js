@@ -6,6 +6,7 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Heading from '../components/Heading'
 import Article from '../components/Article'
+import MoreButton from '../components/MoreButton'
 
 class BlogIndex extends React.Component {
   constructor(props) {
@@ -44,9 +45,7 @@ class BlogIndex extends React.Component {
           <Heading main="NEW POSTS" sub="新着記事" />
           <Article posts={posts} ref={this.Article} totalPosts={totalPosts} />
         </Section>
-        <MoreButtonWrapper>
-          <MoreButton onClick={this.moreClick}>もっと見る</MoreButton>
-        </MoreButtonWrapper>
+        <MoreButton moreClick={this.moreClick} />
       </Layout>
     )
   }
@@ -54,39 +53,6 @@ class BlogIndex extends React.Component {
 
 export const Section = styled.section`
   margin-bottom: 29.5px;
-  @media screen and (min-width: 768px) {
-    margin-bottom: 52px;
-  }
-`
-
-export const MoreButtonWrapper = styled.div`
-  text-align: center;
-  margin-top: 56px;
-  @media screen and (min-width: 768px) {
-    margin-top: 80px;
-  }
-`
-
-export const MoreButton = styled.button`
-  margin-bottom: 29.5px;
-  min-width: 200px;
-  line-height: 1.4;
-  font-size: 1.6rem;
-  font-weight: bold;
-  text-align: center;
-  background: #fff;
-  color: #333;
-  border: 2px solid #333;
-  text-decoration: none;
-  display: inline-block;
-  padding: 14px 20px;
-  border-radius: 6px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
-  transition: all 0.2s linear;
-  &:hover {
-    background: #333;
-    color: #fff;
-  }
   @media screen and (min-width: 768px) {
     margin-bottom: 52px;
   }

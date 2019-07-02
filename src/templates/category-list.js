@@ -6,13 +6,26 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Heading from '../components/Heading'
 import Article from '../components/Article'
+import MoreButton from '../components/MoreButton'
 
 class PostListTemplate extends React.Component {
+  constructor(props) {
+    super(props)
+    this.Article = React.createRef()
+  }
+
+  moreClick = () => {
+    this.Article.current.showItem()
+  }
+
   render() {
     const { data, location, pageContext } = this.props
     const { title, totalPosts } = data.site.siteMetadata
-    const { categoryName } = pageContext
+    const { categorySlug, categoryName } = pageContext
     const posts = data.allMarkdownRemark.edges
+    const filterPosts = posts.filter(
+      post => post.node.frontmatter.categorySlug === categorySlug
+    )
 
     return (
       <Layout location={location} title={title}>
@@ -22,8 +35,13 @@ class PostListTemplate extends React.Component {
         />
         <Section>
           <Heading main={`${categoryName}`} />
-          <Article posts={posts} ref={this.Article} totalPosts={totalPosts} />
+          <Article
+            posts={filterPosts}
+            ref={this.Article}
+            totalPosts={totalPosts}
+          />
         </Section>
+        <MoreButton moreClick={this.moreClick} />
       </Layout>
     )
   }
@@ -82,12 +100,7 @@ export const pageQuery = graphql`
         totalPosts
       }
     }
-    allMarkdownRemark(
-      sort: {
-        fields: [frontmatter___categorySlug, frontmatter___date]
-        order: [ASC, DESC]
-      }
-    ) {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
           excerpt
