@@ -2,13 +2,21 @@ import React from 'react'
 import { Link, StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 import linkIcon from '../../content/assets/link_icon.svg'
+import twitterIcon from '../../content/assets/twitter.svg'
+import facebookIcon from '../../content/assets/facebook.svg'
+import instagramIcon from '../../content/assets/instagram.svg'
+import youtubeIcon from '../../content/assets/youtube.svg'
 
 function Footer() {
   return (
     <StaticQuery
       query={footerQuery}
       render={data => {
-        const { author } = data.site.siteMetadata
+        const icon = [twitterIcon, facebookIcon, instagramIcon, youtubeIcon]
+        const { author, social } = data.site.siteMetadata
+        const SnsArray = Object.keys(social).map(function(key) {
+          return social[key]
+        })
         const posts = data.allMarkdownRemark.edges
         const deduplicatePosts = posts.filter(function(v1, i1, a1) {
           return (
@@ -59,36 +67,23 @@ function Footer() {
                     </Category>
                   </Col>
                   <Col>
-                    <Heading>Tag</Heading>
-                    <Tag>
-                      <TagItem>
-                        <TagLink to="/">タグ</TagLink>
-                      </TagItem>
-                      <TagItem>
-                        <TagLink to="/">タグ</TagLink>
-                      </TagItem>
-                      <TagItem>
-                        <TagLink to="/">タグ</TagLink>
-                      </TagItem>
-                      <TagItem>
-                        <TagLink to="/">タグ</TagLink>
-                      </TagItem>
-                      <TagItem>
-                        <TagLink to="/">タグ</TagLink>
-                      </TagItem>
-                      <TagItem>
-                        <TagLink to="/">タグ</TagLink>
-                      </TagItem>
-                      <TagItem>
-                        <TagLink to="/">タグ</TagLink>
-                      </TagItem>
-                      <TagItem>
-                        <TagLink to="/">タグ</TagLink>
-                      </TagItem>
-                      <TagItem>
-                        <TagLink to="/">タグ</TagLink>
-                      </TagItem>
-                    </Tag>
+                    <Heading>SNS</Heading>
+                    <Sns>
+                      {SnsArray.map((value, index) => {
+                        if (value) {
+                          return (
+                            <SnsItem key={SnsArray[index]}>
+                              <SnsLink href={value}>
+                                <SnsImage
+                                  src={icon[index]}
+                                  alt={SnsArray[index]}
+                                />
+                              </SnsLink>
+                            </SnsItem>
+                          )
+                        }
+                      })}
+                    </Sns>
                   </Col>
                 </Top>
                 <Bottom>
@@ -161,8 +156,6 @@ export const Text = styled.p`
 `
 
 export const Category = styled.ul`
-  margin: 0;
-  padding: 0;
   list-style: none;
   line-height: 1.7;
 `
@@ -195,33 +188,30 @@ export const CategoryLink = styled(Link)`
   }
 `
 
-export const Tag = styled.ul`
-  font-size: 1.2rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+export const Sns = styled.ul`
   display: flex;
-  flex-wrap: wrap;
+  list-style: none;
 `
 
-export const TagItem = styled.li`
-  margin: 0 10px 10px 0;
+export const SnsItem = styled.li`
+  padding: 0;
+  &:not(:first-child) {
+    margin-left: 8px;
+  }
 `
 
-export const TagLink = styled(Link)`
-  color: #fff;
-  text-decoration: none;
-  box-shadow: none;
-  border: 1px solid #fff;
-  border-radius: 6px;
-  padding: 1px 10px;
-  display: block;
+export const SnsLink = styled.a.attrs((/* props */) => ({
+  target: '_blank',
+  rel: 'noreferrer noopener',
+}))`
   transition: all 0.2s linear;
   &:hover {
-    background-color: #fff;
-    color: #333;
-    border-color: #fff;
+    opacity: 0.5;
   }
+`
+
+export const SnsImage = styled.img`
+  width: 24px;
 `
 
 export const Bottom = styled.div`
@@ -240,6 +230,12 @@ const footerQuery = graphql`
     site {
       siteMetadata {
         author
+        social {
+          twitter
+          facebook
+          instagram
+          youtube
+        }
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
