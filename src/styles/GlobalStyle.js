@@ -40,8 +40,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: "Noto Sans", "Noto Sans CJK JP", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
     color: ${styles.baseColor};
-    line-height: ${styles.lineHeight_sm};
-    font-size: 1.4rem;
+    line-height: ${styles.lineHeight_md};
+    font-size: 1.6rem;
   }
 
   *,
@@ -62,7 +62,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
- 
+
   audio:not([controls]) {
     display: none;
     height: 0;
@@ -131,13 +131,13 @@ const GlobalStyle = createGlobalStyle`
     font-style: italic;
   }
 
- 
+
   mark {
     background-color: #ff0;
     color: #000;
   }
 
- 
+
   sub,
   sup {
     font-size: 75%;
@@ -158,7 +158,7 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 0;
   }
 
- 
+
   button,
   [type="button"],
   [type="reset"],
@@ -167,7 +167,7 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
- 
+
   [disabled] {
     cursor: default;
   }
@@ -206,7 +206,7 @@ const GlobalStyle = createGlobalStyle`
     overflow: visible;
   }
 
- 
+
   button::-moz-focus-inner,
   [type="button"]::-moz-focus-inner,
   [type="reset"]::-moz-focus-inner,
@@ -215,7 +215,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
 
- 
+
   button:-moz-focusring,
   [type="button"]::-moz-focus-inner,
   [type="reset"]::-moz-focus-inner,
@@ -235,7 +235,7 @@ const GlobalStyle = createGlobalStyle`
     text-transform: none;
   }
 
- 
+
   button,
   input,
   select,
@@ -245,7 +245,7 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
   }
 
- 
+
   select {
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -281,7 +281,7 @@ const GlobalStyle = createGlobalStyle`
     border-style: none;
   }
 
- 
+
   progress {
     vertical-align: baseline;
   }
@@ -297,7 +297,7 @@ const GlobalStyle = createGlobalStyle`
     display: inline-block;
   }
 
- 
+
   @media screen {
     [hidden~="screen"] {
       display: inherit;
@@ -308,22 +308,22 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
- 
+
   [aria-busy="true"] {
     cursor: progress;
   }
 
- 
+
   [aria-controls] {
     cursor: pointer;
   }
 
- 
+
   [aria-disabled] {
     cursor: default;
   }
 
- 
+
 
   ::-moz-selection {
     background-color: #b3d4fc;

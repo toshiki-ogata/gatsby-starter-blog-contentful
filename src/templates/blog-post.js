@@ -63,7 +63,7 @@ export const H1 = styled.h1`
 `
 
 export const Date = styled.time`
-  margin: 0 0 16px 0;
+  margin-bottom: 16px;
   line-height: 1;
   font-size: 1.4rem;
   display: block;
@@ -78,7 +78,6 @@ const GlobalStyle = createGlobalStyle`
     h5,
     h6 {
       line-height: 1.4;
-      font-weight: bold;
     }
     h1 {
       margin: 26.4px 0 18.4px 0;
@@ -119,7 +118,6 @@ const GlobalStyle = createGlobalStyle`
       margin: 20.8px 0 20.8px 0;
       font-size: 1.6rem;
       @media screen and (min-width: 768px) {
-        font-size: 1.6rem;
         margin: 28.8px 0 28.8px 0;
       }
     }
@@ -132,9 +130,7 @@ const GlobalStyle = createGlobalStyle`
       }
     }
     p {
-      line-height: 1.8;
       margin: 0 0 17.6px 0;
-      font-size: 1.6rem;
       @media screen and (min-width: 768px) {
         margin-bottom: 25.6px;
       }
@@ -148,44 +144,18 @@ const GlobalStyle = createGlobalStyle`
     }
     ul,
     ol {
-      font-size: 1.6rem;
-      line-height: 1.7;
-      list-style: none;
-      margin: 0 0 24px 0;
-      li {
-        position: relative;
-        &:not(:last-child) {
-          margin-bottom: 4px;
-        }
+      margin-bottom: 24px;
+      padding-left: 1em;
+      ul,
+      ol,
+      p {
+        margin-bottom: 0;
       }
-    }
-    ul {
-      padding-left: 16px;
-      li {
-        &::before {
-          border-radius: 50%;
-          content: "";
-          display: block;
-          height: 6px;
-          left: -16px;
-          position: absolute;
-          top: 0.7em;
-          width: 6px;
-          background: #333;
-        }
+      p {
+        display: inline;
       }
-    }
-    ol {
-      counter-reset: my-counter;
-      padding-left: 1.1em;
-      li {
-        &::before {
-          content: counter(my-counter) ".";
-          counter-increment: my-counter;
-          font-weight: 700;
-          left: -1.1em;
-          position: absolute;
-        }
+      @media screen and (min-width: 768px) {
+        margin-bottom: 32px;
       }
     }
     blockquote {
@@ -202,7 +172,7 @@ const GlobalStyle = createGlobalStyle`
       @media screen and (min-width: 768px) {
         margin-bottom: 32px;
       }
-      & > p:first-child {
+      > p:first-child {
         margin-bottom: 0;
       }
     }
@@ -214,20 +184,22 @@ const GlobalStyle = createGlobalStyle`
       border-collapse: collapse;
       width: 100%;
       margin-bottom: 24px;
-      font-size: 1.6rem;
-      & thead th {
+      thead th {
         border-bottom: 2px solid #dee2e6;
         background-color: #e9ecef;
         border-color: #dee2e6;
       }
-      & td,
-      & th {
+      td,
+      th {
         padding: 0.75em;
         border-top: 1px solid #dee2e6;
       }
       @media screen and (min-width: 768px) {
         margin-bottom: 32px;
       }
+    }
+    pre {
+      font-size: 1.4rem;
     }
   }
 `

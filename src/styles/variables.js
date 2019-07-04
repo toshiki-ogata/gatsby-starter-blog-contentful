@@ -1,6 +1,6 @@
 const variables = {
   baseColor: '#333',
-  lineHeight_md: '1.7',
+  lineHeight_md: '1.8',
   lineHeight_sm: '1.4',
   fontWeight_lg: '700',
   fontWeight_md: '400',
