@@ -5,7 +5,7 @@ import Img from 'gatsby-image'
 import styled, { createGlobalStyle } from 'styled-components'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-// import Image from "../components/Image"
+import blockquoteIcon from '../../content/assets/icon_blockquote.svg'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -52,41 +52,92 @@ class BlogPostTemplate extends React.Component {
 }
 
 export const H1 = styled.h1`
-  margin: 0 0 22px 0;
+  margin: 0 0 10.4px 0;
   line-height: 1.4;
   font-weight: bold;
   font-size: 2.8rem;
+  @media screen and (min-width: 768px) {
+    font-size: 3.2rem;
+    margin-bottom: 9.6px;
+  }
 `
 
 export const Date = styled.time`
-  margin: 0 0 20px 0;
-  line-height: 1.4;
+  margin: 0 0 16px 0;
+  line-height: 1;
   font-size: 1.4rem;
   display: block;
 `
 
 const GlobalStyle = createGlobalStyle`
   .post {
-    h2 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       line-height: 1.4;
       font-weight: bold;
-      margin: 32px 0 24px 0;
+    }
+    h1 {
+      margin: 26.4px 0 18.4px 0;
+      font-size: 2.8rem;
+      @media screen and (min-width: 768px) {
+        font-size: 3.2rem;
+        margin: 41.6px 0 25.6px 0;
+      }
+    }
+    h2 {
+      margin: 27.2px 0 24px 0;
       font-size: 2.2rem;
       padding-bottom: 5px;
       border-bottom: 1px solid #333;
+      @media screen and (min-width: 768px) {
+        font-size: 2.4rem;
+        margin: 43.2px 0 32px 0;
+      }
     }
     h3 {
-      line-height: 1.4;
-      font-weight: bold;
-      margin: 32px 0 24px 0;
+      margin: 24px 0 24px 0;
       font-size: 1.8rem;
       padding-left: 10px;
       border-left: 4px solid #333;
+      @media screen and (min-width: 768px) {
+        font-size: 2rem;
+        margin: 32px 0 32px 0;
+      }
+    }
+    h4 {
+      margin: 20.4px 0 20.4px 0;
+      font-size: 1.8rem;
+      @media screen and (min-width: 768px) {
+        margin: 28.4px 0 28.4px 0;
+      }
+    }
+    h5 {
+      margin: 20.8px 0 20.8px 0;
+      font-size: 1.6rem;
+      @media screen and (min-width: 768px) {
+        font-size: 1.6rem;
+        margin: 28.8px 0 28.8px 0;
+      }
+    }
+    h6 {
+      margin: 21.2px 0 21.2px 0;
+      font-size: 1.4rem;
+      @media screen and (min-width: 768px) {
+        font-size: 1.4rem;
+        margin: 29.2px 0 29.2px 0;
+      }
     }
     p {
-      line-height: 1.7;
-      margin: 0 0 24px 0;
+      line-height: 1.8;
+      margin: 0 0 17.6px 0;
       font-size: 1.6rem;
+      @media screen and (min-width: 768px) {
+        margin-bottom: 25.6px;
+      }
     }
     a {
       transition: all 0.2s linear;
@@ -136,6 +187,28 @@ const GlobalStyle = createGlobalStyle`
           position: absolute;
         }
       }
+    }
+    blockquote {
+      background: #f6f6f6;
+      padding: 17.6px 32px 17.6px 36px;
+      border-left: 4px solid #888;
+      color: #666;
+      margin-bottom: 24px;
+      position: relative;
+      background-image: url(${blockquoteIcon});
+      background-position: 13px 12px;
+      background-repeat: no-repeat;
+      background-size: 16px auto;
+      @media screen and (min-width: 768px) {
+        margin-bottom: 32px;
+      }
+      & > p:first-child {
+        margin-bottom: 0;
+      }
+    }
+    blockquote > blockquote {
+      margin-top: 17.6px;
+      margin-bottom: 6.4px;
     }
   }
 `
