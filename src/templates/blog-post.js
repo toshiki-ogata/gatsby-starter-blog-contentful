@@ -201,6 +201,16 @@ const GlobalStyle = createGlobalStyle`
     pre {
       font-size: 1.4rem;
     }
+    hr {
+      height: 1px;
+      border-color: #dee2e6;
+      border-style: solid none none;
+      border-width: 1px 0 0;
+      margin: 24px 0;
+      @media screen and (min-width: 768px) {
+        margin: 32px 0;
+      }
+    }
   }
 `
 
