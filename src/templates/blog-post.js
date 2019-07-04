@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import Img from 'gatsby-image'
 
 import styled, { createGlobalStyle } from 'styled-components'
 import Layout from '../components/layout'
@@ -12,9 +13,11 @@ class BlogPostTemplate extends React.Component {
     const post = data.markdownRemark
     const siteTitle = data.site.siteMetadata.title
     // const { previous, next } = pageContext
+    console.log(post.frontmatter.tmb)
 
     return (
       <Layout location={location} title={siteTitle}>
+        <GlobalStyle />
         <SEO
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
@@ -24,12 +27,8 @@ class BlogPostTemplate extends React.Component {
           {post.frontmatter.date}
           更新
         </Date>
-        {/* console.log({`../../content/blog${post.fields.slug + post.frontmatter.tmb}`});
-        <Image filename={`../../content/blog${post.fields.slug + post.frontmatter.tmb}`} /> */}
-        {/* <img src={this.props.location.pathname + post.frontmatter.tmb} alt=""/> */}
-        <GlobalStyle />
+        <Img fluid={post.frontmatter.tmb.childImageSharp.fluid} />
         <div className="post" dangerouslySetInnerHTML={{ __html: post.html }} />
-        {/* <hr /> */}
 
         {/* <ul>
           <li>
@@ -158,6 +157,13 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "YYYY年M月D日")
+        tmb {
+          childImageSharp {
+            fluid(maxWidth: 720) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }
