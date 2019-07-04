@@ -210,6 +210,25 @@ const GlobalStyle = createGlobalStyle`
       margin-top: 17.6px;
       margin-bottom: 6.4px;
     }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 24px;
+      font-size: 1.6rem;
+      & thead th {
+        border-bottom: 2px solid #dee2e6;
+        background-color: #e9ecef;
+        border-color: #dee2e6;
+      }
+      & td,
+      & th {
+        padding: 0.75em;
+        border-top: 1px solid #dee2e6;
+      }
+      @media screen and (min-width: 768px) {
+        margin-bottom: 32px;
+      }
+    }
   }
 `
 
