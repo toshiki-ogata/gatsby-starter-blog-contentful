@@ -40,18 +40,18 @@ export const Button = styled.button`
   font-size: 1.6rem;
   font-weight: bold;
   text-align: center;
-  background: #fff;
-  color: #333;
-  border: 2px solid #333;
+  background: #333;
+  color: #fff;
   text-decoration: none;
   display: inline-block;
-  padding: 14px 20px;
+  padding: 15px 20px;
   border-radius: 6px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
-  transition: all 0.2s linear;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s;
   &:hover {
-    background: #333;
-    color: #fff;
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(46, 41, 51, 0.08),
+      0 8px 16px rgba(71, 63, 79, 0.16);
   }
   @media screen and (min-width: 768px) {
     margin-bottom: 52px;

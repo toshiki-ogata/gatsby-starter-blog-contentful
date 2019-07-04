@@ -63,55 +63,55 @@ class Article extends React.Component {
 export const Wrapper = styled.div`
   display: grid;
   grid-row-gap: 32px;
-  grid-template-columns: repeat(auto-fill, minmax(auto, 450px));
+  grid-column-gap: 4%;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   justify-content: center;
   @media screen and (min-width: 768px) {
     grid-column-gap: 32px;
     grid-row-gap: 40px;
-    grid-template-columns: repeat(auto-fill, 352px);
   }
 `
 
 export const StyledLink = styled(Link)`
   color: #333;
   text-decoration: none;
-  box-shadow: none;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
+  border-radius: 6px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s;
+  overflow: hidden;
   display: ${props => (props.displayflag === 'block' ? 'block' : 'none')};
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(46, 41, 51, 0.08),
+      0 8px 16px rgba(71, 63, 79, 0.16);
+  }
 `
 
 export const Item = styled.article`
   margin: 0;
-  border-bottom: 1px solid #eaeaea;
-  @media screen and (min-width: 768px) {
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
-    border-bottom: none;
-  }
 `
 
 export const Body = styled.div`
-  padding: 12px 0 30px;
+  padding: 15.2px 4% 20px;
   @media screen and (min-width: 768px) {
-    padding: 19px 24px 21px;
+    padding: 18.6px 24px 24px;
   }
 `
 
 export const Heading = styled.h3`
-  margin: 0 0 10px 0;
+  margin: 0 0 7px 0;
   font-size: 1.6rem;
   font-weight: bold;
-  line-height: 1.4;
+  line-height: 1.6;
   @media screen and (min-width: 768px) {
     font-size: 1.8rem;
-    margin-bottom: 11px;
+    margin-bottom: 14.6px;
   }
 `
 
 export const Date = styled.time`
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   line-height: 1;
-  @media screen and (min-width: 768px) {
-    font-size: 1.4rem;
-  }
 `
 
 export default Article
