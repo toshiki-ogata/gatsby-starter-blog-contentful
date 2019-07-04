@@ -7,19 +7,102 @@ categoryName: "テスト1"
 categorySlug: "test1"
 ---
 
-This is my first post on my new fake blog! How exciting!
+##🎁 Block elements
 
-I'm sure I'll write a lot more interesting things in the future.
+###💎 Paragraphs and Line Breaks - 改行
 
-Oh, and here's a great quote from this Wikipedia on
-[salted duck eggs](http://en.wikipedia.org/wiki/Salted_duck_egg).
+この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。  
+この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
 
-> A salted duck egg is a Chinese preserved food product made by soaking duck
-> eggs in brine, or packing each egg in damp, salted charcoal. In Asian
-> supermarkets, these eggs are sometimes sold covered in a thick layer of salted
-> charcoal paste. The eggs may also be sold with the salted paste removed,
-> wrapped in plastic, and vacuum packed. From the salt curing process, the
-> salted duck eggs have a briny aroma, a gelatin-like egg white and a
-> firm-textured, round yolk that is bright orange-red in color.
+###💎 Headers - 見出し
 
-![Chinese Salty Egg](./tmb.png)
+#この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
+
+##この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
+
+###この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
+
+####この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
+
+###💎 Blockquotes - 引用
+>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
+>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
+>>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
+
+###💎 Lists - リスト
+
+####Disc
+* この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
+  * この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
+* この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
+
+####Decimal
+1. この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
+ 1. この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
+2. この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
+
+####Definition
+<dl>
+  <dt>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。</dt>
+  <dd>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。</dd>
+  <dt>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。</dt>
+  <dd>この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。</dd>
+</dl>
+
+####Checkbox
+- [ ] この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
+- [x] この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。
+
+###💎 Horizontal Rules - 水平線
+***
+
+##🎁 Span Elements
+
+###💎 Links - リンク
+
+####自動リンク
+<http://qiita.com>
+
+####インライン記法
+[Qiita](http://qiita.com)
+[Qiita](http://qiita.com "Qiita")
+
+###💎 Emphasis - 強調
+*強調*
+**強調**
+***強調***
+
+###💎 画像
+![ダミー画像](http://placehold.it/100)
+![ダミー画像](http://placehold.it/100 "ダミー画像")
+
+###💎 打ち消し
+~~打ち消し~~
+
+##🎁 Code
+
+###💎 コード表示
+
+####インライン
+`$hoge = 1`
+`.md`
+
+####シンタックスハイライト
+```html:sample
+   <div class="radioWave">
+      <p>迷いの中あてなく見上げた空彩る星たちが</p>
+      <p>嘘みたいに晴れた朝に繋がることを教えてくれた</p>
+   </div>
+```
+
+##🎁 Extra
+
+###💎 テーブル記法
+| Left align | Right align | Center align |
+|:-----------|------------:|:------------:|
+| This       |        This |     This     |
+| column     |      column |    column    |
+| will       |        will |     will     |
+| be         |          be |      be      |
+| left       |       right |    center    |
+| aligned    |     aligned |   aligned    |
