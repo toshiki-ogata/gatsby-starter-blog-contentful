@@ -16,7 +16,7 @@ class BlogPostTemplate extends React.Component {
     console.log(post.frontmatter.tmb)
 
     return (
-      <Layout location={location} title={siteTitle}>
+      <Layout location={location} title={siteTitle} pageType="post">
         <GlobalStyle />
         <SEO
           title={post.frontmatter.title}

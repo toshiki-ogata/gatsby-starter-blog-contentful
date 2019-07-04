@@ -38,7 +38,7 @@ class PostListTemplate extends React.Component {
     )
 
     return (
-      <Layout location={location} title={title}>
+      <Layout location={location} title={title} pageType="index">
         <SEO
           title="All posts"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}

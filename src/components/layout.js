@@ -7,13 +7,19 @@ import GlobalStyle from '../styles/GlobalStyle'
 
 class Layout extends React.Component {
   render() {
-    const { children } = this.props
+    const { children, pageType } = this.props
+    let pageMaxWidth = 0
+    if (pageType === 'index') {
+      pageMaxWidth = '1184px'
+    } else if (pageType === 'post') {
+      pageMaxWidth = '784px'
+    }
     return (
       <ThemeProvider theme={styles}>
         <div>
           <GlobalStyle />
           <Header />
-          <Wrapper>
+          <Wrapper pageMaxWidth={pageMaxWidth}>
             <main>{children}</main>
           </Wrapper>
           <Footer />
@@ -28,7 +34,7 @@ export const Wrapper = styled.div`
   margin: 0 auto;
   @media screen and (min-width: 768px) {
     padding: 52px 32px 80px;
-    max-width: 1184px;
+    max-width: ${props => props.pageMaxWidth};
   }
 `
 
