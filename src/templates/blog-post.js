@@ -27,7 +27,7 @@ class BlogPostTemplate extends React.Component {
           {post.frontmatter.date}
           更新
         </Date>
-        <Img fluid={post.frontmatter.tmb.childImageSharp.fluid} />
+        <Tmb fluid={post.frontmatter.tmb.childImageSharp.fluid} />
         <div className="post" dangerouslySetInnerHTML={{ __html: post.html }} />
 
         {/* <ul>
@@ -67,6 +67,15 @@ export const Date = styled.time`
   line-height: 1;
   font-size: 1.4rem;
   display: block;
+`
+
+export const Tmb = styled(Img)`
+  display: block;
+  margin-bottom: 24px;
+  max-width: 100%;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 32px;
+  }
 `
 
 const GlobalStyle = createGlobalStyle`
@@ -140,6 +149,14 @@ const GlobalStyle = createGlobalStyle`
       color: #005bea;
       &:hover {
         opacity: 0.5;
+      }
+    }
+    img {
+      display: block;
+      margin-bottom: 24px;
+      max-width: 100%;
+      @media screen and (min-width: 768px) {
+        margin-bottom: 32px;
       }
     }
     ul,
