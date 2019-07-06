@@ -51,7 +51,13 @@ class PostListTemplate extends React.Component {
             totalPosts={totalPosts}
           />
         </Section>
-        <MoreButton moreClick={this.moreClick} ref={this.MoreButton} />
+        {(() => {
+          if (filterPosts.length > totalPosts) {
+            return (
+              <MoreButton moreClick={this.moreClick} ref={this.MoreButton} />
+            )
+          }
+        })()}
       </Layout>
     )
   }

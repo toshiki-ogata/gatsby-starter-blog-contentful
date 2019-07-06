@@ -55,7 +55,13 @@ class BlogIndex extends React.Component {
           <Heading main="NEW POSTS" sub="新着記事" />
           <Article posts={posts} ref={this.Article} totalPosts={totalPosts} />
         </Section>
-        <MoreButton moreClick={this.moreClick} ref={this.MoreButton} />
+        {(() => {
+          if (posts.length > totalPosts) {
+            return (
+              <MoreButton moreClick={this.moreClick} ref={this.MoreButton} />
+            )
+          }
+        })()}
       </Layout>
     )
   }
