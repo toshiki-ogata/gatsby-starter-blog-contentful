@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link, StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
-import logo from '../../content/assets/logo.svg'
 
 function Header() {
   return (
@@ -14,9 +13,7 @@ function Header() {
             <Wrapper>
               <Inner>
                 <H1>
-                  <H1Link to="/">
-                    <Logo src={logo} alt={title} />
-                  </H1Link>
+                  <H1Link to="/">{title}</H1Link>
                 </H1>
               </Inner>
             </Wrapper>
@@ -50,10 +47,16 @@ export const Inner = styled.div`
 
 export const H1 = styled.h1`
   margin: 0;
+  display: flex;
 `
 
 export const H1Link = styled(Link)`
-  display: flex;
+  text-decoration: none;
+  color: #fff;
+  font-size: 2rem;
+  @media screen and (min-width: 768px) {
+    font-size: 2.6rem;
+  }
 `
 
 export const Logo = styled.img`
