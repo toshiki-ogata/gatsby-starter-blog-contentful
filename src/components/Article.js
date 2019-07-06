@@ -41,15 +41,15 @@ class Article extends React.Component {
         {posts.map(({ node }, index) => {
           return (
             <StyledLink
-              key={node.fields.slug}
-              to={node.fields.slug}
+              key={node.slug}
+              to={node.slug}
               displayflag={linkDisplay[index]}
             >
               <Item>
-                <Img fluid={node.frontmatter.tmb.childImageSharp.fluid} />
+                <Img fluid={node.tmb.fluid} />
                 <Body>
-                  <Heading>{node.frontmatter.title}</Heading>
-                  <Date>{node.frontmatter.date}</Date>
+                  <Heading>{node.title}</Heading>
+                  <Date>{node.date}</Date>
                 </Body>
               </Item>
             </StyledLink>

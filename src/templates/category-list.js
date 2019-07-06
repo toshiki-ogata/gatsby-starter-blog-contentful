@@ -32,9 +32,9 @@ class PostListTemplate extends React.Component {
     const { data, location, pageContext } = this.props
     const { title, totalPosts } = data.site.siteMetadata
     const { categorySlug, categoryName } = pageContext
-    const posts = data.allMarkdownRemark.edges
+    const posts = data.allContentfulPost.edges
     const filterPosts = posts.filter(
-      post => post.node.frontmatter.categorySlug === categorySlug
+      post => post.node.categorySlug === categorySlug
     )
 
     return (
@@ -74,23 +74,17 @@ export const pageQuery = graphql`
         totalPosts
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allContentfulPost(sort: { fields: date, order: DESC }) {
       edges {
         node {
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "YYYY.M.D ")
-            title
-            categorySlug
-            tmb {
-              childImageSharp {
-                fluid(maxWidth: 800) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+          categoryName
+          categorySlug
+          title
+          slug
+          date(formatString: "YYYY.M.D")
+          tmb {
+            fluid(maxWidth: 720) {
+              ...GatsbyContentfulFluid
             }
           }
         }

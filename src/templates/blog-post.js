@@ -10,38 +10,39 @@ import blockquoteIcon from '../../content/assets/icon_blockquote.svg'
 class BlogPostTemplate extends React.Component {
   render() {
     const { data, location } = this.props
-    const post = data.markdownRemark
+    const post = data.contentfulPost
     const siteTitle = data.site.siteMetadata.title
     // const { previous, next } = pageContext
-    console.log(post.frontmatter.tmb)
 
     return (
       <Layout location={location} title={siteTitle} pageType="post">
         <GlobalStyle />
-        <SEO
-          title={post.frontmatter.title}
-          description={post.frontmatter.description || post.excerpt}
-        />
-        <H1>{post.frontmatter.title}</H1>
+        <SEO title={post.title} description={post.description} />
+        <H1>{post.title}</H1>
         <Date>
-          {post.frontmatter.date}
+          {post.date}
           更新
         </Date>
-        <Tmb fluid={post.frontmatter.tmb.childImageSharp.fluid} />
-        <div className="post" dangerouslySetInnerHTML={{ __html: post.html }} />
+        <Tmb fluid={post.tmb.fluid} />
+        <div
+          className="post"
+          dangerouslySetInnerHTML={{
+            __html: post.content.childMarkdownRemark.html,
+          }}
+        />
 
         {/* <ul>
           <li>
             {previous && (
               <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
+                ← {previous.title}
               </Link>
             )}
           </li>
           <li>
             {next && (
               <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
+                {next.title} →
               </Link>
             )}
           </li>
@@ -241,21 +242,20 @@ export const pageQuery = graphql`
         author
       }
     }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    contentfulPost(slug: { eq: $slug }) {
       id
-      excerpt(pruneLength: 160)
-      html
-      frontmatter {
-        title
-        date(formatString: "YYYY年M月D日")
-        tmb {
-          childImageSharp {
-            fluid(maxWidth: 720) {
-              ...GatsbyImageSharpFluid
-            }
-          }
+      content {
+        childMarkdownRemark {
+          html
         }
       }
+      title
+      tmb {
+        fluid(maxWidth: 720) {
+          ...GatsbyContentfulFluid
+        }
+      }
+      date(formatString: "YYYY.M.D")
     }
   }
 `

@@ -17,20 +17,17 @@ function Footer() {
         const SnsArray = Object.keys(social).map(function(key) {
           return social[key]
         })
-        const posts = data.allMarkdownRemark.edges
+        const posts = data.allContentfulPost.edges
         const deduplicatePosts = posts.filter(function(v1, i1, a1) {
           return (
             a1.findIndex(function(v2) {
-              return (
-                v1.node.frontmatter.categorySlug ===
-                v2.node.frontmatter.categorySlug
-              )
+              return v1.node.categorySlug === v2.node.categorySlug
             }) === i1
           )
         })
         deduplicatePosts.sort((a, b) => {
-          const nameA = a.node.frontmatter.categorySlug
-          const nameB = b.node.frontmatter.categorySlug
+          const nameA = a.node.categorySlug
+          const nameB = b.node.categorySlug
           if (nameA < nameB) {
             return -1
           }
@@ -55,11 +52,11 @@ function Footer() {
                     <Category>
                       {deduplicatePosts.map(({ node }) => {
                         return (
-                          <CategoryItem key={node.fields.slug}>
+                          <CategoryItem key={node.slug}>
                             <CategoryLink
-                              to={`/category/${node.frontmatter.categorySlug}/`}
+                              to={`/category/${node.categorySlug}/`}
                             >
-                              {node.frontmatter.categoryName}
+                              {node.categoryName}
                             </CategoryLink>
                           </CategoryItem>
                         )
@@ -238,17 +235,12 @@ const footerQuery = graphql`
         }
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allContentfulPost(sort: { fields: date, order: DESC }) {
       edges {
         node {
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            categoryName
-            categorySlug
-          }
+          categoryName
+          categorySlug
+          slug
         }
       }
     }

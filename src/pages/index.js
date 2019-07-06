@@ -31,10 +31,10 @@ class BlogIndex extends React.Component {
   render() {
     const { data, location } = this.props
     const { title, totalPosts } = data.site.siteMetadata
-    const posts = data.allMarkdownRemark.edges
-    const pickUpPosts = ['/test1/', '/test2/', '/test3/']
+    const posts = data.allContentfulPost.edges
+    const pickUpPosts = ['test1', 'test2', 'test3']
     const pickUpFilterPosts = posts.filter(post =>
-      pickUpPosts.includes(post.node.fields.slug)
+      pickUpPosts.includes(post.node.slug)
     )
 
     return (
@@ -78,22 +78,17 @@ export const pageQuery = graphql`
         totalPosts
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allContentfulPost(sort: { fields: date, order: DESC }) {
       edges {
         node {
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "YYYY.M.D")
-            title
-            tmb {
-              childImageSharp {
-                fluid(maxWidth: 720) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+          categoryName
+          categorySlug
+          title
+          slug
+          date(formatString: "YYYY.M.D")
+          tmb {
+            fluid(maxWidth: 720) {
+              ...GatsbyContentfulFluid
             }
           }
         }

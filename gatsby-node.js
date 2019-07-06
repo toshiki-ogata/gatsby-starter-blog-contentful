@@ -1,5 +1,4 @@
 const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -10,20 +9,13 @@ exports.createPages = ({ graphql, actions }) => {
   return graphql(
     `
       {
-        allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: DESC }
-          limit: 1000
-        ) {
+        allContentfulPost(sort: { fields: date, order: DESC }) {
           edges {
             node {
-              fields {
-                slug
-              }
-              frontmatter {
-                title
-                categoryName
-                categorySlug
-              }
+              categoryName
+              categorySlug
+              title
+              slug
             }
           }
         }
@@ -35,17 +27,17 @@ exports.createPages = ({ graphql, actions }) => {
     }
 
     // Create blog posts pages.
-    const posts = result.data.allMarkdownRemark.edges
+    const posts = result.data.allContentfulPost.edges
 
     posts.forEach((post, index) => {
       const previous = index === posts.length - 1 ? null : posts[index + 1].node
       const next = index === 0 ? null : posts[index - 1].node
 
       createPage({
-        path: post.node.fields.slug,
+        path: `${post.node.slug}`,
         component: blogPost,
         context: {
-          slug: post.node.fields.slug,
+          slug: post.node.slug,
           previous,
           next,
         },
@@ -53,43 +45,27 @@ exports.createPages = ({ graphql, actions }) => {
     })
 
     // Create post-list.
-    const categoryLists = result.data.allMarkdownRemark.edges
+    const categoryLists = result.data.allContentfulPost.edges
 
     const categoryCleanLists = categoryLists.filter(function(v1, i1, a1) {
       return (
         a1.findIndex(function(v2) {
-          return (
-            v1.node.frontmatter.categorySlug ===
-            v2.node.frontmatter.categorySlug
-          )
+          return v1.node.categorySlug === v2.node.categorySlug
         }) === i1
       )
     })
 
     categoryCleanLists.forEach(post => {
       createPage({
-        path: `/category/${post.node.frontmatter.categorySlug}/`,
+        path: `/category/${post.node.categorySlug}/`,
         component: categoryList,
         context: {
-          categorySlug: `${post.node.frontmatter.categorySlug}`,
-          categoryName: `${post.node.frontmatter.categoryName}`,
+          categorySlug: `${post.node.categorySlug}`,
+          categoryName: `${post.node.categoryName}`,
         },
       })
     })
 
     return null
   })
-}
-
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-
-  if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    })
-  }
 }
