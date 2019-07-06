@@ -81,6 +81,10 @@ export const Tmb = styled(Img)`
 
 const GlobalStyle = createGlobalStyle`
   .post {
+    margin-bottom: 56px;
+    @media screen and (min-width: 768px) {
+      margin-bottom: 80px;
+    }
     h1,
     h2,
     h3,

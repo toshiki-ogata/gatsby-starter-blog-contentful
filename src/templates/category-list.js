@@ -64,9 +64,9 @@ class PostListTemplate extends React.Component {
 }
 
 export const Section = styled.section`
-  margin-bottom: 29.5px;
+  margin-bottom: 56px;
   @media screen and (min-width: 768px) {
-    margin-bottom: 52px;
+    margin-bottom: 80px;
   }
 `
 

@@ -30,10 +30,10 @@ class Layout extends React.Component {
 }
 
 export const Wrapper = styled.div`
-  padding: 30px 4% 56px;
+  padding: 30px 4% 0;
   margin: 0 auto;
   @media screen and (min-width: 768px) {
-    padding: 52px 32px 80px;
+    padding: 52px 32px 0;
     max-width: ${props => props.pageMaxWidth};
   }
 `

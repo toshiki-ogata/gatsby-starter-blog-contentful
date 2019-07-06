@@ -26,15 +26,14 @@ class MoreButton extends React.Component {
 
 export const Wrapper = styled.div`
   text-align: center;
-  margin-top: 56px;
+  margin-bottom: 56px;
   display: ${props => (props.displayflag === 'block' ? 'block' : 'none')};
   @media screen and (min-width: 768px) {
-    margin-top: 80px;
+    margin-bottom: 80px;
   }
 `
 
 export const Button = styled.button`
-  margin-bottom: 29.5px;
   min-width: 200px;
   line-height: 1.4;
   font-size: 1.6rem;
@@ -52,9 +51,6 @@ export const Button = styled.button`
     transform: scale(1.02);
     box-shadow: 0 4px 8px rgba(46, 41, 51, 0.08),
       0 8px 16px rgba(71, 63, 79, 0.16);
-  }
-  @media screen and (min-width: 768px) {
-    margin-bottom: 52px;
   }
 `
 
