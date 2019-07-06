@@ -14,28 +14,10 @@ function Header() {
             <Wrapper>
               <Inner>
                 <H1>
-                  <Link to="/">
+                  <H1Link to="/">
                     <Logo src={logo} alt={title} />
-                  </Link>
+                  </H1Link>
                 </H1>
-                <nav>
-                  <Nav>
-                    <NavItem>
-                      <StyledLink to="/">アーカイブ</StyledLink>
-                    </NavItem>
-                    <NavItem>
-                      <StyledLink to="/">カテゴリ</StyledLink>
-                    </NavItem>
-                    <NavItem>
-                      <StyledLink to="/">タグ</StyledLink>
-                    </NavItem>
-                  </Nav>
-                  <Menu>
-                    <MenuItem />
-                    <MenuItem />
-                    <MenuItem />
-                  </Menu>
-                </nav>
               </Inner>
             </Wrapper>
           </header>
@@ -70,66 +52,17 @@ export const H1 = styled.h1`
   margin: 0;
 `
 
+export const H1Link = styled(Link)`
+  display: flex;
+`
+
 export const Logo = styled.img`
   color: #fff;
   margin: 0;
-  width: 181px;
+  height: 26px;
   vertical-align: bottom;
-`
-
-export const Nav = styled.ul`
-  display: none;
   @media screen and (min-width: 768px) {
-    display: flex;
-    font-size: 1.4rem;
-    margin: 0;
-  }
-`
-
-export const NavItem = styled.li`
-  @media screen and (min-width: 768px) {
-    display: flex;
-    margin: 0;
-    &:not(:last-child) {
-      margin-right: 32px;
-    }
-  }
-`
-
-export const StyledLink = styled(Link)`
-  color: #fff;
-  text-decoration: none;
-  box-shadow: none;
-`
-
-export const Menu = styled.div`
-  display: inline-block;
-  transition: all 0.4s;
-  position: relative;
-  width: 19px;
-  height: 16px;
-  @media screen and (min-width: 768px) {
-    display: none;
-  }
-`
-
-export const MenuItem = styled.span`
-  display: inline-block;
-  transition: all 0.4s;
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #fff;
-  border-radius: 4px;
-  &:nth-of-type(1) {
-    top: 0;
-  }
-  &:nth-of-type(2) {
-    top: 7px;
-  }
-  &:nth-of-type(3) {
-    bottom: 0;
+    height: 36px;
   }
 `
 
