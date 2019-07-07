@@ -23,15 +23,15 @@ class Article extends React.Component {
   showItem() {
     const { totalPosts } = this.props
     const { linkDisplay } = this.state
-    const linkDisplay_copy = linkDisplay.slice()
+    const linkDisplayCopy = linkDisplay.slice()
     let itemCount = 0
     for (let i = 0; i < linkDisplay.length; i++) {
       if (linkDisplay[i] === 'none' && itemCount < totalPosts) {
-        linkDisplay_copy[i] = 'block'
+        linkDisplayCopy[i] = 'block'
         itemCount = itemCount + 1
       }
     }
-    this.setState({ linkDisplay: linkDisplay_copy })
+    this.setState({ linkDisplay: linkDisplayCopy })
   }
   render() {
     const { posts } = this.props
