@@ -88,7 +88,7 @@ export const pageQuery = graphql`
           title
           slug
           date(formatString: "YYYY.M.D")
-          tmb {
+          thumbnail {
             fluid(maxWidth: 720) {
               ...GatsbyContentfulFluid
             }

@@ -23,7 +23,7 @@ class BlogPostTemplate extends React.Component {
           {post.date}
           更新
         </Date>
-        <Tmb fluid={post.tmb.fluid} />
+        <Thumbnail fluid={post.thumbnail.fluid} />
         <div
           className="post"
           dangerouslySetInnerHTML={{
@@ -70,7 +70,7 @@ export const Date = styled.time`
   display: block;
 `
 
-export const Tmb = styled(Img)`
+export const Thumbnail = styled(Img)`
   display: block;
   margin-bottom: 24px;
   max-width: 100%;
@@ -254,7 +254,7 @@ export const pageQuery = graphql`
         }
       }
       title
-      tmb {
+      thumbnail {
         fluid(maxWidth: 720) {
           ...GatsbyContentfulFluid
         }

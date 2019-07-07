@@ -46,7 +46,7 @@ class Article extends React.Component {
               displayflag={linkDisplay[index]}
             >
               <Item>
-                <Img fluid={node.tmb.fluid} />
+                <Img fluid={node.thumbnail.fluid} />
                 <Body>
                   <Heading>{node.title}</Heading>
                   <Date>{node.date}</Date>
