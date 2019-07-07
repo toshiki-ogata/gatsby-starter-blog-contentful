@@ -80,14 +80,14 @@ export const pageQuery = graphql`
         totalPosts
       }
     }
-    allContentfulPost(sort: { fields: date, order: DESC }) {
+    allContentfulPost(sort: { fields: publishDate, order: DESC }) {
       edges {
         node {
           categoryName
           categorySlug
           title
           slug
-          date(formatString: "YYYY.M.D")
+          publishDate(formatString: "YYYY.M.D")
           thumbnail {
             fluid(maxWidth: 720) {
               ...GatsbyContentfulFluid

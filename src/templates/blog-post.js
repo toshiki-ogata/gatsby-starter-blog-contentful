@@ -19,10 +19,10 @@ class BlogPostTemplate extends React.Component {
         <GlobalStyle />
         <SEO title={post.title} description={post.description} />
         <H1>{post.title}</H1>
-        <Date>
-          {post.date}
+        <PublishDate>
+          {post.publishDate}
           更新
-        </Date>
+        </PublishDate>
         <Thumbnail fluid={post.thumbnail.fluid} />
         <div
           className="post"
@@ -63,7 +63,7 @@ export const H1 = styled.h1`
   }
 `
 
-export const Date = styled.time`
+export const PublishDate = styled.time`
   margin-bottom: 16px;
   line-height: 1;
   font-size: 1.4rem;
@@ -259,7 +259,7 @@ export const pageQuery = graphql`
           ...GatsbyContentfulFluid
         }
       }
-      date(formatString: "YYYY.M.D")
+      publishDate(formatString: "YYYY.M.D")
     }
   }
 `

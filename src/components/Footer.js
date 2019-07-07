@@ -235,7 +235,7 @@ const footerQuery = graphql`
         }
       }
     }
-    allContentfulPost(sort: { fields: date, order: DESC }) {
+    allContentfulPost(sort: { fields: publishDate, order: DESC }) {
       edges {
         node {
           categoryName
