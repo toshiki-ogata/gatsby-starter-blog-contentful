@@ -73,7 +73,7 @@ export const Wrapper = styled.div`
 `
 
 export const StyledLink = styled(Link)`
-  color: #333;
+    color: #333;
   text-decoration: none;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
   border-radius: 6px;
