@@ -3,13 +3,10 @@
   "ignoreFiles": ["src/styles/*.js"],
   "extends": [
     "stylelint-config-standard",
+    "stylelint-config-prettier",
     "stylelint-config-styled-components"
   ],
   "rules": {
-    "at-rule-empty-line-before": null,
-    "rule-empty-line-before": null,
     "no-descending-specificity": null,
-    "declaration-colon-newline-after": null,
-    "comment-empty-line-before": null,
   }
 }
