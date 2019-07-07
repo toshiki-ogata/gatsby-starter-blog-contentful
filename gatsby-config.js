@@ -103,11 +103,5 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-typography`,
-    //   options: {
-    //     pathToConfigModule: `src/utils/typography`,
-    //   },
-    // },
   ],
 }
