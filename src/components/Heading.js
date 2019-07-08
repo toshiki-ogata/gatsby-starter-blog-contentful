@@ -19,11 +19,11 @@ class Heading extends React.Component {
 }
 
 export const H2 = styled.h2`
-  color: #333;
+  color: ${props => props.theme.colors.base};
   text-align: center;
   margin: 0 0 22px 0;
-  line-height: 1.4;
-  @media screen and (min-width: 768px) {
+  line-height: ${props => props.theme.lineHeight.small};
+  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     margin-bottom: 38px;
   }
 `
@@ -31,7 +31,7 @@ export const H2 = styled.h2`
 export const Main = styled.div`
   font-weight: bold;
   font-size: 2.8rem;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     font-size: 3.2rem;
   }
 `
@@ -39,7 +39,7 @@ export const Main = styled.div`
 export const Sub = styled.div`
   font-size: 1.4rem;
   font-weight: normal;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     padding-right: 32px;
     padding-left: 32px;
   }

@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import styles from './variables'
+import theme from './theme'
 
 const GlobalStyle = createGlobalStyle`
   @import url(//fonts.googleapis.com/earlyaccess/notosansjp.css);
@@ -38,9 +38,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: "Noto Sans", "Noto Sans CJK JP", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
-    color: ${styles.baseColor};
-    line-height: ${styles.lineHeight_md};
+    font-family: ${theme.fontFamily};
+    color: ${props => props.theme.colors.base};
+    line-height: ${theme.lineHeight.medium};
     font-size: 1.6rem;
   }
 

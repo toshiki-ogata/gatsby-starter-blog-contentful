@@ -98,9 +98,9 @@ function Footer() {
 }
 
 export const Wrapper = styled.div`
-  background: #333;
+  background: ${props => props.theme.colors.base};
   color: #fff;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     padding-right: 32px;
     padding-left: 32px;
   }
@@ -108,7 +108,7 @@ export const Wrapper = styled.div`
 
 export const Inner = styled.div`
   padding: 25px 4% 20px;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     max-width: 1120px;
     padding: 43px 0 20px;
     margin: 0 auto;
@@ -117,7 +117,7 @@ export const Inner = styled.div`
 
 export const Top = styled.div`
   padding-bottom: 24px;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     display: flex;
     justify-content: space-between;
     padding-bottom: 40px;
@@ -128,7 +128,7 @@ export const Col = styled.div`
   &:not(:last-child) {
     margin-bottom: 25px;
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     width: 31%;
     &:not(:last-child) {
       margin-bottom: 0;
@@ -138,23 +138,23 @@ export const Col = styled.div`
 
 export const Heading = styled.p`
   font-size: 2.2rem;
-  line-height: 1.4;
+  line-height: ${props => props.theme.lineHeight.small};
   margin: 0 0 8px 0;
-  font-weight: 700;
-  @media screen and (min-width: 768px) {
+  font-weight: ${props => props.theme.fontWeight.large};
+  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     margin-bottom: 11px;
   }
 `
 
 export const Text = styled.p`
   font-size: 1.4rem;
-  line-height: 1.7;
+  line-height: ${props => props.theme.lineHeight.medium};
   margin: 0;
 `
 
 export const Category = styled.ul`
   list-style: none;
-  line-height: 1.7;
+  line-height: ${props => props.theme.lineHeight.medium};
 `
 
 export const CategoryItem = styled.li`

@@ -69,7 +69,7 @@ class BlogIndex extends React.Component {
 
 export const Section = styled.section`
   margin-bottom: 56px;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     margin-bottom: 80px;
   }
 `

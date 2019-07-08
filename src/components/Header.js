@@ -25,11 +25,11 @@ function Header() {
 }
 
 export const Wrapper = styled.div`
-  background: #333;
+  background: ${props => props.theme.colors.base};
   height: 56px;
   padding-right: 4%;
   padding-left: 4%;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     height: 80px;
     padding-right: 32px;
     padding-left: 32px;
@@ -54,7 +54,7 @@ export const H1Link = styled(Link)`
   text-decoration: none;
   color: #fff;
   font-size: 2rem;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     font-size: 2.6rem;
   }
 `
@@ -64,7 +64,7 @@ export const Logo = styled.img`
   margin: 0;
   height: 26px;
   vertical-align: bottom;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     height: 36px;
   }
 `

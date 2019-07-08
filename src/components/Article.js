@@ -66,14 +66,14 @@ export const Wrapper = styled.div`
   grid-column-gap: 4%;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   justify-content: center;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     grid-column-gap: 32px;
     grid-row-gap: 40px;
   }
 `
 
 export const StyledLink = styled(Link)`
-  color: #333;
+  color: ${props => props.theme.colors.base};
   text-decoration: none;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
   border-radius: 6px;
@@ -93,7 +93,7 @@ export const Item = styled.article`
 
 export const Body = styled.div`
   padding: 15.2px 4% 20px;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     padding: 18.6px 24px 24px;
   }
 `
@@ -103,7 +103,7 @@ export const Heading = styled.h3`
   font-size: 1.6rem;
   font-weight: bold;
   line-height: 1.6;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     font-size: 1.8rem;
     margin-bottom: 14.6px;
   }

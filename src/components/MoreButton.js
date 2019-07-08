@@ -28,18 +28,18 @@ export const Wrapper = styled.div`
   text-align: center;
   margin-bottom: 56px;
   display: ${props => (props.displayflag === 'block' ? 'block' : 'none')};
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     margin-bottom: 80px;
   }
 `
 
 export const Button = styled.button`
   min-width: 200px;
-  line-height: 1.4;
+  line-height: ${props => props.theme.lineHeight.small};
   font-size: 1.6rem;
   font-weight: bold;
   text-align: center;
-  background: #333;
+  background: ${props => props.theme.colors.base};
   color: #fff;
   text-decoration: none;
   display: inline-block;

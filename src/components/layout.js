@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { ThemeProvider } from 'styled-components'
 import Header from './Header'
 import Footer from './Footer'
-import styles from '../styles'
+import theme from '../styles/theme'
 import GlobalStyle from '../styles/GlobalStyle'
 
 class Layout extends React.Component {
@@ -15,7 +15,7 @@ class Layout extends React.Component {
       pageMaxWidth = '784px'
     }
     return (
-      <ThemeProvider theme={styles}>
+      <ThemeProvider theme={theme}>
         <div>
           <GlobalStyle />
           <Header />
@@ -32,7 +32,7 @@ class Layout extends React.Component {
 export const Wrapper = styled.div`
   padding: 30px 4% 0;
   margin: 0 auto;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     padding: 52px 32px 0;
     max-width: ${props => props.pageMaxWidth};
   }

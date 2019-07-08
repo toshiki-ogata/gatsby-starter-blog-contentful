@@ -54,10 +54,10 @@ class BlogPostTemplate extends React.Component {
 
 export const H1 = styled.h1`
   margin: 0 0 10.4px 0;
-  line-height: 1.4;
+  line-height: ${props => props.theme.lineHeight.small};
   font-weight: bold;
   font-size: 2.8rem;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     font-size: 3.2rem;
     margin-bottom: 9.6px;
   }
@@ -74,7 +74,7 @@ export const Thumbnail = styled(Img)`
   display: block;
   margin-bottom: 24px;
   max-width: 100%;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     margin-bottom: 32px;
   }
 `
@@ -82,7 +82,7 @@ export const Thumbnail = styled(Img)`
 const GlobalStyle = createGlobalStyle`
   .post {
     margin-bottom: 56px;
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: ${props => props.theme.responsive.medium}) {
       margin-bottom: 80px;
     }
     h1,
@@ -91,12 +91,12 @@ const GlobalStyle = createGlobalStyle`
     h4,
     h5,
     h6 {
-      line-height: 1.4;
+      line-height: ${props => props.theme.lineHeight.small};
     }
     h1 {
       margin: 26.4px 0 18.4px 0;
       font-size: 2.8rem;
-      @media screen and (min-width: 768px) {
+      @media screen and (min-width: ${props => props.theme.responsive.medium}) {
         font-size: 3.2rem;
         margin: 41.6px 0 25.6px 0;
       }
@@ -105,8 +105,8 @@ const GlobalStyle = createGlobalStyle`
       margin: 27.2px 0 24px 0;
       font-size: 2.2rem;
       padding-bottom: 5px;
-      border-bottom: 1px solid #333;
-      @media screen and (min-width: 768px) {
+      border-bottom: 1px solid ${props => props.theme.colors.base};
+      @media screen and (min-width: ${props => props.theme.responsive.medium}) {
         font-size: 2.4rem;
         margin: 43.2px 0 32px 0;
       }
@@ -115,8 +115,8 @@ const GlobalStyle = createGlobalStyle`
       margin: 24px 0 24px 0;
       font-size: 1.8rem;
       padding-left: 10px;
-      border-left: 4px solid #333;
-      @media screen and (min-width: 768px) {
+      border-left: 4px solid ${props => props.theme.colors.base};
+      @media screen and (min-width: ${props => props.theme.responsive.medium}) {
         font-size: 2rem;
         margin: 32px 0 32px 0;
       }
@@ -124,28 +124,28 @@ const GlobalStyle = createGlobalStyle`
     h4 {
       margin: 20.4px 0 20.4px 0;
       font-size: 1.8rem;
-      @media screen and (min-width: 768px) {
+      @media screen and (min-width: ${props => props.theme.responsive.medium}) {
         margin: 28.4px 0 28.4px 0;
       }
     }
     h5 {
       margin: 20.8px 0 20.8px 0;
       font-size: 1.6rem;
-      @media screen and (min-width: 768px) {
+      @media screen and (min-width: ${props => props.theme.responsive.medium}) {
         margin: 28.8px 0 28.8px 0;
       }
     }
     h6 {
       margin: 21.2px 0 21.2px 0;
       font-size: 1.4rem;
-      @media screen and (min-width: 768px) {
+      @media screen and (min-width: ${props => props.theme.responsive.medium}) {
         font-size: 1.4rem;
         margin: 29.2px 0 29.2px 0;
       }
     }
     p {
       margin: 0 0 17.6px 0;
-      @media screen and (min-width: 768px) {
+      @media screen and (min-width: ${props => props.theme.responsive.medium}) {
         margin-bottom: 25.6px;
       }
     }
@@ -160,7 +160,7 @@ const GlobalStyle = createGlobalStyle`
       display: block;
       margin-bottom: 24px;
       max-width: 100%;
-      @media screen and (min-width: 768px) {
+      @media screen and (min-width: ${props => props.theme.responsive.medium}) {
         margin-bottom: 32px;
       }
     }
@@ -176,7 +176,7 @@ const GlobalStyle = createGlobalStyle`
       p {
         display: inline;
       }
-      @media screen and (min-width: 768px) {
+      @media screen and (min-width: ${props => props.theme.responsive.medium}) {
         margin-bottom: 32px;
       }
     }
@@ -191,7 +191,7 @@ const GlobalStyle = createGlobalStyle`
       background-position: 13px 12px;
       background-repeat: no-repeat;
       background-size: 16px auto;
-      @media screen and (min-width: 768px) {
+      @media screen and (min-width: ${props => props.theme.responsive.medium}) {
         margin-bottom: 32px;
       }
       > p:first-child {
@@ -216,7 +216,7 @@ const GlobalStyle = createGlobalStyle`
         padding: 0.75em;
         border-top: 1px solid #dee2e6;
       }
-      @media screen and (min-width: 768px) {
+      @media screen and (min-width: ${props => props.theme.responsive.medium}) {
         margin-bottom: 32px;
       }
     }
@@ -229,7 +229,7 @@ const GlobalStyle = createGlobalStyle`
       border-style: solid none none;
       border-width: 1px 0 0;
       margin: 24px 0;
-      @media screen and (min-width: 768px) {
+      @media screen and (min-width: ${props => props.theme.responsive.medium}) {
         margin: 32px 0;
       }
     }
