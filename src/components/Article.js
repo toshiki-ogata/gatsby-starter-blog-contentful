@@ -2,14 +2,15 @@ import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
+const config = require('../utils/siteConfig')
 
 class Article extends React.Component {
   constructor(props) {
     super(props)
-    const { posts, postsPerPage } = this.props
+    const { posts } = this.props
     let linkDisplayArray = []
     for (let i = 0; i < posts.length; i++) {
-      if (i < postsPerPage) {
+      if (i < config.postsPerPage) {
         linkDisplayArray.push('block')
       } else {
         linkDisplayArray.push('none')
@@ -21,12 +22,11 @@ class Article extends React.Component {
     this.linkRef = React.createRef()
   }
   showItem() {
-    const { postsPerPage } = this.props
     const { linkDisplay } = this.state
     const linkDisplayCopy = linkDisplay.slice()
     let itemCount = 0
     for (let i = 0; i < linkDisplay.length; i++) {
-      if (linkDisplay[i] === 'none' && itemCount < postsPerPage) {
+      if (linkDisplay[i] === 'none' && itemCount < config.postsPerPage) {
         linkDisplayCopy[i] = 'block'
         itemCount = itemCount + 1
       }

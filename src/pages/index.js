@@ -7,6 +7,7 @@ import SEO from '../components/seo'
 import Heading from '../components/Heading'
 import Article from '../components/Article'
 import MoreButton from '../components/MoreButton'
+const config = require('../utils/siteConfig')
 
 class BlogIndex extends React.Component {
   constructor(props) {
@@ -29,8 +30,7 @@ class BlogIndex extends React.Component {
   }
 
   render() {
-    const { data, location } = this.props
-    const { title, postsPerPage } = data.site.siteMetadata
+    const { data } = this.props
     const posts = data.allContentfulPost.edges
     const pickUpPosts = ['test1', 'test2', 'test3']
     const pickUpFilterPosts = posts.filter(post =>
@@ -38,7 +38,7 @@ class BlogIndex extends React.Component {
     )
 
     return (
-      <Layout location={location} title={title} pageType="index">
+      <Layout pageType="index">
         <SEO
           title="All posts"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
@@ -48,7 +48,6 @@ class BlogIndex extends React.Component {
           <Article
             posts={pickUpFilterPosts}
             ref={this.Article}
-            postsPerPage={postsPerPage}
           />
         </Section>
         <Section>
@@ -56,11 +55,10 @@ class BlogIndex extends React.Component {
           <Article
             posts={posts}
             ref={this.Article}
-            postsPerPage={postsPerPage}
           />
         </Section>
         {(() => {
-          if (posts.length > postsPerPage) {
+          if (posts.length > config.postsPerPage) {
             return (
               <MoreButton moreClick={this.moreClick} ref={this.MoreButton} />
             )
@@ -82,12 +80,6 @@ export default BlogIndex
 
 export const pageQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        title
-        postsPerPage
-      }
-    }
     allContentfulPost(sort: { fields: publishDate, order: DESC }) {
       edges {
         node {

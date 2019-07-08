@@ -1,28 +1,19 @@
 import React from 'react'
-import { Link, StaticQuery, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 import styled from 'styled-components'
+const config = require('../utils/siteConfig')
 
-function Header() {
-  return (
-    <StaticQuery
-      query={headerQuery}
-      render={data => {
-        const { title } = data.site.siteMetadata
-        return (
-          <header>
-            <Wrapper>
-              <Inner>
-                <H1>
-                  <H1Link to="/">{title}</H1Link>
-                </H1>
-              </Inner>
-            </Wrapper>
-          </header>
-        )
-      }}
-    />
-  )
-}
+const Header = () => (
+  <header>
+    <Wrapper>
+      <Inner>
+        <H1>
+          <H1Link to="/">{config.siteTitle}</H1Link>
+        </H1>
+      </Inner>
+    </Wrapper>
+  </header>
+)
 
 export const Wrapper = styled.div`
   background: ${props => props.theme.colors.base};
@@ -66,16 +57,6 @@ export const Logo = styled.img`
   vertical-align: bottom;
   @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     height: 36px;
-  }
-`
-
-const headerQuery = graphql`
-  query HeaderQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
   }
 `
 

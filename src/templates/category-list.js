@@ -7,6 +7,7 @@ import SEO from '../components/seo'
 import Heading from '../components/Heading'
 import Article from '../components/Article'
 import MoreButton from '../components/MoreButton'
+const config = require('../utils/siteConfig')
 
 class PostListTemplate extends React.Component {
   constructor(props) {
@@ -29,8 +30,7 @@ class PostListTemplate extends React.Component {
   }
 
   render() {
-    const { data, location, pageContext } = this.props
-    const { title, postsPerPage } = data.site.siteMetadata
+    const { data, pageContext } = this.props
     const { categorySlug, categoryName } = pageContext
     const posts = data.allContentfulPost.edges
     const filterPosts = posts.filter(
@@ -38,7 +38,7 @@ class PostListTemplate extends React.Component {
     )
 
     return (
-      <Layout location={location} title={title} pageType="index">
+      <Layout pageType="index">
         <SEO
           title="All posts"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
@@ -48,11 +48,10 @@ class PostListTemplate extends React.Component {
           <Article
             posts={filterPosts}
             ref={this.Article}
-            postsPerPage={postsPerPage}
           />
         </Section>
         {(() => {
-          if (filterPosts.length > postsPerPage) {
+          if (filterPosts.length > config.postsPerPage) {
             return (
               <MoreButton moreClick={this.moreClick} ref={this.MoreButton} />
             )
@@ -74,12 +73,6 @@ export default PostListTemplate
 
 export const pageQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        title
-        postsPerPage
-      }
-    }
     allContentfulPost(sort: { fields: publishDate, order: DESC }) {
       edges {
         node {

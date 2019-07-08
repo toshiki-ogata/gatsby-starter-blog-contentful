@@ -6,6 +6,7 @@ import twitterIcon from '../../content/assets/twitter.svg'
 import facebookIcon from '../../content/assets/facebook.svg'
 import instagramIcon from '../../content/assets/instagram.svg'
 import youtubeIcon from '../../content/assets/youtube.svg'
+const config = require('../utils/siteConfig')
 
 function Footer() {
   return (
@@ -13,9 +14,8 @@ function Footer() {
       query={footerQuery}
       render={data => {
         const icon = [twitterIcon, facebookIcon, instagramIcon, youtubeIcon]
-        const { author, social } = data.site.siteMetadata
-        const SnsArray = Object.keys(social).map(function(key) {
-          return social[key]
+        const SnsArray = Object.keys(config.social).map(function(key) {
+          return config.social[key]
         })
         const posts = data.allContentfulPost.edges
         const deduplicatePosts = posts.filter(function(v1, i1, a1) {
@@ -85,7 +85,7 @@ function Footer() {
                 </Top>
                 <Bottom>
                   <Copyright>
-                    {`Copyright © ${author} All rights reserved`}
+                    {config.copyright}
                   </Copyright>
                 </Bottom>
               </Inner>
@@ -224,17 +224,6 @@ export const Copyright = styled.p`
 
 const footerQuery = graphql`
   query FooterQuery {
-    site {
-      siteMetadata {
-        author
-        social {
-          twitter
-          facebook
-          instagram
-          youtube
-        }
-      }
-    }
     allContentfulPost(sort: { fields: publishDate, order: DESC }) {
       edges {
         node {

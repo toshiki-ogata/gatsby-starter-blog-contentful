@@ -3,18 +3,6 @@ const config = require('./src/utils/siteConfig')
 
 module.exports = {
   siteMetadata: {
-    title: config.siteTitle,
-    description: config.siteDescription,
-    author: config.author,
-    siteUrl: config.siteUrl,
-    copyright: config.copyright,
-    social: {
-      twitter: `https://twitter.com/`,
-      facebook: `https://www.facebook.com/`,
-      instagram: `https://www.instagram.com/`,
-      youtube: `https://www.youtube.com/`,
-    },
-    postsPerPage: config.postsPerPage,
     rssMetadata: {
       site_url: config.siteUrl,
       feed_url: `${config.siteUrl}/rss.xml`,

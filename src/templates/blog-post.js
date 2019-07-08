@@ -9,13 +9,12 @@ import blockquoteIcon from '../../content/assets/icon_blockquote.svg'
 
 class BlogPostTemplate extends React.Component {
   render() {
-    const { data, location } = this.props
+    const { data } = this.props
     const post = data.contentfulPost
-    const siteTitle = data.site.siteMetadata.title
     // const { previous, next } = pageContext
 
     return (
-      <Layout location={location} title={siteTitle} pageType="post">
+      <Layout pageType="post">
         <GlobalStyle />
         <SEO title={post.title} description={post.description} />
         <H1>{post.title}</H1>
@@ -240,12 +239,6 @@ export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
-    site {
-      siteMetadata {
-        title
-        author
-      }
-    }
     contentfulPost(slug: { eq: $slug }) {
       id
       content {
