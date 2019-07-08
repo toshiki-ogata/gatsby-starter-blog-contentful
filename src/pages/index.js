@@ -53,7 +53,11 @@ class BlogIndex extends React.Component {
         </Section>
         <Section>
           <Heading main="NEW POSTS" sub="新着記事" />
-          <Article posts={posts} ref={this.Article} postsPerPage={postsPerPage} />
+          <Article
+            posts={posts}
+            ref={this.Article}
+            postsPerPage={postsPerPage}
+          />
         </Section>
         {(() => {
           if (posts.length > postsPerPage) {

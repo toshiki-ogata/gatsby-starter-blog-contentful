@@ -1,5 +1,6 @@
 const theme = {
-  fontFamily: '"Noto Sans", "Noto Sans CJK JP", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif',
+  fontFamily:
+    '"Noto Sans", "Noto Sans CJK JP", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif',
   colors: {
     base: '#333',
     background: '#fff',
