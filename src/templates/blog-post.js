@@ -55,7 +55,7 @@ class BlogPostTemplate extends React.Component {
 export const H1 = styled.h1`
   margin: 0 0 10.4px 0;
   line-height: ${props => props.theme.lineHeight.small};
-  font-weight: bold;
+  font-weight: ${props => props.theme.fontWeight.large};
   font-size: 2.8rem;
   @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     font-size: 3.2rem;

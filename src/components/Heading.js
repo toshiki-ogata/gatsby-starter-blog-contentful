@@ -29,7 +29,7 @@ export const H2 = styled.h2`
 `
 
 export const Main = styled.div`
-  font-weight: bold;
+  font-weight: ${props => props.theme.fontWeight.large};
   font-size: 2.8rem;
   @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     font-size: 3.2rem;

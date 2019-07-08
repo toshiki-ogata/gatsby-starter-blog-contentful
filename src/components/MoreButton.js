@@ -37,7 +37,7 @@ export const Button = styled.button`
   min-width: 200px;
   line-height: ${props => props.theme.lineHeight.small};
   font-size: 1.6rem;
-  font-weight: bold;
+  font-weight: ${props => props.theme.fontWeight.large};
   text-align: center;
   background: ${props => props.theme.colors.base};
   color: #fff;

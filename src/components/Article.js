@@ -92,26 +92,27 @@ export const Item = styled.article`
 `
 
 export const Body = styled.div`
-  padding: 15.2px 4% 20px;
+  padding: 16.8px 4% 20px;
   @media screen and (min-width: ${props => props.theme.responsive.medium}) {
-    padding: 18.6px 24px 24px;
+    padding: 20.4px 24px 24px;
   }
 `
 
 export const Heading = styled.h3`
-  margin: 0 0 7px 0;
+  margin: 0 0 16.8px 0;
   font-size: 1.6rem;
-  font-weight: bold;
-  line-height: 1.6;
+  font-weight: ${props => props.theme.fontWeight.large};
+  line-height: ${props => props.theme.lineHeight.small};
   @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     font-size: 1.8rem;
-    margin-bottom: 14.6px;
+    margin-bottom: 20.4px;
   }
 `
 
 export const PublishDate = styled.time`
   font-size: 1.4rem;
   line-height: 1;
+  display: block;
 `
 
 export default Article
