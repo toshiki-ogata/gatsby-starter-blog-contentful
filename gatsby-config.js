@@ -124,7 +124,7 @@ module.exports = {
                       title
                       slug
                       publishDate(formatString: "MMMM DD, YYYY")
-                      body {
+                      content {
                         childMarkdownRemark {
                           html
                           excerpt(pruneLength: 80)
