@@ -30,7 +30,7 @@ class PostListTemplate extends React.Component {
 
   render() {
     const { data, location, pageContext } = this.props
-    const { title, totalPosts } = data.site.siteMetadata
+    const { title, postsPerPage } = data.site.siteMetadata
     const { categorySlug, categoryName } = pageContext
     const posts = data.allContentfulPost.edges
     const filterPosts = posts.filter(
@@ -48,11 +48,11 @@ class PostListTemplate extends React.Component {
           <Article
             posts={filterPosts}
             ref={this.Article}
-            totalPosts={totalPosts}
+            postsPerPage={postsPerPage}
           />
         </Section>
         {(() => {
-          if (filterPosts.length > totalPosts) {
+          if (filterPosts.length > postsPerPage) {
             return (
               <MoreButton moreClick={this.moreClick} ref={this.MoreButton} />
             )
@@ -77,7 +77,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
-        totalPosts
+        postsPerPage
       }
     }
     allContentfulPost(sort: { fields: publishDate, order: DESC }) {

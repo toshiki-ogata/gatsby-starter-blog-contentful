@@ -6,10 +6,10 @@ import Img from 'gatsby-image'
 class Article extends React.Component {
   constructor(props) {
     super(props)
-    const { posts, totalPosts } = this.props
+    const { posts, postsPerPage } = this.props
     let linkDisplayArray = []
     for (let i = 0; i < posts.length; i++) {
-      if (i < totalPosts) {
+      if (i < postsPerPage) {
         linkDisplayArray.push('block')
       } else {
         linkDisplayArray.push('none')
@@ -21,12 +21,12 @@ class Article extends React.Component {
     this.linkRef = React.createRef()
   }
   showItem() {
-    const { totalPosts } = this.props
+    const { postsPerPage } = this.props
     const { linkDisplay } = this.state
     const linkDisplayCopy = linkDisplay.slice()
     let itemCount = 0
     for (let i = 0; i < linkDisplay.length; i++) {
-      if (linkDisplay[i] === 'none' && itemCount < totalPosts) {
+      if (linkDisplay[i] === 'none' && itemCount < postsPerPage) {
         linkDisplayCopy[i] = 'block'
         itemCount = itemCount + 1
       }

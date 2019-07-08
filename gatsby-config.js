@@ -1,18 +1,20 @@
 require('dotenv').config()
+const config = require('./src/utils/siteConfig')
 
 module.exports = {
   siteMetadata: {
-    title: `Site Title`,
-    author: `Toshiki Ogata`,
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    title: config.siteTitle,
+    description: config.siteDescription,
+    author: config.author,
+    siteUrl: config.siteUrl,
+    copyright: config.copyright,
     social: {
       twitter: `https://twitter.com/`,
       facebook: `https://www.facebook.com/`,
       instagram: `https://www.instagram.com/`,
       youtube: `https://www.youtube.com/`,
     },
-    totalPosts: 3,
+    postsPerPage: config.postsPerPage,
   },
   plugins: [
     {

@@ -30,7 +30,7 @@ class BlogIndex extends React.Component {
 
   render() {
     const { data, location } = this.props
-    const { title, totalPosts } = data.site.siteMetadata
+    const { title, postsPerPage } = data.site.siteMetadata
     const posts = data.allContentfulPost.edges
     const pickUpPosts = ['test1', 'test2', 'test3']
     const pickUpFilterPosts = posts.filter(post =>
@@ -48,15 +48,15 @@ class BlogIndex extends React.Component {
           <Article
             posts={pickUpFilterPosts}
             ref={this.Article}
-            totalPosts={totalPosts}
+            postsPerPage={postsPerPage}
           />
         </Section>
         <Section>
           <Heading main="NEW POSTS" sub="新着記事" />
-          <Article posts={posts} ref={this.Article} totalPosts={totalPosts} />
+          <Article posts={posts} ref={this.Article} postsPerPage={postsPerPage} />
         </Section>
         {(() => {
-          if (posts.length > totalPosts) {
+          if (posts.length > postsPerPage) {
             return (
               <MoreButton moreClick={this.moreClick} ref={this.MoreButton} />
             )
@@ -81,7 +81,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
-        totalPosts
+        postsPerPage
       }
     }
     allContentfulPost(sort: { fields: publishDate, order: DESC }) {
