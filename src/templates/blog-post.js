@@ -3,8 +3,8 @@ import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
 import styled, { createGlobalStyle } from 'styled-components'
-import Layout from '../components/layout'
-import SEO from '../components/seo'
+import Layout from '../components/Layout'
+import SEO from '../components/SEO'
 import blockquoteIcon from '../../content/assets/icon_blockquote.svg'
 
 class BlogPostTemplate extends React.Component {
