@@ -106,12 +106,12 @@ module.exports = {
               return ctx.query.allContentfulPost.edges.map(edge => ({
                 date: edge.node.publishDate,
                 title: edge.node.title,
-                description: edge.node.body.childMarkdownRemark.excerpt,
+                description: edge.node.content.childMarkdownRemark.excerpt,
                 url: rssMetadata.site_url + '/' + edge.node.slug,
                 guid: rssMetadata.site_url + '/' + edge.node.slug,
                 custom_elements: [
                   {
-                    'content:encoded': edge.node.body.childMarkdownRemark.html,
+                    'content:encoded': edge.node.content.childMarkdownRemark.html,
                   },
                 ],
               }))
