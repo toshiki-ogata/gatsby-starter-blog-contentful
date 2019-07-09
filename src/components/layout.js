@@ -4,6 +4,11 @@ import Header from './Header'
 import Footer from './Footer'
 import theme from '../styles/theme'
 import GlobalStyle from '../styles/GlobalStyle'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faRss, faAngleRight } from '@fortawesome/free-solid-svg-icons'
+
+library.add(fab, faRss, faAngleRight)
 
 class Layout extends React.Component {
   render() {

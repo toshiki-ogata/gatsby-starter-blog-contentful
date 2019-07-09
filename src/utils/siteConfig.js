@@ -22,5 +22,7 @@ module.exports = {
     facebook: `https://www.facebook.com/`,
     instagram: `https://www.instagram.com/`,
     youtube: `https://www.youtube.com/`,
+    github: `https://github.com/`,
+    rss: `/rss.xml`,
   },
 }

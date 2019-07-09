@@ -1,11 +1,7 @@
 import React from 'react'
 import { Link, StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
-import linkIcon from '../../content/assets/link_icon.svg'
-import twitterIcon from '../../content/assets/twitter.svg'
-import facebookIcon from '../../content/assets/facebook.svg'
-import instagramIcon from '../../content/assets/instagram.svg'
-import youtubeIcon from '../../content/assets/youtube.svg'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const config = require('../utils/siteConfig')
 
 function Footer() {
@@ -13,7 +9,7 @@ function Footer() {
     <StaticQuery
       query={footerQuery}
       render={data => {
-        const icon = [twitterIcon, facebookIcon, instagramIcon, youtubeIcon]
+        const SnsIcon = [['fab', 'twitter'], ['fab', 'facebook'], ['fab', 'instagram'], ['fab', 'youtube'], ['fab', 'github'], 'rss']
         const SnsArray = Object.keys(config.social).map(function(key) {
           return config.social[key]
         })
@@ -52,13 +48,14 @@ function Footer() {
                     <Category>
                       {deduplicatePosts.map(({ node }) => {
                         return (
-                          <CategoryItem key={node.slug}>
+                          <li key={node.slug}>
                             <CategoryLink
                               to={`/category/${node.categorySlug}/`}
                             >
+                              <CategoryLinkIcon icon='angle-right' size="sm" />
                               {node.categoryName}
                             </CategoryLink>
-                          </CategoryItem>
+                          </li>
                         )
                       })}
                     </Category>
@@ -71,10 +68,7 @@ function Footer() {
                           return (
                             <SnsItem key={SnsArray[index]}>
                               <SnsLink href={value}>
-                                <SnsImage
-                                  src={icon[index]}
-                                  alt={SnsArray[index]}
-                                />
+                                <FontAwesomeIcon icon={SnsIcon[index]} size="lg" />
                               </SnsLink>
                             </SnsItem>
                           )
@@ -153,16 +147,9 @@ export const Text = styled.p`
 `
 
 export const Category = styled.ul`
+  font-size: 1.4rem;
   list-style: none;
   line-height: ${props => props.theme.lineHeight.medium};
-`
-
-export const CategoryItem = styled.li`
-  padding-left: 1em;
-  text-indent: -1em;
-  &:not(:last-child) {
-    margin-bottom: 4px;
-  }
 `
 
 export const CategoryLink = styled(Link)`
@@ -170,19 +157,14 @@ export const CategoryLink = styled(Link)`
   text-decoration: none;
   box-shadow: none;
   transition: all 0.2s linear;
-  &::before {
-    background: url(${linkIcon});
-    content: '';
-    height: 8px;
-    width: 8px;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: inline-block;
-    margin-right: 6px;
-  }
+
   &:hover {
     opacity: 0.5;
   }
+`
+
+export const CategoryLinkIcon = styled(FontAwesomeIcon)`
+  margin-right: 0.5em;
 `
 
 export const Sns = styled.ul`
@@ -197,18 +179,15 @@ export const SnsItem = styled.li`
   }
 `
 
-export const SnsLink = styled.a.attrs((/* props */) => ({
+export const SnsLink = styled.a.attrs(() => ({
   target: '_blank',
   rel: 'noreferrer noopener',
 }))`
   transition: all 0.2s linear;
+  color: #fff;
   &:hover {
     opacity: 0.5;
   }
-`
-
-export const SnsImage = styled.img`
-  width: 24px;
 `
 
 export const Bottom = styled.div`
