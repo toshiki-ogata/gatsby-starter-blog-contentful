@@ -9,14 +9,14 @@ function Footer() {
     <StaticQuery
       query={footerQuery}
       render={data => {
-        const SnsIcon = [
-          ['fab', 'twitter'],
-          ['fab', 'facebook'],
-          ['fab', 'instagram'],
-          ['fab', 'youtube'],
-          ['fab', 'github'],
-          'rss',
-        ]
+        // const SnsIcon = [
+        //   ['fab', 'twitter'],
+        //   ['fab', 'facebook'],
+        //   ['fab', 'instagram'],
+        //   ['fab', 'youtube'],
+        //   ['fab', 'github'],
+        //   'rss',
+        // ]
         const SnsArray = Object.keys(config.social).map(function(key) {
           return config.social[key]
         })
@@ -59,7 +59,7 @@ function Footer() {
                             <CategoryLink
                               to={`/category/${node.categorySlug}/`}
                             >
-                              <CategoryLinkIcon icon="angle-right" size="sm" />
+                              {/* <CategoryLinkIcon icon="angle-right" size="sm" /> */}
                               {node.categoryName}
                             </CategoryLink>
                           </li>
@@ -75,10 +75,10 @@ function Footer() {
                           return (
                             <SnsItem key={SnsArray[index]}>
                               <SnsLink href={value}>
-                                <FontAwesomeIcon
+                                {/* <FontAwesomeIcon
                                   icon={SnsIcon[index]}
                                   size="lg"
-                                />
+                                /> */}
                               </SnsLink>
                             </SnsItem>
                           )
