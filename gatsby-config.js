@@ -185,5 +185,11 @@ module.exports = {
         siteUrl: config.siteUrl,
       },
     },
+    {
+      resolve: 'gatsby-plugin-nprogress',
+      options: {
+        color: config.themeColor,
+      },
+    },
   ],
 }
