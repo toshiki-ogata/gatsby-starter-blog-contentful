@@ -45,17 +45,11 @@ class BlogIndex extends React.Component {
         />
         <Section>
           <Heading main="PICK UP" sub="注目の記事" />
-          <Article
-            posts={pickUpFilterPosts}
-            ref={this.Article}
-          />
+          <Article posts={pickUpFilterPosts} ref={this.Article} />
         </Section>
         <Section>
           <Heading main="NEW POSTS" sub="新着記事" />
-          <Article
-            posts={posts}
-            ref={this.Article}
-          />
+          <Article posts={posts} ref={this.Article} />
         </Section>
         {(() => {
           if (posts.length > config.postsPerPage) {

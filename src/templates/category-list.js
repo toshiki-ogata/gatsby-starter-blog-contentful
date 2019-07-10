@@ -45,10 +45,7 @@ class PostListTemplate extends React.Component {
         />
         <Section>
           <Heading main={`${categoryName}`} />
-          <Article
-            posts={filterPosts}
-            ref={this.Article}
-          />
+          <Article posts={filterPosts} ref={this.Article} />
         </Section>
         {(() => {
           if (filterPosts.length > config.postsPerPage) {

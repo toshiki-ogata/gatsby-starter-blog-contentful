@@ -4,7 +4,6 @@ import Helmet from 'react-helmet'
 const config = require('../utils/siteConfig')
 
 function SEO({ description, lang, meta, keywords, title }) {
-
   const metaDescription = description || config.siteDescription
 
   return (

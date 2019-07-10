@@ -8,7 +8,9 @@ const Header = () => (
     <Wrapper>
       <Inner>
         <H1>
-          <H1Link to="/">{config.siteTitle}</H1Link>
+          <H1Link to="/">
+            <Logo src={config.siteLogo} alt={config.siteTitle} />
+          </H1Link>
         </H1>
       </Inner>
     </Wrapper>
@@ -42,6 +44,7 @@ export const H1 = styled.h1`
 `
 
 export const H1Link = styled(Link)`
+  display: flex;
   text-decoration: none;
   color: #fff;
   font-size: 2rem;
@@ -54,9 +57,11 @@ export const Logo = styled.img`
   color: #fff;
   margin: 0;
   height: 26px;
+  line-height: 26px;
   vertical-align: bottom;
   @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     height: 36px;
+    line-height: 36px;
   }
 `
 
