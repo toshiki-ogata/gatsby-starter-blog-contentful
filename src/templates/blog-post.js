@@ -63,7 +63,7 @@ export const H1 = styled.h1`
   font-size: 2.8rem;
   @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     font-size: 3.2rem;
-    margin-bottom: 9.6px;
+    margin-bottom: 13.6px;
   }
 `
 
@@ -72,6 +72,9 @@ export const PublishDate = styled.time`
   line-height: 1;
   font-size: 1.4rem;
   display: block;
+  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
+    margin-bottom: 20px;
+  }
 `
 
 export const Thumbnail = styled(Img)`
