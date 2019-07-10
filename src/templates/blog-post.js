@@ -5,7 +5,7 @@ import Img from 'gatsby-image'
 import styled, { createGlobalStyle } from 'styled-components'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
-import blockquoteIcon from '../../content/assets/icon_blockquote.svg'
+import blockquoteIcon from '../../static/assets/icon_blockquote.svg'
 
 class BlogPostTemplate extends React.Component {
   render() {
