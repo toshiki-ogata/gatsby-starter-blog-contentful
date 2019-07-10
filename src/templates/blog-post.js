@@ -16,7 +16,12 @@ class BlogPostTemplate extends React.Component {
     return (
       <Layout pageType="post">
         <GlobalStyle />
-        <SEO title={post.title} description={post.description} />
+        <SEO
+          title={post.title}
+          description={post.description}
+          postNode={post}
+          pagePath={post.slug}
+        />
         <H1>{post.title}</H1>
         <PublishDate>
           {post.publishDate}
@@ -240,6 +245,7 @@ export default BlogPostTemplate
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
     contentfulPost(slug: { eq: $slug }) {
+      slug
       id
       content {
         childMarkdownRemark {
@@ -247,9 +253,19 @@ export const pageQuery = graphql`
         }
       }
       title
+      description
       thumbnail {
         fluid(maxWidth: 720) {
           ...GatsbyContentfulFluid
+        }
+        file {
+          url
+          details {
+            image {
+              height
+              width
+            }
+          }
         }
       }
       publishDate(formatString: "YYYY.M.D")

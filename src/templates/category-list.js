@@ -42,6 +42,7 @@ class PostListTemplate extends React.Component {
         <SEO
           title="All posts"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
+          pagePath={`category/${categorySlug}`}
         />
         <Section>
           <Heading main={`${categoryName}`} />

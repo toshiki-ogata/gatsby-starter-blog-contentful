@@ -3,8 +3,24 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 const config = require('../utils/siteConfig')
 
-function SEO({ description, lang, meta, keywords, title }) {
+function SEO({ postNode, description, lang, meta, keywords, title, pagePath }) {
   const metaDescription = description || config.siteDescription
+  let pageUrl = config.siteUrl
+  let pageType = 'website'
+  let image = config.siteUrl + config.shareImage
+  let imgWidth = config.shareImageWidth
+  let imgHeight = config.shareImageHeight
+
+  if (pagePath) {
+    pageUrl = config.siteUrl + '/' + pagePath + '/'
+    pageType = 'article'
+  }
+
+  if (postNode) {
+    image = 'https:' + postNode.thumbnail.file.url
+    imgWidth = postNode.thumbnail.file.details.image.width
+    imgHeight = postNode.thumbnail.file.details.image.height
+  }
 
   return (
     <Helmet
@@ -23,16 +39,32 @@ function SEO({ description, lang, meta, keywords, title }) {
           content: title,
         },
         {
+          property: `og:url`,
+          content: pageUrl,
+        },
+        {
+          property: `og:image`,
+          content: image,
+        },
+        {
+          property: `og:image:width`,
+          content: imgWidth,
+        },
+        {
+          property: `og:image:height`,
+          content: imgHeight,
+        },
+        {
           property: `og:description`,
           content: metaDescription,
         },
         {
           property: `og:type`,
-          content: `website`,
+          content: pageType,
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_large_image`,
         },
         {
           name: `twitter:creator`,
@@ -45,6 +77,10 @@ function SEO({ description, lang, meta, keywords, title }) {
         {
           name: `twitter:description`,
           content: metaDescription,
+        },
+        {
+          name: `twitter:image`,
+          content: image,
         },
       ]
         .concat(
