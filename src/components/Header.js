@@ -9,7 +9,11 @@ const Header = () => (
       <Inner>
         <H1>
           <H1Link to="/">
-            <Logo src={config.siteLogo} alt={config.siteTitle} />
+            {config.siteLogo ? (
+              <Logo src={config.siteLogo} alt={config.siteTitle} />
+            ) : (
+              <>{config.siteTitle}</>
+            )}
           </H1Link>
         </H1>
       </Inner>
