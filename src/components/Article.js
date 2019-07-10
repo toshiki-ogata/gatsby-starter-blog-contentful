@@ -42,7 +42,7 @@ class Article extends React.Component {
           return (
             <StyledLink
               key={node.slug}
-              to={node.slug}
+              to={`/${node.slug}`}
               displayflag={linkDisplay[index]}
             >
               <Item>
