@@ -3,6 +3,7 @@ const config = require('./src/utils/siteConfig')
 
 module.exports = {
   siteMetadata: {
+    siteUrl: config.siteUrl,
     rssMetadata: {
       site_url: config.siteUrl,
       feed_url: `${config.siteUrl}/rss.xml`,
@@ -143,6 +144,13 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        output: `/sitemap.xml`,
+        exclude: [`/404/`],
+      }
+    },
     {
       resolve: 'gatsby-plugin-eslint',
       options: {
