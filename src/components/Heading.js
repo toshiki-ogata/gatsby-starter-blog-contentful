@@ -1,21 +1,18 @@
 import React from 'react'
-// import { StaticQuery, graphql } from "gatsby"
 import styled from 'styled-components'
 
-class Heading extends React.Component {
-  render() {
-    const { main, sub } = this.props
-    return (
-      <H2>
-        <Main>{main}</Main>
-        {(() => {
-          if (sub !== null) {
-            return <Sub>{sub}</Sub>
-          }
-        })()}
-      </H2>
-    )
-  }
+const Heading = props => {
+  const { main, sub } = props
+  return (
+    <H2>
+      <Main>{main}</Main>
+      {(() => {
+        if (sub !== null) {
+          return <Sub>{sub}</Sub>
+        }
+      })()}
+    </H2>
+  )
 }
 
 export const H2 = styled.h2`

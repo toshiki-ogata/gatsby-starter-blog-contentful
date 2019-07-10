@@ -10,28 +10,26 @@ import { faRss, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 
 library.add(fab, faRss, faAngleRight)
 
-class Layout extends React.Component {
-  render() {
-    const { children, pageType } = this.props
-    let pageMaxWidth = 0
-    if (pageType === 'index') {
-      pageMaxWidth = '1184px'
-    } else if (pageType === 'post') {
-      pageMaxWidth = '784px'
-    }
-    return (
-      <ThemeProvider theme={theme}>
-        <div>
-          <GlobalStyle />
-          <Header />
-          <Wrapper pageMaxWidth={pageMaxWidth}>
-            <main>{children}</main>
-          </Wrapper>
-          <Footer />
-        </div>
-      </ThemeProvider>
-    )
+const Layout = props => {
+  const { children, pageType } = props
+  let pageMaxWidth = 0
+  if (pageType === 'index') {
+    pageMaxWidth = '1184px'
+  } else if (pageType === 'post') {
+    pageMaxWidth = '784px'
   }
+  return (
+    <ThemeProvider theme={theme}>
+      <div>
+        <GlobalStyle />
+        <Header />
+        <Wrapper pageMaxWidth={pageMaxWidth}>
+          <main>{children}</main>
+        </Wrapper>
+        <Footer />
+      </div>
+    </ThemeProvider>
+  )
 }
 
 export const Wrapper = styled.div`
