@@ -93,7 +93,7 @@ module.exports = {
             serialize(ctx) {
               const rssMetadata = ctx.query.site.siteMetadata.rssMetadata
               return ctx.query.allContentfulPost.edges.map(edge => ({
-                date: edge.node.publishDate,
+                date: edge.node.createdAt,
                 title: edge.node.title,
                 description: edge.node.content.childMarkdownRemark.excerpt,
                 url: rssMetadata.site_url + '/' + edge.node.slug,
@@ -107,12 +107,12 @@ module.exports = {
             },
             query: `
               {
-                allContentfulPost(limit: 1000, sort: {fields: [publishDate], order: DESC}) {
+                allContentfulPost(limit: 1000, sort: {fields: [createdAt], order: DESC}) {
                   edges {
                     node {
                       title
                       slug
-                      publishDate(formatString: "MMMM DD, YYYY")
+                      createdAt(formatString: "MMMM DD, YYYY")
                       content {
                         childMarkdownRemark {
                           html

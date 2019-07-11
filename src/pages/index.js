@@ -74,14 +74,14 @@ export default BlogIndex
 
 export const pageQuery = graphql`
   query {
-    allContentfulPost(sort: { fields: publishDate, order: DESC }) {
+    allContentfulPost(sort: { fields: createdAt, order: DESC }) {
       edges {
         node {
           categoryName
           categorySlug
           title
           slug
-          publishDate(formatString: "YYYY.M.D")
+          createdAt(formatString: "YYYY.M.D")
           thumbnail {
             fluid(maxWidth: 720) {
               ...GatsbyContentfulFluid

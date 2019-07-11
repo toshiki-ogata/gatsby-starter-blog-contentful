@@ -211,7 +211,7 @@ export const Copyright = styled.p`
 
 const footerQuery = graphql`
   query FooterQuery {
-    allContentfulPost(sort: { fields: publishDate, order: DESC }) {
+    allContentfulPost(sort: { fields: createdAt, order: DESC }) {
       edges {
         node {
           categoryName

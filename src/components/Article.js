@@ -49,7 +49,7 @@ class Article extends React.Component {
                 <Img fluid={node.thumbnail.fluid} />
                 <Body>
                   <Heading>{node.title}</Heading>
-                  <PublishDate>{node.publishDate}</PublishDate>
+                  <createdAt>{node.createdAt}</createdAt>
                 </Body>
               </Item>
             </StyledLink>
@@ -109,7 +109,7 @@ export const Heading = styled.h3`
   }
 `
 
-export const PublishDate = styled.time`
+export const createdAt = styled.time`
   font-size: 1.4rem;
   line-height: 1;
   display: block;

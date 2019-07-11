@@ -9,7 +9,7 @@ exports.createPages = ({ graphql, actions }) => {
   return graphql(
     `
       {
-        allContentfulPost(sort: { fields: publishDate, order: DESC }) {
+        allContentfulPost(sort: { fields: createdAt, order: DESC }) {
           edges {
             node {
               categoryName

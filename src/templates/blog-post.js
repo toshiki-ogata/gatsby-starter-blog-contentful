@@ -24,8 +24,7 @@ class BlogPostTemplate extends React.Component {
         />
         <H1>{post.title}</H1>
         <PublishDate>
-          {post.publishDate}
-          更新
+          {post.createdAt}
         </PublishDate>
         <Thumbnail fluid={post.thumbnail.fluid} />
         <div
@@ -271,7 +270,7 @@ export const pageQuery = graphql`
           }
         }
       }
-      publishDate(formatString: "YYYY.M.D")
+      createdAt(formatString: "YYYY.M.D")
     }
   }
 `
