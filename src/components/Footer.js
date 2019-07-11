@@ -3,6 +3,7 @@ import { Link, StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const config = require('../utils/siteConfig')
+const _ = require("lodash")
 
 function Footer() {
   return (
@@ -39,6 +40,15 @@ function Footer() {
           }
           return 0
         })
+
+        let tags = []
+        _.each(posts, edge => {
+          if (_.get(edge, "node.tag")) {
+            tags = tags.concat(edge.node.tag)
+          }
+        })
+        tags = _.uniq(tags)
+
         return (
           <footer>
             <Wrapper>
@@ -49,26 +59,6 @@ function Footer() {
                     <Text>
                       テキストテキスト。テキストテキスト。テキストテキスト。テキストテキスト。テキストテキス。テキストテキスト。テキストテキスト。テキストテキスト。テキストテキスト。テキストテキスト。テキストテキスト。テキストテキスト。
                     </Text>
-                  </Col>
-                  <Col>
-                    <Heading>Category</Heading>
-                    <Category>
-                      {deduplicatePosts.map(({ node }) => {
-                        return (
-                          <li key={node.slug}>
-                            <CategoryLink
-                              to={`/category/${node.category}/`}
-                            >
-                              <CategoryLinkIcon icon="angle-right" size="sm" />
-                              {node.category}
-                            </CategoryLink>
-                          </li>
-                        )
-                      })}
-                    </Category>
-                  </Col>
-                  <Col>
-                    <Heading>SNS</Heading>
                     <Sns>
                       {SnsArray.map((value, index) => {
                         if (value) {
@@ -85,6 +75,36 @@ function Footer() {
                         }
                       })}
                     </Sns>
+                  </Col>
+                  <Col>
+                    <Heading>Category</Heading>
+                    <Category>
+                      {deduplicatePosts.map(({ node }) => {
+                        return (
+                          <li key={node.slug}>
+                            <CategoryLink
+                              to={`/category/${node.category}/`}
+                            >
+                              <Icon icon="angle-right" size="sm" />
+                              {node.category}
+                            </CategoryLink>
+                          </li>
+                        )
+                      })}
+                    </Category>
+                  </Col>
+                  <Col>
+                    <Heading>Tag</Heading>
+                    <Tag>
+                      {tags.map((value) => {
+                        return (
+                          <TagItem key={value}>
+                            <TagLink to={`/tag/${value}/`}>
+                              <Icon icon="tag" size="sm" />{value}</TagLink>
+                          </TagItem>
+                          )
+                        })}
+                    </Tag>
                   </Col>
                 </Top>
                 <Bottom>
@@ -141,11 +161,8 @@ export const Col = styled.div`
 export const Heading = styled.p`
   font-size: 2.2rem;
   line-height: ${props => props.theme.lineHeight.small};
-  margin: 0 0 8px 0;
+  margin: 0 0 19.6px 0;
   font-weight: ${props => props.theme.fontWeight.large};
-  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
-    margin-bottom: 11px;
-  }
 `
 
 export const Text = styled.p`
@@ -165,19 +182,43 @@ export const CategoryLink = styled(Link)`
   text-decoration: none;
   box-shadow: none;
   transition: all 0.2s linear;
-
   &:hover {
     opacity: 0.5;
   }
 `
 
-export const CategoryLinkIcon = styled(FontAwesomeIcon)`
+export const Tag = styled.ul`
+  font-size: 1.2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+`
+
+export const TagItem = styled.li`
+  margin: 0 16px 16px 0;
+`
+
+export const TagLink = styled(Link)`
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  transition: all 0.2s linear;
+  line-height: 1;
+  &:hover {
+    opacity: 0.5;
+  }
+`
+
+export const Icon = styled(FontAwesomeIcon)`
   margin-right: 0.5em;
 `
 
 export const Sns = styled.ul`
   display: flex;
   list-style: none;
+  margin-top: 18.4px;
 `
 
 export const SnsItem = styled.li`
@@ -214,8 +255,9 @@ const footerQuery = graphql`
     allContentfulPost(sort: { fields: createdAt, order: DESC }) {
       edges {
         node {
-          category
           slug
+          category
+          tag
         }
       }
     }

@@ -9,7 +9,7 @@ import Article from '../components/Article'
 import MoreButton from '../components/MoreButton'
 const config = require('../utils/siteConfig')
 
-class Index extends React.Component {
+class TagTemplate extends React.Component {
   constructor(props) {
     super(props)
     this.Article = React.createRef()
@@ -30,11 +30,11 @@ class Index extends React.Component {
   }
 
   render() {
-    const { data } = this.props
+    const { data, pageContext } = this.props
+    const { tag } = pageContext
     const posts = data.allContentfulPost.edges
-    const pickUpPosts = ['test1', 'test2', 'test3']
-    const pickUpFilterPosts = posts.filter(post =>
-      pickUpPosts.includes(post.node.slug)
+    const filterPosts = posts.filter(
+      post => post.node.tag.includes(tag)
     )
 
     return (
@@ -42,17 +42,14 @@ class Index extends React.Component {
         <SEO
           title="All posts"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
+          pagePath={`tag/${tag}`}
         />
         <Section>
-          <Heading main="PICK UP" sub="注目の記事" />
-          <Article posts={pickUpFilterPosts} ref={this.Article} />
-        </Section>
-        <Section>
-          <Heading main="NEW POSTS" sub="新着記事" />
-          <Article posts={posts} ref={this.Article} />
+          <Heading main={`${tag}`} />
+          <Article posts={filterPosts} ref={this.Article} />
         </Section>
         {(() => {
-          if (posts.length > config.postsPerPage) {
+          if (filterPosts.length > config.postsPerPage) {
             return (
               <MoreButton moreClick={this.moreClick} ref={this.MoreButton} />
             )
@@ -70,7 +67,7 @@ export const Section = styled.section`
   }
 `
 
-export default Index
+export default TagTemplate
 
 export const pageQuery = graphql`
   query {
@@ -79,6 +76,7 @@ export const pageQuery = graphql`
         node {
           title
           slug
+          tag
           createdAt(formatString: "YYYY.M.D")
           thumbnail {
             fluid(maxWidth: 720) {

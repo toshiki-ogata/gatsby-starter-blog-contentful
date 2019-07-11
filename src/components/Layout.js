@@ -6,9 +6,9 @@ import theme from '../styles/theme'
 import GlobalStyle from '../styles/GlobalStyle'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faRss, faAngleRight } from '@fortawesome/free-solid-svg-icons'
+import { faRss, faAngleRight, faTag } from '@fortawesome/free-solid-svg-icons'
 
-library.add(fab, faRss, faAngleRight)
+library.add(fab, faRss, faAngleRight, faTag)
 
 const Layout = props => {
   const { children, pageType } = props
