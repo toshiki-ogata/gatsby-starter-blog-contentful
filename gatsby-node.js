@@ -4,10 +4,6 @@ const _ = require("lodash")
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
-  const postTemplate = path.resolve(`./src/templates/post.js`)
-  const categoryTemplate = path.resolve(`./src/templates/category.js`)
-  const tagTemplate = path.resolve(`./src/templates/tag.js`)
-
   return graphql(
     `
       {
@@ -15,7 +11,6 @@ exports.createPages = ({ graphql, actions }) => {
           edges {
             node {
               slug
-              title
               category
               tag
             }
@@ -28,16 +23,16 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors
     }
 
-    // Create post
     const posts = result.data.allContentfulPost.edges
 
+    // Create post pages
     posts.forEach((post, index) => {
       const previous = index === posts.length - 1 ? null : posts[index + 1].node
       const next = index === 0 ? null : posts[index - 1].node
 
       createPage({
         path: `${post.node.slug}`,
-        component: postTemplate,
+        component: path.resolve(`./src/templates/post.js`),
         context: {
           slug: post.node.slug,
           previous,
@@ -46,27 +41,30 @@ exports.createPages = ({ graphql, actions }) => {
       })
     })
 
-    // Create category
-    const categoryCleanLists = posts.filter(function(v1, i1, a1) {
-      return (
-        a1.findIndex(function(v2) {
-          return v1.node.category === v2.node.category
-        }) === i1
-      )
+    // Create category pages
+    let categorys = []
+
+    _.each(posts, edge => {
+      if (_.get(edge, "node.category")) {
+        categorys = categorys.concat(edge.node.category)
+      }
     })
 
-    categoryCleanLists.forEach(post => {
+    categorys = _.uniq(categorys)
+
+    categorys.forEach(category => {
       createPage({
-        path: `/category/${post.node.category}/`,
-        component: categoryTemplate,
+        path: `/category/${category}/`,
+        component: path.resolve(`./src/templates/category.js`),
         context: {
-          category: `${post.node.category}`,
+          category: `${category}`,
         },
       })
     })
 
-    // Create tag
+    // Create tag pages
     let tags = []
+
     _.each(posts, edge => {
       if (_.get(edge, "node.tag")) {
         tags = tags.concat(edge.node.tag)
@@ -78,7 +76,7 @@ exports.createPages = ({ graphql, actions }) => {
     tags.forEach(tag => {
       createPage({
         path: `/tag/${tag}/`,
-        component: tagTemplate,
+        component: path.resolve(`./src/templates/tag.js`),
         context: {
           tag,
         },
