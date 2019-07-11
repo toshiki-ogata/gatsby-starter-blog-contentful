@@ -1,7 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
-
 import styled, { createGlobalStyle } from 'styled-components'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
@@ -21,11 +20,10 @@ class PostTemplate extends React.Component {
           description={post.description}
           postNode={post}
           pagePath={post.slug}
+          postSEO
         />
         <H1>{post.title}</H1>
-        <PublishDate>
-          {post.createdAt}
-        </PublishDate>
+        <PublishDate>{post.createdAt}</PublishDate>
         <Thumbnail fluid={post.thumbnail.fluid} />
         <div
           className="post"
@@ -248,14 +246,9 @@ export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
     contentfulPost(slug: { eq: $slug }) {
       slug
-      id
-      content {
-        childMarkdownRemark {
-          html
-        }
-      }
       title
       description
+      createdAt(formatString: "YYYY.M.D")
       thumbnail {
         fluid(maxWidth: 720) {
           ...GatsbyContentfulFluid
@@ -270,7 +263,11 @@ export const pageQuery = graphql`
           }
         }
       }
-      createdAt(formatString: "YYYY.M.D")
+      content {
+        childMarkdownRemark {
+          html
+        }
+      }
     }
   }
 `

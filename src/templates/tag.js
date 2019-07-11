@@ -1,13 +1,12 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-
-import styled from 'styled-components'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import Heading from '../components/Heading'
 import Article from '../components/Article'
 import MoreButton from '../components/MoreButton'
-const config = require('../utils/siteConfig')
+import Section from '../components/Section'
+import config from '../utils/siteConfig'
 
 class TagTemplate extends React.Component {
   constructor(props) {
@@ -33,39 +32,22 @@ class TagTemplate extends React.Component {
     const { data, pageContext } = this.props
     const { tag } = pageContext
     const posts = data.allContentfulPost.edges
-    const filterPosts = posts.filter(
-      post => post.node.tag.includes(tag)
-    )
+    const filterPosts = posts.filter(post => post.node.tag.includes(tag))
 
     return (
       <Layout pageType="index">
-        <SEO
-          title="All posts"
-          keywords={[`blog`, `gatsby`, `javascript`, `react`]}
-          pagePath={`tag/${tag}`}
-        />
+        <SEO title="All posts" pagePath={`tag/${tag}`} />
         <Section>
           <Heading main={`${tag}`} />
           <Article posts={filterPosts} ref={this.Article} />
         </Section>
-        {(() => {
-          if (filterPosts.length > config.postsPerPage) {
-            return (
-              <MoreButton moreClick={this.moreClick} ref={this.MoreButton} />
-            )
-          }
-        })()}
+        {filterPosts.length > config.postsPerPage && (
+          <MoreButton moreClick={this.moreClick} ref={this.MoreButton} />
+        )}
       </Layout>
     )
   }
 }
-
-export const Section = styled.section`
-  margin-bottom: 56px;
-  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
-    margin-bottom: 80px;
-  }
-`
 
 export default TagTemplate
 
@@ -74,8 +56,8 @@ export const pageQuery = graphql`
     allContentfulPost(sort: { fields: createdAt, order: DESC }) {
       edges {
         node {
-          title
           slug
+          title
           tag
           createdAt(formatString: "YYYY.M.D")
           thumbnail {

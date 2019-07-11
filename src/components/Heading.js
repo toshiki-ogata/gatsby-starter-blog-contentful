@@ -6,11 +6,7 @@ const Heading = props => {
   return (
     <H2>
       <Main>{main}</Main>
-      {(() => {
-        if (sub !== null) {
-          return <Sub>{sub}</Sub>
-        }
-      })()}
+      {sub !== null && <Sub>{sub}</Sub>}
     </H2>
   )
 }

@@ -1,13 +1,12 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-
-import styled from 'styled-components'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import Heading from '../components/Heading'
 import Article from '../components/Article'
 import MoreButton from '../components/MoreButton'
-const config = require('../utils/siteConfig')
+import Section from '../components/Section'
+import config from '../utils/siteConfig'
 
 class Index extends React.Component {
   constructor(props) {
@@ -32,17 +31,13 @@ class Index extends React.Component {
   render() {
     const { data } = this.props
     const posts = data.allContentfulPost.edges
-    const pickUpPosts = ['test1', 'test2', 'test3']
     const pickUpFilterPosts = posts.filter(post =>
-      pickUpPosts.includes(post.node.slug)
+      config.pickUpPosts.includes(post.node.slug)
     )
 
     return (
       <Layout pageType="index">
-        <SEO
-          title="All posts"
-          keywords={[`blog`, `gatsby`, `javascript`, `react`]}
-        />
+        <SEO />
         <Section>
           <Heading main="PICK UP" sub="注目の記事" />
           <Article posts={pickUpFilterPosts} ref={this.Article} />
@@ -51,24 +46,13 @@ class Index extends React.Component {
           <Heading main="NEW POSTS" sub="新着記事" />
           <Article posts={posts} ref={this.Article} />
         </Section>
-        {(() => {
-          if (posts.length > config.postsPerPage) {
-            return (
-              <MoreButton moreClick={this.moreClick} ref={this.MoreButton} />
-            )
-          }
-        })()}
+        {posts.length > config.postsPerPage && (
+          <MoreButton moreClick={this.moreClick} ref={this.MoreButton} />
+        )}
       </Layout>
     )
   }
 }
-
-export const Section = styled.section`
-  margin-bottom: 56px;
-  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
-    margin-bottom: 80px;
-  }
-`
 
 export default Index
 
@@ -77,8 +61,8 @@ export const pageQuery = graphql`
     allContentfulPost(sort: { fields: createdAt, order: DESC }) {
       edges {
         node {
-          title
           slug
+          title
           createdAt(formatString: "YYYY.M.D")
           thumbnail {
             fluid(maxWidth: 720) {

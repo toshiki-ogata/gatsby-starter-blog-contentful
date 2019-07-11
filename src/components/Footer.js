@@ -3,7 +3,7 @@ import { Link, StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const config = require('../utils/siteConfig')
-const _ = require("lodash")
+const _ = require('lodash')
 
 function Footer() {
   return (
@@ -43,7 +43,7 @@ function Footer() {
 
         let tags = []
         _.each(posts, edge => {
-          if (_.get(edge, "node.tag")) {
+          if (_.get(edge, 'node.tag')) {
             tags = tags.concat(edge.node.tag)
           }
         })
@@ -82,9 +82,7 @@ function Footer() {
                       {deduplicatePosts.map(({ node }) => {
                         return (
                           <li key={node.slug}>
-                            <CategoryLink
-                              to={`/category/${node.category}/`}
-                            >
+                            <CategoryLink to={`/category/${node.category}/`}>
                               <Icon icon="angle-right" size="sm" />
                               {node.category}
                             </CategoryLink>
@@ -96,14 +94,16 @@ function Footer() {
                   <Col>
                     <Heading>Tag</Heading>
                     <Tag>
-                      {tags.map((value) => {
+                      {tags.map(value => {
                         return (
                           <TagItem key={value}>
                             <TagLink to={`/tag/${value}/`}>
-                              <Icon icon="tag" size="sm" />{value}</TagLink>
+                              <Icon icon="tag" size="sm" />
+                              {value}
+                            </TagLink>
                           </TagItem>
-                          )
-                        })}
+                        )
+                      })}
                     </Tag>
                   </Col>
                 </Top>

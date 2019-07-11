@@ -3,13 +3,26 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 const config = require('../utils/siteConfig')
 
-function SEO({ postNode, description, lang, meta, keywords, title, pagePath }) {
+function SEO({
+  postNode,
+  description,
+  lang,
+  title,
+  pagePath,
+  postSEO,
+  pageSEO,
+}) {
   const metaDescription = description || config.siteDescription
+  let pageTitle = config.siteTitle
   let pageUrl = config.siteUrl
   let pageType = 'website'
   let image = config.siteUrl + config.shareImage
   let imgWidth = config.shareImageWidth
   let imgHeight = config.shareImageHeight
+
+  if (title) {
+    pageTitle = `${title} | ${config.siteTitle}`
+  }
 
   if (pagePath) {
     pageUrl = config.siteUrl + '/' + pagePath + '/'
@@ -22,77 +35,112 @@ function SEO({ postNode, description, lang, meta, keywords, title, pagePath }) {
     imgHeight = postNode.thumbnail.file.details.image.height
   }
 
+  // Default Website Schema
+  const schemaOrgJSONLD = [
+    {
+      '@context': 'http://schema.org',
+      '@type': 'WebSite',
+      url: config.siteUrl,
+      name: config.siteTitle,
+      alternateName: config.siteTitleAlt ? config.siteTitleAlt : '',
+    },
+  ]
+
+  // Blog Post Schema
+  if (postSEO) {
+    schemaOrgJSONLD.push(
+      {
+        '@context': 'http://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            item: {
+              '@id': config.siteUrl,
+              name: config.siteTitle,
+            },
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            item: {
+              '@id': pageUrl,
+              name: title,
+            },
+          },
+        ],
+      },
+      {
+        '@context': 'http://schema.org',
+        '@type': 'BlogPosting',
+        url: pageUrl,
+        name: title,
+        alternateName: config.siteTitleAlt ? config.siteTitleAlt : '',
+        headline: title,
+        image: {
+          '@type': 'ImageObject',
+          url: image,
+          width: imgWidth,
+          height: imgHeight,
+        },
+        author: {
+          '@type': 'Person',
+          name: config.author,
+          url: config.authorUrl,
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: config.publisher,
+          url: config.siteUrl,
+        },
+        mainEntityOfPage: pageUrl,
+      }
+    )
+  }
+
+  // Page SEO Schema
+  if (pageSEO) {
+    schemaOrgJSONLD.push({
+      '@context': 'http://schema.org',
+      '@type': 'WebPage',
+      url: pageUrl,
+      name: title,
+    })
+  }
+
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
-      title={title}
-      titleTemplate={`%s | ${config.siteTitle}`}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:url`,
-          content: pageUrl,
-        },
-        {
-          property: `og:image`,
-          content: image,
-        },
-        {
-          property: `og:image:width`,
-          content: imgWidth,
-        },
-        {
-          property: `og:image:height`,
-          content: imgHeight,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: pageType,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary_large_image`,
-        },
-        {
-          name: `twitter:creator`,
-          content: config.userTwitter,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-        {
-          name: `twitter:image`,
-          content: image,
-        },
-      ]
-        .concat(
-          keywords.length > 0
-            ? {
-                name: `keywords`,
-                content: keywords.join(`, `),
-              }
-            : []
-        )
-        .concat(meta)}
-    />
+      title={pageTitle}
+    >
+      {/* General tags */}
+      <meta name="image" content={image} />
+      <meta name="description" content={metaDescription} />
+
+      {/* Schema.org tags */}
+      <script type="application/ld+json">
+        {JSON.stringify(schemaOrgJSONLD)}
+      </script>
+
+      {/* OpenGraph tags */}
+      <meta property="og:title" content={pageTitle} />
+      <meta property="og:description" content={metaDescription} />
+      <meta property="og:type" content={pageType} />
+      <meta property="og:url" content={pageUrl} />
+      <meta property="og:image" content={image} />
+      <meta property="og:image:width" content={imgWidth} />
+      <meta property="og:image:height" content={imgHeight} />
+
+      {/* Twitter Card tags */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:creator" content={config.userTwitter} />
+      <meta name="twitter:title" content={pageTitle} />
+      <meta name="twitter:image" content={image} />
+      <meta name="twitter:description" content={metaDescription} />
+    </Helmet>
   )
 }
 
@@ -108,7 +156,6 @@ SEO.propTypes = {
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   keywords: PropTypes.arrayOf(PropTypes.string),
-  title: PropTypes.string.isRequired,
 }
 
 export default SEO
