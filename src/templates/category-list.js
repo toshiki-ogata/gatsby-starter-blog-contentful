@@ -31,10 +31,10 @@ class PostListTemplate extends React.Component {
 
   render() {
     const { data, pageContext } = this.props
-    const { categorySlug, categoryName } = pageContext
+    const { category } = pageContext
     const posts = data.allContentfulPost.edges
     const filterPosts = posts.filter(
-      post => post.node.categorySlug === categorySlug
+      post => post.node.category === category
     )
 
     return (
@@ -42,10 +42,10 @@ class PostListTemplate extends React.Component {
         <SEO
           title="All posts"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
-          pagePath={`category/${categorySlug}`}
+          pagePath={`category/${category}`}
         />
         <Section>
-          <Heading main={`${categoryName}`} />
+          <Heading main={`${category}`} />
           <Article posts={filterPosts} ref={this.Article} />
         </Section>
         {(() => {
@@ -74,8 +74,7 @@ export const pageQuery = graphql`
     allContentfulPost(sort: { fields: createdAt, order: DESC }) {
       edges {
         node {
-          categoryName
-          categorySlug
+          category
           title
           slug
           createdAt(formatString: "YYYY.M.D")

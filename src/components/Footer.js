@@ -24,13 +24,13 @@ function Footer() {
         const deduplicatePosts = posts.filter(function(v1, i1, a1) {
           return (
             a1.findIndex(function(v2) {
-              return v1.node.categorySlug === v2.node.categorySlug
+              return v1.node.category === v2.node.category
             }) === i1
           )
         })
         deduplicatePosts.sort((a, b) => {
-          const nameA = a.node.categorySlug
-          const nameB = b.node.categorySlug
+          const nameA = a.node.category
+          const nameB = b.node.category
           if (nameA < nameB) {
             return -1
           }
@@ -57,10 +57,10 @@ function Footer() {
                         return (
                           <li key={node.slug}>
                             <CategoryLink
-                              to={`/category/${node.categorySlug}/`}
+                              to={`/category/${node.category}/`}
                             >
                               <CategoryLinkIcon icon="angle-right" size="sm" />
-                              {node.categoryName}
+                              {node.category}
                             </CategoryLink>
                           </li>
                         )
@@ -214,8 +214,7 @@ const footerQuery = graphql`
     allContentfulPost(sort: { fields: createdAt, order: DESC }) {
       edges {
         node {
-          categoryName
-          categorySlug
+          category
           slug
         }
       }

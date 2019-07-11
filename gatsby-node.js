@@ -12,8 +12,7 @@ exports.createPages = ({ graphql, actions }) => {
         allContentfulPost(sort: { fields: createdAt, order: DESC }) {
           edges {
             node {
-              categoryName
-              categorySlug
+              category
               title
               slug
             }
@@ -50,18 +49,17 @@ exports.createPages = ({ graphql, actions }) => {
     const categoryCleanLists = categoryLists.filter(function(v1, i1, a1) {
       return (
         a1.findIndex(function(v2) {
-          return v1.node.categorySlug === v2.node.categorySlug
+          return v1.node.category === v2.node.category
         }) === i1
       )
     })
 
     categoryCleanLists.forEach(post => {
       createPage({
-        path: `/category/${post.node.categorySlug}/`,
+        path: `/category/${post.node.category}/`,
         component: categoryList,
         context: {
-          categorySlug: `${post.node.categorySlug}`,
-          categoryName: `${post.node.categoryName}`,
+          category: `${post.node.category}`,
         },
       })
     })

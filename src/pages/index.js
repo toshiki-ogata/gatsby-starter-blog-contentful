@@ -77,8 +77,7 @@ export const pageQuery = graphql`
     allContentfulPost(sort: { fields: createdAt, order: DESC }) {
       edges {
         node {
-          categoryName
-          categorySlug
+          category
           title
           slug
           createdAt(formatString: "YYYY.M.D")
