@@ -3,8 +3,8 @@ const path = require(`path`)
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
-  const blogPost = path.resolve(`./src/templates/blog-post.js`)
-  const categoryList = path.resolve(`./src/templates/category-list.js`)
+  const postTemplate = path.resolve(`./src/templates/post.js`)
+  const categoryTemplate = path.resolve(`./src/templates/category.js`)
 
   return graphql(
     `
@@ -34,7 +34,7 @@ exports.createPages = ({ graphql, actions }) => {
 
       createPage({
         path: `${post.node.slug}`,
-        component: blogPost,
+        component: postTemplate,
         context: {
           slug: post.node.slug,
           previous,
@@ -44,9 +44,9 @@ exports.createPages = ({ graphql, actions }) => {
     })
 
     // Create post-list.
-    const categoryLists = result.data.allContentfulPost.edges
+    const categoryTemplates = result.data.allContentfulPost.edges
 
-    const categoryCleanLists = categoryLists.filter(function(v1, i1, a1) {
+    const categoryCleanLists = categoryTemplates.filter(function(v1, i1, a1) {
       return (
         a1.findIndex(function(v2) {
           return v1.node.category === v2.node.category
@@ -57,7 +57,7 @@ exports.createPages = ({ graphql, actions }) => {
     categoryCleanLists.forEach(post => {
       createPage({
         path: `/category/${post.node.category}/`,
-        component: categoryList,
+        component: categoryTemplate,
         context: {
           category: `${post.node.category}`,
         },

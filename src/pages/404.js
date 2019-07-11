@@ -2,7 +2,7 @@ import React from 'react'
 import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 
-class NotFoundPage extends React.Component {
+class NotFound extends React.Component {
   render() {
     return (
       <Layout pageType="index">
@@ -14,4 +14,4 @@ class NotFoundPage extends React.Component {
   }
 }
 
-export default NotFoundPage
+export default NotFound

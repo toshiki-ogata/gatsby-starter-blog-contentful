@@ -9,7 +9,7 @@ import Article from '../components/Article'
 import MoreButton from '../components/MoreButton'
 const config = require('../utils/siteConfig')
 
-class BlogIndex extends React.Component {
+class Index extends React.Component {
   constructor(props) {
     super(props)
     this.Article = React.createRef()
@@ -70,7 +70,7 @@ export const Section = styled.section`
   }
 `
 
-export default BlogIndex
+export default Index
 
 export const pageQuery = graphql`
   query {

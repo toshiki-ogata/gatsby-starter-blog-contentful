@@ -9,7 +9,7 @@ import Article from '../components/Article'
 import MoreButton from '../components/MoreButton'
 const config = require('../utils/siteConfig')
 
-class PostListTemplate extends React.Component {
+class CategoryTemplate extends React.Component {
   constructor(props) {
     super(props)
     this.Article = React.createRef()
@@ -67,7 +67,7 @@ export const Section = styled.section`
   }
 `
 
-export default PostListTemplate
+export default CategoryTemplate
 
 export const pageQuery = graphql`
   query {

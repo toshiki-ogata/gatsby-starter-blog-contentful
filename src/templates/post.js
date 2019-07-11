@@ -7,7 +7,7 @@ import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import blockquoteIcon from '../../static/assets/icon_blockquote.svg'
 
-class BlogPostTemplate extends React.Component {
+class PostTemplate extends React.Component {
   render() {
     const { data } = this.props
     const post = data.contentfulPost
@@ -242,7 +242,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-export default BlogPostTemplate
+export default PostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
