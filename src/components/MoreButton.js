@@ -9,7 +9,7 @@ class MoreButton extends React.Component {
     }
   }
 
-  hiddenItem() {
+  hiddenItem = () => {
     this.setState({ display: 'none' })
   }
 
@@ -17,7 +17,7 @@ class MoreButton extends React.Component {
     const { moreClick } = this.props
     const { display } = this.state
     return (
-      <Wrapper displayflag={display}>
+      <Wrapper display={display}>
         <Button onClick={moreClick}>もっと見る</Button>
       </Wrapper>
     )
@@ -27,7 +27,7 @@ class MoreButton extends React.Component {
 export const Wrapper = styled.div`
   text-align: center;
   margin-bottom: 56px;
-  display: ${props => (props.displayflag === 'block' ? 'block' : 'none')};
+  display: ${props => (props.display === 'block' ? 'block' : 'none')};
   @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     margin-bottom: 80px;
   }

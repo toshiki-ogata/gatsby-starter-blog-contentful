@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
-const config = require('../utils/siteConfig')
+import config from '../utils/siteConfig'
 
 const Header = () => (
   <header>

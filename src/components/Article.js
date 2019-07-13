@@ -1,41 +1,43 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import styled from 'styled-components'
 import Img from 'gatsby-image'
+import styled from 'styled-components'
+import _ from 'lodash'
 const config = require('../utils/siteConfig')
 
 class Article extends React.Component {
   constructor(props) {
     super(props)
     const { posts } = this.props
-    let linkDisplayArray = []
-    for (let i = 0; i < posts.length; i++) {
-      if (i < config.postsPerPage) {
-        linkDisplayArray.push('block')
+    let displayArray = []
+    _.each(posts, (value, index) => {
+      if (index < config.postsPerPage) {
+        displayArray.push('block')
       } else {
-        linkDisplayArray.push('none')
+        displayArray.push('none')
       }
-    }
+    })
     this.state = {
-      linkDisplay: linkDisplayArray,
+      display: displayArray,
     }
     this.linkRef = React.createRef()
   }
   showItem() {
-    const { linkDisplay } = this.state
-    const linkDisplayCopy = linkDisplay.slice()
+    const { display } = this.state
     let itemCount = 0
-    for (let i = 0; i < linkDisplay.length; i++) {
-      if (linkDisplay[i] === 'none' && itemCount < config.postsPerPage) {
-        linkDisplayCopy[i] = 'block'
+    const newDisplay = display.map(data => {
+      if (data === 'none' && itemCount < config.postsPerPage) {
         itemCount = itemCount + 1
+        return 'block'
+      } else {
+        return data
       }
-    }
-    this.setState({ linkDisplay: linkDisplayCopy })
+    })
+    this.setState({ display: newDisplay })
   }
   render() {
     const { posts } = this.props
-    const { linkDisplay } = this.state
+    const { display } = this.state
     return (
       <Wrapper ref={this.linkRef}>
         {posts.map(({ node }, index) => {
@@ -43,7 +45,7 @@ class Article extends React.Component {
             <StyledLink
               key={node.slug}
               to={`/${node.slug}`}
-              displayflag={linkDisplay[index]}
+              display={display[index]}
             >
               <Item>
                 <Img fluid={node.thumbnail.fluid} />
@@ -79,7 +81,7 @@ export const StyledLink = styled(Link)`
   border-radius: 6px;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s;
   overflow: hidden;
-  display: ${props => (props.displayflag === 'block' ? 'block' : 'none')};
+  display: ${props => (props.display === 'block' ? 'block' : 'none')};
   &:hover {
     transform: scale(1.02);
     box-shadow: 0 4px 8px rgba(46, 41, 51, 0.08),

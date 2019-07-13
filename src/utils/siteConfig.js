@@ -4,11 +4,12 @@ module.exports = {
   publisher: 'Publisher named GCN',
   siteDescription:
     'A starter template to build amazing static websites with Gatsby, Contentful and Netlify',
+  footerAboutText:
+    'A starter template to build amazing static websites with Gatsby, Contentful and Netlify',
   siteUrl: 'https://gatsby-japanese-blog.netlify.com',
   postsPerPage: 9,
   pickUpPosts: ['test1', 'test2', 'test3'],
   author: 'GCN User',
-  authorUrl: 'https://gatsby-japanese-blog.netlify.com/about/',
   userTwitter: '@twitter',
   shortTitle: 'GCN App',
   shareImage: '/assets/share.jpg',

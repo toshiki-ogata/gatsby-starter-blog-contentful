@@ -21,7 +21,7 @@ class Index extends React.Component {
   }
 
   articleDisplayCheck = () => {
-    const linkState = this.Article.current.state.linkDisplay
+    const linkState = this.Article.current.state.display
     const linkStateResult = linkState.every(item => item === 'block')
     if (linkStateResult) {
       this.MoreButton.current.hiddenItem()

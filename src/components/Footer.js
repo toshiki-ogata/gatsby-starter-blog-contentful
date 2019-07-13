@@ -2,124 +2,106 @@ import React from 'react'
 import { Link, StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-const config = require('../utils/siteConfig')
+import config from '../utils/siteConfig'
 const _ = require('lodash')
 
-function Footer() {
-  return (
-    <StaticQuery
-      query={footerQuery}
-      render={data => {
-        const SnsIcon = [
-          ['fab', 'twitter'],
-          ['fab', 'facebook'],
-          ['fab', 'instagram'],
-          ['fab', 'youtube'],
-          ['fab', 'github'],
-          'rss',
-        ]
-        const SnsArray = Object.keys(config.social).map(function(key) {
-          return config.social[key]
-        })
-        const posts = data.allContentfulPost.edges
-        const deduplicatePosts = posts.filter(function(v1, i1, a1) {
-          return (
-            a1.findIndex(function(v2) {
-              return v1.node.category === v2.node.category
-            }) === i1
-          )
-        })
-        deduplicatePosts.sort((a, b) => {
-          const nameA = a.node.category
-          const nameB = b.node.category
-          if (nameA < nameB) {
-            return -1
-          }
-          if (nameA > nameB) {
-            return 1
-          }
-          return 0
-        })
+const Footer = () => (
+  <StaticQuery
+    query={footerQuery}
+    render={data => {
+      const posts = data.allContentfulPost.edges
 
-        let tags = []
-        _.each(posts, edge => {
-          if (_.get(edge, 'node.tag')) {
-            tags = tags.concat(edge.node.tag)
-          }
-        })
-        tags = _.uniq(tags)
+      const socials = _.toArray(config.social)
+      const SnsIcon = [
+        ['fab', 'twitter'],
+        ['fab', 'facebook'],
+        ['fab', 'instagram'],
+        ['fab', 'youtube'],
+        ['fab', 'github'],
+        'rss',
+      ]
 
-        return (
-          <footer>
-            <Wrapper>
-              <Inner>
-                <Top>
-                  <Col>
-                    <Heading>About</Heading>
-                    <Text>
-                      テキストテキスト。テキストテキスト。テキストテキスト。テキストテキスト。テキストテキス。テキストテキスト。テキストテキスト。テキストテキスト。テキストテキスト。テキストテキスト。テキストテキスト。テキストテキスト。
-                    </Text>
-                    <Sns>
-                      {SnsArray.map((value, index) => {
-                        if (value) {
-                          return (
-                            <SnsItem key={SnsArray[index]}>
-                              <SnsLink href={value}>
-                                <FontAwesomeIcon
-                                  icon={SnsIcon[index]}
-                                  size="lg"
-                                />
-                              </SnsLink>
-                            </SnsItem>
-                          )
-                        }
-                      })}
-                    </Sns>
-                  </Col>
-                  <Col>
-                    <Heading>Category</Heading>
-                    <Category>
-                      {deduplicatePosts.map(({ node }) => {
-                        return (
-                          <li key={node.slug}>
-                            <CategoryLink to={`/category/${node.category}/`}>
-                              <Icon icon="angle-right" size="sm" />
-                              {node.category}
-                            </CategoryLink>
-                          </li>
-                        )
-                      })}
-                    </Category>
-                  </Col>
-                  <Col>
-                    <Heading>Tag</Heading>
-                    <Tag>
-                      {tags.map(value => {
-                        return (
-                          <TagItem key={value}>
-                            <TagLink to={`/tag/${value}/`}>
-                              <Icon icon="tag" size="sm" />
-                              {value}
-                            </TagLink>
-                          </TagItem>
-                        )
-                      })}
-                    </Tag>
-                  </Col>
-                </Top>
-                <Bottom>
-                  <Copyright>{config.copyright}</Copyright>
-                </Bottom>
-              </Inner>
-            </Wrapper>
-          </footer>
-        )
-      }}
-    />
-  )
-}
+      let categorys = []
+      _.each(posts, edge => {
+        if (_.get(edge, 'node.category')) {
+          categorys = categorys.concat(edge.node.category)
+        }
+      })
+      categorys = _.uniq(categorys)
+      categorys = _.sortBy(categorys)
 
-export const Wrapper = styled.div`
+      let tags = []
+      _.each(posts, edge => {
+        if (_.get(edge, 'node.tag')) {
+          tags = tags.concat(edge.node.tag)
+        }
+      })
+      tags = _.uniq(tags)
+      tags = _.sortBy(tags)
+
+      return (
+        <Wrapper>
+          <Inner>
+            <Top>
+              <Col>
+                <Heading>About</Heading>
+                <Text>{config.footerAboutText}</Text>
+                <Sns>
+                  {socials.map((value, index) => {
+                    if (value) {
+                      return (
+                        <SnsItem key={value}>
+                          <SnsLink href={value}>
+                            <FontAwesomeIcon icon={SnsIcon[index]} size="lg" />
+                          </SnsLink>
+                        </SnsItem>
+                      )
+                    }
+                  })}
+                </Sns>
+              </Col>
+              <Col>
+                <Heading>Category</Heading>
+                <Category>
+                  {categorys.map(value => {
+                    return (
+                      <li key={value}>
+                        <CategoryLink to={`/category/${value}/`}>
+                          <Icon icon="angle-right" size="sm" />
+                          {value}
+                        </CategoryLink>
+                      </li>
+                    )
+                  })}
+                </Category>
+              </Col>
+              <Col>
+                <Heading>Tag</Heading>
+                <Tag>
+                  {tags.map(value => {
+                    return (
+                      <TagItem key={value}>
+                        <TagLink to={`/tag/${value}/`}>
+                          <Icon icon="tag" size="sm" />
+                          {value}
+                        </TagLink>
+                      </TagItem>
+                    )
+                  })}
+                </Tag>
+              </Col>
+            </Top>
+            <Bottom>
+              <Copyright>{config.copyright}</Copyright>
+            </Bottom>
+          </Inner>
+        </Wrapper>
+      )
+    }}
+  />
+)
+
+export const Wrapper = styled.footer`
   background: ${props => props.theme.colors.base};
   color: #fff;
   @media screen and (min-width: ${props => props.theme.responsive.medium}) {

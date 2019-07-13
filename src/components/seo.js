@@ -1,9 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-const config = require('../utils/siteConfig')
+import PropTypes from 'prop-types'
+import config from '../utils/siteConfig'
 
-function SEO({
+const SEO = ({
   postNode,
   description,
   lang,
@@ -11,7 +11,7 @@ function SEO({
   pagePath,
   postSEO,
   pageSEO,
-}) {
+}) => {
   const metaDescription = description || config.siteDescription
   let pageTitle = config.siteTitle
   let pageUrl = config.siteUrl
@@ -87,7 +87,6 @@ function SEO({
         author: {
           '@type': 'Person',
           name: config.author,
-          url: config.authorUrl,
         },
         publisher: {
           '@type': 'Organization',
