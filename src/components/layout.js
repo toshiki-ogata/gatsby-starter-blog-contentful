@@ -10,15 +10,6 @@ import Footer from './Footer'
 
 library.add(fab, faRss, faAngleRight, faTag)
 
-export const Wrapper = styled.div`
-  padding: 30px 4% 0;
-  margin: 0 auto;
-  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
-    padding: 52px 32px 0;
-    max-width: ${props => props.pageMaxWidth};
-  }
-`
-
 const Layout = props => {
   const { children, pageType } = props
   let pageMaxWidth
@@ -41,5 +32,14 @@ const Layout = props => {
     </ThemeProvider>
   )
 }
+
+export const Wrapper = styled.div`
+  padding: 30px 4% 0;
+  margin: 0 auto;
+  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
+    padding: 52px 32px 0;
+    max-width: ${props => props.pageMaxWidth};
+  }
+`
 
 export default Layout

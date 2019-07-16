@@ -3,6 +3,24 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 import config from '../utils/siteConfig'
 
+const Header = () => (
+  <header>
+    <Wrapper>
+      <Inner>
+        <H1>
+          <H1Link to="/">
+            {config.siteLogo ? (
+              <Logo src={config.siteLogo} alt={config.siteTitle} />
+            ) : (
+              <>{config.siteTitle}</>
+            )}
+          </H1Link>
+        </H1>
+      </Inner>
+    </Wrapper>
+  </header>
+)
+
 export const Wrapper = styled.div`
   background: ${props => props.theme.colors.base};
   height: 56px;
@@ -50,23 +68,5 @@ export const Logo = styled.img`
     line-height: 36px;
   }
 `
-
-const Header = () => (
-  <header>
-    <Wrapper>
-      <Inner>
-        <H1>
-          <H1Link to="/">
-            {config.siteLogo ? (
-              <Logo src={config.siteLogo} alt={config.siteTitle} />
-            ) : (
-              <>{config.siteTitle}</>
-            )}
-          </H1Link>
-        </H1>
-      </Inner>
-    </Wrapper>
-  </header>
-)
 
 export default Header
