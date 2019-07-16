@@ -8,7 +8,7 @@ module.exports = {
     'A starter template to build amazing static websites with Gatsby, Contentful and Netlify',
   siteUrl: 'https://gatsby-starter-blog-contentful.netlify.com/',
   postsPerPage: 9,
-  pickUpPosts: ['test1', 'test2', 'test3'],
+  pickUpPosts: ['markdown-cheatsheet', 'sample-post-1', 'sample-post-2'],
   author: 'GSB User',
   userTwitter: '@twitter',
   shortTitle: 'GSB App',
