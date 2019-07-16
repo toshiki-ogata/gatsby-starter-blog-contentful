@@ -5,102 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import config from '../utils/siteConfig'
 const _ = require('lodash')
 
-const Footer = () => (
-  <StaticQuery
-    query={footerQuery}
-    render={data => {
-      const posts = data.allContentfulPost.edges
-
-      const socials = _.toArray(config.social)
-      const SnsIcon = [
-        ['fab', 'twitter'],
-        ['fab', 'facebook'],
-        ['fab', 'instagram'],
-        ['fab', 'youtube'],
-        ['fab', 'github'],
-        'rss',
-      ]
-
-      let categorys = []
-      _.each(posts, edge => {
-        if (_.get(edge, 'node.category')) {
-          categorys = categorys.concat(edge.node.category)
-        }
-      })
-      categorys = _.uniq(categorys)
-      categorys = _.sortBy(categorys)
-
-      let tags = []
-      _.each(posts, edge => {
-        if (_.get(edge, 'node.tag')) {
-          tags = tags.concat(edge.node.tag)
-        }
-      })
-      tags = _.uniq(tags)
-      tags = _.sortBy(tags)
-
-      return (
-        <Wrapper>
-          <Inner>
-            <Top>
-              <Col>
-                <Heading>About</Heading>
-                <Text>{config.footerAboutText}</Text>
-                <Sns>
-                  {socials.map((value, index) => {
-                    if (value) {
-                      return (
-                        <SnsItem key={value}>
-                          <SnsLink href={value}>
-                            <FontAwesomeIcon icon={SnsIcon[index]} size="lg" />
-                          </SnsLink>
-                        </SnsItem>
-                      )
-                    }
-                  })}
-                </Sns>
-              </Col>
-              <Col>
-                <Heading>Category</Heading>
-                <Category>
-                  {categorys.map(value => {
-                    return (
-                      <li key={value}>
-                        <CategoryLink to={`/category/${value}/`}>
-                          <Icon icon="angle-right" size="sm" />
-                          {value}
-                        </CategoryLink>
-                      </li>
-                    )
-                  })}
-                </Category>
-              </Col>
-              <Col>
-                <Heading>Tag</Heading>
-                <Tag>
-                  {tags.map(value => {
-                    return (
-                      <TagItem key={value}>
-                        <TagLink to={`/tag/${value}/`}>
-                          <Icon icon="tag" size="sm" />
-                          {value}
-                        </TagLink>
-                      </TagItem>
-                    )
-                  })}
-                </Tag>
-              </Col>
-            </Top>
-            <Bottom>
-              <Copyright>{config.copyright}</Copyright>
-            </Bottom>
-          </Inner>
-        </Wrapper>
-      )
-    }}
-  />
-)
-
 export const Wrapper = styled.footer`
   background: ${props => props.theme.colors.base};
   color: #fff;
@@ -231,6 +135,102 @@ export const Copyright = styled.p`
   text-align: center;
   margin: 0;
 `
+
+const Footer = () => (
+  <StaticQuery
+    query={footerQuery}
+    render={data => {
+      const posts = data.allContentfulPost.edges
+
+      const socials = _.toArray(config.social)
+      const SnsIcon = [
+        ['fab', 'twitter'],
+        ['fab', 'facebook'],
+        ['fab', 'instagram'],
+        ['fab', 'youtube'],
+        ['fab', 'github'],
+        'rss',
+      ]
+
+      let categorys = []
+      _.each(posts, edge => {
+        if (_.get(edge, 'node.category')) {
+          categorys = categorys.concat(edge.node.category)
+        }
+      })
+      categorys = _.uniq(categorys)
+      categorys = _.sortBy(categorys)
+
+      let tags = []
+      _.each(posts, edge => {
+        if (_.get(edge, 'node.tag')) {
+          tags = tags.concat(edge.node.tag)
+        }
+      })
+      tags = _.uniq(tags)
+      tags = _.sortBy(tags)
+
+      return (
+        <Wrapper>
+          <Inner>
+            <Top>
+              <Col>
+                <Heading>About</Heading>
+                <Text>{config.footerAboutText}</Text>
+                <Sns>
+                  {socials.map((value, index) => {
+                    if (value) {
+                      return (
+                        <SnsItem key={value}>
+                          <SnsLink href={value}>
+                            <FontAwesomeIcon icon={SnsIcon[index]} size="lg" />
+                          </SnsLink>
+                        </SnsItem>
+                      )
+                    }
+                  })}
+                </Sns>
+              </Col>
+              <Col>
+                <Heading>Category</Heading>
+                <Category>
+                  {categorys.map(value => {
+                    return (
+                      <li key={value}>
+                        <CategoryLink to={`/category/${value}/`}>
+                          <Icon icon="angle-right" size="sm" />
+                          {value}
+                        </CategoryLink>
+                      </li>
+                    )
+                  })}
+                </Category>
+              </Col>
+              <Col>
+                <Heading>Tag</Heading>
+                <Tag>
+                  {tags.map(value => {
+                    return (
+                      <TagItem key={value}>
+                        <TagLink to={`/tag/${value}/`}>
+                          <Icon icon="tag" size="sm" />
+                          {value}
+                        </TagLink>
+                      </TagItem>
+                    )
+                  })}
+                </Tag>
+              </Col>
+            </Top>
+            <Bottom>
+              <Copyright>{config.copyright}</Copyright>
+            </Bottom>
+          </Inner>
+        </Wrapper>
+      )
+    }}
+  />
+)
 
 const footerQuery = graphql`
   query FooterQuery {

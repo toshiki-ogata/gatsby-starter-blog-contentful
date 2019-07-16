@@ -6,53 +6,6 @@ import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 import blockquoteIcon from '../../static/assets/icon_blockquote.svg'
 
-class PostTemplate extends React.Component {
-  render() {
-    const { data } = this.props
-    const post = data.contentfulPost
-    // const { previous, next } = pageContext
-
-    return (
-      <Layout pageType="post">
-        <GlobalStyle />
-        <SEO
-          title={post.title}
-          description={post.description}
-          postNode={post}
-          pagePath={post.slug}
-          postSEO
-        />
-        <H1>{post.title}</H1>
-        <PublishDate>{post.createdAt}</PublishDate>
-        <Thumbnail fluid={post.thumbnail.fluid} />
-        <div
-          className="post"
-          dangerouslySetInnerHTML={{
-            __html: post.content.childMarkdownRemark.html,
-          }}
-        />
-
-        {/* <ul>
-          <li>
-            {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.title} →
-              </Link>
-            )}
-          </li>
-        </ul> */}
-      </Layout>
-    )
-  }
-}
-
 export const H1 = styled.h1`
   margin: 0 0 10.4px 0;
   line-height: ${props => props.theme.lineHeight.small};
@@ -247,6 +200,53 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 `
+
+class PostTemplate extends React.Component {
+  render() {
+    const { data } = this.props
+    const post = data.contentfulPost
+    // const { previous, next } = pageContext
+
+    return (
+      <Layout pageType="post">
+        <GlobalStyle />
+        <SEO
+          title={post.title}
+          description={post.description}
+          postNode={post}
+          pagePath={post.slug}
+          postSEO
+        />
+        <H1>{post.title}</H1>
+        <PublishDate>{post.createdAt}</PublishDate>
+        <Thumbnail fluid={post.thumbnail.fluid} />
+        <div
+          className="post"
+          dangerouslySetInnerHTML={{
+            __html: post.content.childMarkdownRemark.html,
+          }}
+        />
+
+        {/* <ul>
+          <li>
+            {previous && (
+              <Link to={previous.fields.slug} rel="prev">
+                ← {previous.title}
+              </Link>
+            )}
+          </li>
+          <li>
+            {next && (
+              <Link to={next.fields.slug} rel="next">
+                {next.title} →
+              </Link>
+            )}
+          </li>
+        </ul> */}
+      </Layout>
+    )
+  }
+}
 
 export default PostTemplate
 

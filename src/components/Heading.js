@@ -1,16 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Heading = props => {
-  const { main, sub } = props
-  return (
-    <H2>
-      <Main>{main}</Main>
-      {sub !== null && <Sub>{sub}</Sub>}
-    </H2>
-  )
-}
-
 export const H2 = styled.h2`
   color: ${props => props.theme.colors.base};
   text-align: center;
@@ -37,5 +27,15 @@ export const Sub = styled.div`
     padding-left: 32px;
   }
 `
+
+const Heading = props => {
+  const { main, sub } = props
+  return (
+    <H2>
+      <Main>{main}</Main>
+      {sub !== null && <Sub>{sub}</Sub>}
+    </H2>
+  )
+}
 
 export default Heading
