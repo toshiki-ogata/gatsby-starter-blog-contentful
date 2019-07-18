@@ -1,4 +1,4 @@
-*[English](README.md) ? [???](README-ja.md) 
+*[English](README.md) ? [日本語](README-ja.md) 
 
 # Gatsby Starter Blog Contentful
 
