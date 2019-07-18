@@ -22,7 +22,6 @@ Gatsby、Contentful、Netlifyを使って静的Webサイトを構築するため
 - JavascriptをStandardJSにリンクするための[Gatsby Standardモジュール](https://www.npmjs.com/package/eslint-config-gatsby-standard)
 - JSでCSSをリントするためのStyled ComponentsのStylelintサポート
 
-
 ## 入門
 
 ### インストール
@@ -32,13 +31,21 @@ git clone https://github.com/toshiki-ogata/gatsby-starter-blog-contentful.git
 npm i
 ```
 
+### Setup Contentful
+
+1.  Contentfulに[サインアップ](https://www.contentful.com/sign-up/)して新しい空のスペースを作成してください。
+
+2.  `npm run setup`
+
+3.  ここで見つけたあなたのContentfulスペースのために要求された情報を入力してください: **app.contentful.com** → **Space Settings** → **API keys**. 標準のAPIキー（最初のタブ）と管理キー（2番目のタブ）の両方を提供する必要があります。
+
 ## 設定
 
 ### ウェブサイトデータ
 
 `/src/utils/siteConfig.js` を編集する
 
-```
+```js
 module.exports = {
   siteTitle: 'Gatsby Starter Blog',
   siteTitleAlt: 'Gatsby Starter Blog',
@@ -77,7 +84,7 @@ module.exports = {
 
 `/src/styles/theme.js` を編集する
 
-```
+```js
 const theme = {
   fontFamily:
     '"Noto Sans", "Noto Sans CJK JP", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif',
@@ -105,6 +112,8 @@ const theme = {
 
 ### コンテンツとSEO
 1. `static/logos`ディレクトリ内の`share.jpg`,`logo-512`ファイルを置き換えることができます。これらのファイルを置き換えた後は、`/src/utils/siteConfig.js`で指定した画像サイズの寸法に編集してください。
+2. メタ記述はContentfulで定義されています。 新しい投稿でこのフィールドを空白のままにすると、投稿/ページの320文字の抜粋が使用されます。
+3. 重要：ページに少なくとも1つのメタ説明を手動で入力してContentfulに投稿すると、サイトの構築に失敗します。
 
 ## 展開
 
@@ -112,7 +121,6 @@ const theme = {
 
 1. `gatsby build` を実行する
 2. フォルダ`/public/`をNetlifyにドラッグアンドドロップします。
-
 
 ### GitからのNetlify展開（推奨）
 
@@ -125,7 +133,6 @@ SPACE_ID
 GOOGLE_ANALYTICS
 ```
 4. Netlify：**Deploys**に移動します。クリックし`Trigger deploy`て手動でデプロイを開始し、Webサイトがビルド環境変数を使用して正常にビルドされていることを確認します。この時点でmasterにプッシュするたびに自動的に開始され、運用環境に公開されます。
-
 
 ## 追加の設定
 
