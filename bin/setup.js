@@ -44,10 +44,6 @@ const questions = [
     message: 'Your Content Delivery API access token',
   },
   {
-    name: 'previewToken',
-    message: 'Your Content Preview API access token',
-  },
-  {
     name: 'managementToken',
     message: 'Your Content Management API access token',
   },
@@ -55,22 +51,15 @@ const questions = [
 
 inquirer
   .prompt(questions)
-  .then(({ spaceId, accessToken, previewToken, managementToken }) => {
+  .then(({ spaceId, accessToken, managementToken }) => {
     console.log('Writing config file...')
     const configFilePath = path.resolve(__dirname, '..', '.contentful.json')
     writeFileSync(
       configFilePath,
       JSON.stringify(
         {
-          development: {
-            host: 'preview.contentful.com',
-            spaceId,
-            accessToken: previewToken,
-          },
-          production: {
-            spaceId,
-            accessToken,
-          },
+          spaceId,
+          accessToken,
         },
         null,
         2
